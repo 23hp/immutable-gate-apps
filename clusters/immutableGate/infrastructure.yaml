@@ -6,7 +6,7 @@ metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
-  interval: 1d
+  interval: 24h
   path: ./infrastructure/controllers
   prune: true
   sourceRef:
