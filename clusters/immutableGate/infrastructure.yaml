@@ -1,3 +1,4 @@
+# clusters/immutableGate/infrastructure.yaml
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -5,15 +6,13 @@ metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
-  interval: 1h
-  retryInterval: 2m
-  timeout: 5m
-  sourceRef:
-    kind: ExternalArtifact
-    name: infrastructure
-  path: ./controllers
+  interval: 1d
+  path: ./infrastructure/controllers
   prune: true
-  wait: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -24,18 +23,8 @@ spec:
   dependsOn:
     - name: infra-controllers
   interval: 1h
-  retryInterval: 2m
-  timeout: 5m
-  sourceRef:
-    kind: ExternalArtifact
-    name: infrastructure
-  path: ./configs
+  path: ./infrastructure/configs
   prune: true
-  patches:
-    - patch: |
-        - op: replace
-          path: /spec/acme/server
-          value: https://acme-v02.api.letsencrypt.org/directory
-      target:
-        kind: ClusterIssuer
-        name: letsencrypt
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
