@@ -3,8 +3,12 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: local-path-provisioner
-  namespace: local-path-storage
+  namespace: flux-system
 spec:
   interval: 36h
   url: https://charts.containeroo.ch
-
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: local-path-storage

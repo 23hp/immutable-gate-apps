@@ -7,16 +7,6 @@ metadata:
 spec:
   releaseName: local-path-provisioner
   interval: 24h
-  install:
-    createNamespace: true
-    strategy:
-      name: RetryOnFailure
-  upgrade:
-    strategy:
-      name: RetryOnFailure
-  chartRef:
-    kind: HelmRepository
-    name: local-path-provisioner
   chart:
     spec:
       chart: local-path-provisioner
