@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
 # - cert-manager/
 - local-path-provider/
+- metallb/
 # - traefik/
