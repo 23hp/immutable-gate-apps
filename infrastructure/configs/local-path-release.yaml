@@ -1,0 +1,34 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: local-path-provisioner
+  namespace: local-path-storage
+spec:
+  releaseName: local-path-provisioner
+  interval: 24h
+  install:
+    createNamespace: true
+    strategy:
+      name: RetryOnFailure
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+  chartRef:
+    kind: HelmRepository
+    name: local-path-provisioner
+  chart:
+    spec:
+      chart: local-path-provisioner
+      version: ">= 0.0.35"
+      sourceRef:
+        kind: HelmRepository
+        name: local-path-provisioner
+        namespace: flux-system
+  values:
+    nodePathMap:
+      - node: DEFAULT_PATH_FOR_NEW_NODES
+        paths: ["/var/mnt/local-data"]
+    storageClass:
+      name: local-path
+      defaultClass: true
