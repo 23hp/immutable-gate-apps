@@ -64,10 +64,10 @@ metadata:
   name: adguard-home-ui
   namespace: adguard
   annotations:
-    metallb.universe.tf/sharing-key: "adguard-home-group"
-    metallb.universe.tf/loadBalancerIPs: 192.168.20.53
+    metallb.universe.tf/address-pool: vlan20-pool
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.20.3
   selector:
     app: adguard-home
   ports:
@@ -85,11 +85,10 @@ kind: Service
 metadata:
   name: adguard-home-dns
   namespace: adguard
-  annotations:
-    metallb.universe.tf/sharing-key: "adguard-home-group"
-    metallb.universe.tf/loadBalancerIPs: 192.168.20.53
+  # annotations:
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.20.53
   externalTrafficPolicy: Local
   selector:
     app: adguard-home
