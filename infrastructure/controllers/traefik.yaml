@@ -37,9 +37,10 @@ spec:
     #   type: LoadBalancer
     #   annotations:
     #     metallb.io/loadBalancerIPs: "192.168.20.4"
-    
-    globalArguments:
-      - "--global.sendanonymoususage=false"
+
+    # TODO: Fix it
+    # globalArguments:
+    #   - "--global.sendanonymoususage=false"
 
     # values.yaml
     ingressRoute:
