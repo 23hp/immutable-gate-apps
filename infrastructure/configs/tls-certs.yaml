@@ -24,7 +24,7 @@ metadata:
   name: wildcard-tls
   namespace: envoy-gateway-system
 spec:
-  secretName: wildcard-tls-secret 
+  secretName: wildcard-tls-secret
   issuerRef:
     name: letsencrypt
     kind: ClusterIssuer
