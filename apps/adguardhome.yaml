@@ -64,7 +64,7 @@ metadata:
   name: adguard-home-ui
   namespace: adguard
   annotations:
-    metallb.universe.tf/allow-shared-ip: "adguard-service-group"
+    metallb.universe.tf/sharing-key: "adguard-home-group"
     metallb.universe.tf/loadBalancerIPs: 192.168.20.53
 spec:
   type: LoadBalancer
@@ -86,7 +86,7 @@ metadata:
   name: adguard-home-dns
   namespace: adguard
   annotations:
-    metallb.universe.tf/allow-shared-ip: "adguard-service-group"
+    metallb.universe.tf/sharing-key: "adguard-home-group"
     metallb.universe.tf/loadBalancerIPs: 192.168.20.53
 spec:
   type: LoadBalancer
