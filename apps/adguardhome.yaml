@@ -85,7 +85,6 @@ kind: Service
 metadata:
   name: adguard-home-dns
   namespace: adguard
-  # annotations:
 spec:
   type: LoadBalancer
   loadBalancerIP: 192.168.20.53
