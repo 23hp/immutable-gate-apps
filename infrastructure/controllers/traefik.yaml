@@ -33,15 +33,84 @@ spec:
     - name: metallb
       namespace: metallb-system
   values:
-    service:
-      type: LoadBalancer
-      loadBalancerIP: 192.168.20.4
-    ingressClass:
-      enabled: true
-      isDefaultClass: true
-    ports:
-      web:
-        redirectTo: websecure
-      websecure:
-        middlewares:
-          - traefik-secure-headers@kubernetescrd
+    # service:
+    #   type: LoadBalancer
+    #   annotations:
+    #     metallb.io/loadBalancerIPs: "192.168.20.4"
+    
+    globalArguments:
+      - "--global.sendanonymoususage=false"
+
+    # values.yaml
+    ingressRoute:
+      dashboard:
+        enabled: true
+        matchRule: Host(`dashboard.${root_domain}`)
+        entryPoints:
+          - web
+    providers:
+      kubernetesGateway:
+        enabled: true
+    gateway:
+      listeners:
+        web:
+          namespacePolicy:
+            from: All
+
+    # ports:
+    #   web:
+    #     port: 80
+    #     http:
+    #       redirections:
+    #         entryPoint:
+    #           to: websecure
+    #           scheme: https
+    #           permanent: true
+    #   websecure:
+    #     port: 443
+    #   api:
+    #     dashboard: true
+    #     insecure: false
+
+    #   ingressRoute:
+    #     dashboard:
+    #       enabled: true
+    #       matchRule: Host(`dashboard.${root_domain}`)
+    #       entryPoints:
+    #         - websecure
+    # ingressClass:
+    #   enabled: false
+
+    # # Enable Gateway API Provider & Disables the KubernetesIngress provider
+    # # Providers tell Traefik where to find routing configuration.
+    # providers:
+    #   kubernetesIngress:
+    #     enabled: false
+    #   kubernetesGateway:
+    #     enabled: true
+    # gateway:
+    #   listeners:
+    #     web:           # HTTP listener that matches entryPoint `web`
+    #       port: 80
+    #       protocol: HTTP
+    #       namespacePolicy:
+    #         from: All
+
+    #     websecure:         # HTTPS listener that matches entryPoint `websecure`
+    #       port: 443
+    #       protocol: HTTPS  # TLS terminates inside Traefik
+    #       namespacePolicy:
+    #         from: All
+    #       mode: Terminate
+    #       certificateRefs:    
+    #         - kind: Secret
+    #           name: local-selfsigned-tls  # the Secret we created before the installation
+    #           group: ""
+
+    # Enable Observability
+    logs:
+      general:
+        level: INFO
+      # This enables access logs, outputting them to Traefik's standard output by default. The [Access Logs Documentation](https://doc.traefik.io/traefik/observability/access-logs/) covers formatting, filtering, and output options.
+      access:
+        enabled: true
