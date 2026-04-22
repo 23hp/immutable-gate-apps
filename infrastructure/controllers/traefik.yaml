@@ -1,12 +1,17 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
+kind: OCIRepository
 metadata:
   name: traefik
   namespace: flux-system
 spec:
   interval: 36h
-  url: https://helm.traefik.io/traefik
+  url: oci://ghcr.io/traefik/helm/traefik
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: "39.x"
 ---
 apiVersion: v1
 kind: Namespace
@@ -20,14 +25,10 @@ metadata:
   namespace: traefik
 spec:
   interval: 24h
-  chart:
-    spec:
-      chart: traefik
-      version: 'v39.0.8'
-      sourceRef:
-        kind: HelmRepository
-        name: traefik
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: traefik
+    namespace: flux-system
   values:
     service:
       type: LoadBalancer
