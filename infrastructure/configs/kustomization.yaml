@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - gateway.yaml
   - ip-config.yaml
   - tls-certs.yaml
-  - traefik-configs.yaml
