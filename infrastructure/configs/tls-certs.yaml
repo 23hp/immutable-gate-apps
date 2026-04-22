@@ -30,4 +30,4 @@ spec:
     kind: ClusterIssuer
   dnsNames:
   - "${root_domain}"
-  - "${wildcard_domain}"
+  - "*.${root_domain}"
