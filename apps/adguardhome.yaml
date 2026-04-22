@@ -43,8 +43,6 @@ spec:
           protocol: TCP
         - name: http-ui
           containerPort: 3000
-        - name: http-web
-          containerPort: 80
         volumeMounts:
         - name: config-data
           mountPath: /opt/adguardhome/work
@@ -64,16 +62,11 @@ metadata:
   name: adguard-home-ui
   namespace: adguard
 spec:
-  type: LoadBalancer
   selector:
     app: adguard-home
   ports:
-    - name: setup
-      port: 3000
+    - port: 3000
       targetPort: 3000
-    - name: web
-      port: 80
-      targetPort: 80
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
