@@ -31,7 +31,7 @@ spec:
         namespace: flux-system
   values:
     nodePathMap:
-      - node: DEFAULT_PATH_FOR_NEW_NODES
+      - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
         paths: ["/var/mnt/local-data"]
     storageClass:
       name: local-path
