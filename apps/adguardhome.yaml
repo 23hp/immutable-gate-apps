@@ -42,9 +42,9 @@ spec:
           containerPort: 53
           protocol: TCP
         - name: http-ui
-          containerPort: 3000 # 初始化界面端口
+          containerPort: 3000
         - name: http-web
-          containerPort: 80   # 运行后的管理界面
+          containerPort: 80
         volumeMounts:
         - name: config-data
           mountPath: /opt/adguardhome/work
@@ -63,11 +63,8 @@ kind: Service
 metadata:
   name: adguard-home-ui
   namespace: adguard
-  annotations:
-    metallb.universe.tf/address-pool: vlan20-pool
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.20.3
   selector:
     app: adguard-home
   ports:
@@ -83,9 +80,10 @@ kind: Service
 metadata:
   name: adguard-home-dns
   namespace: adguard
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.20.53
 spec:
   type: LoadBalancer
-  loadBalancerIP: 192.168.20.53
   externalTrafficPolicy: Local
   selector:
     app: adguard-home
