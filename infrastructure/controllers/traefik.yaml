@@ -29,9 +29,13 @@ spec:
     kind: OCIRepository
     name: traefik
     namespace: flux-system
+  dependsOn:
+    - name: metallb
+      namespace: metallb-system
   values:
     service:
       type: LoadBalancer
+      loadBalancerIP: 192.168.20.4
     ingressClass:
       enabled: true
       isDefaultClass: true
