@@ -14,7 +14,6 @@ spec:
       key: openai
   analysis:
     interval: 3m
-    namespace: k8sgpt-operator-system
 # ---
 # apiVersion: gateway.networking.k8s.io/v1
 # kind: HTTPRoute
