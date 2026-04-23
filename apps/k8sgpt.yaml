@@ -8,11 +8,12 @@ spec:
   ai:
     enabled: true
     backend: google
-    model: gemini-3-flash-preview
-    maxConcurrency: 2
+    model: gemini-3.1-flash-lite-preview
     secret:
       name: k8sgpt
       key: gemini
+  analysisConfig:
+    interval: 1m
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
