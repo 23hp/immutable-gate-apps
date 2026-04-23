@@ -8,12 +8,10 @@ spec:
   ai:
     enabled: true
     backend: openai
-    model: gpt-5.1
+    model: gpt-4o-mini
     secret:
       name: k8sgpt
       key: openai
-  analysis:
-    interval: 3m
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
