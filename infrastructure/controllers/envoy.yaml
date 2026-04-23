@@ -25,7 +25,8 @@ metadata:
   namespace: envoy-gateway-system
 spec:
   interval: 24h
-  wait: true
+  install:
+    wait: true
   chartRef:
     kind: OCIRepository
     name: envoy

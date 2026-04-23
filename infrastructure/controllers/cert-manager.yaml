@@ -25,11 +25,12 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 24h
-  wait: true
   install:
+    wait: true
     strategy:
       name: RetryOnFailure
   upgrade:
+    wait: true
     strategy:
       name: RetryOnFailure
   chartRef:

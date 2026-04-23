@@ -30,6 +30,7 @@ spec:
         namespace: flux-system
   install:
     crds: CreateReplace
+    wait: true
   upgrade:
     crds: CreateReplace
-  wait: true
+    wait: true
