@@ -4,8 +4,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: adguard
+automountServiceAccountToken: false
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: external-services
+automountServiceAccountToken: false
