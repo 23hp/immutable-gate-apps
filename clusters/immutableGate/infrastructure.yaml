@@ -19,10 +19,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: init-config
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
