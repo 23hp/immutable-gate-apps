@@ -26,11 +26,9 @@ metadata:
 spec:
   interval: 24h
   install:
-    wait: true
     strategy:
       name: RetryOnFailure
   upgrade:
-    wait: true
     strategy:
       name: RetryOnFailure
   chartRef:

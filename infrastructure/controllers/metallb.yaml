@@ -21,8 +21,6 @@ metadata:
   namespace: metallb-system
 spec:
   interval: 24h
-  install:
-    wait: true
   chart:
     spec:
       chart: metallb
