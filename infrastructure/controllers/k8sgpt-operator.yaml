@@ -1,0 +1,30 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: k8sgpt
+  namespace: flux-system
+spec:
+  interval: 36h
+  url: https://charts.k8sgpt.ai/
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8sgpt-operator-system
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: k8sgpt-operator
+  namespace: k8sgpt-operator-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: k8sgpt-operator
+      version: ">=0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: k8sgpt
+        namespace: flux-system
