@@ -10,7 +10,7 @@ spec:
     namespace: envoy-gateway-system
     sectionName: https
   hostnames:
-  - "k8sgpt.${root_domain}"
+  - "k8sgpt.${domain_name}"
   rules:
     - backendRefs:
         - name: k8sgpt-app

@@ -32,7 +32,7 @@ spec:
     namespace: envoy-gateway-system
     sectionName: https
   hostnames:
-  - "router.${root_domain}"
+  - "router.${domain_name}"
   rules:
   - backendRefs:
     - name: router-service

@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - gateway.yaml
   - ip-config.yaml
-  - secret.sops.yaml
   - tls-certs.yaml
