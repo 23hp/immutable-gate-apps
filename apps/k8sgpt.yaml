@@ -18,9 +18,9 @@ spec:
     - "-ConfigMap"
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+kind: GRPCRoute
 metadata:
-  name: k8sgpt-route
+  name: k8sgpt-grpc-route
   namespace: k8sgpt-operator-system
 spec:
   parentRefs:
@@ -30,6 +30,6 @@ spec:
   hostnames:
   - "k8sgpt.${root_domain}"
   rules:
-  - backendRefs:
-    - name:  k8sgpt-app
-      port: 8080
+    - backendRefs:
+        - name: k8sgpt-app
+          port: 8080
