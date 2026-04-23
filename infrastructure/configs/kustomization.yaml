@@ -1,9 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - certificate.yaml
-  - gateway.yaml
-  - k8sgpt-route.yaml
-  - l2-advertisement.yaml
-  - issuer.yaml
-  - ip-address-pool.yaml
+  - cert-manager
+  - gateway
+  - k8sgpt-operator
+  - metallb
