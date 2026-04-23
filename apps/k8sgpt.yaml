@@ -1,0 +1,47 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: k8sgpt-operator-system
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: k8sgpt
+  namespace: flux-system
+spec:
+  interval: 36h
+  url: https://charts.k8sgpt.ai/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: k8sgpt-operator
+  namespace: k8sgpt-operator-system
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: k8sgpt-operator
+      version: ">=0.2.0"
+      sourceRef:
+        kind: HelmRepository
+        name: k8sgpt
+        namespace: flux-system
+---
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-sample
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: true
+    backend: openai
+    model: gpt-5.1
+    secret:
+      name: k8sgpt
+      key: openai
+  serve:
+    enabled: true
+    port: 8080
