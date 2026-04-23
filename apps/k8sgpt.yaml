@@ -15,7 +15,26 @@ spec:
   analysis:
     interval: 1m
   filters:
-    - "-ConfigMap"
+    - Pod
+    - Deployment
+    - ReplicaSet
+    - PersistentVolumeClaim
+    - Service
+    - StatefulSet
+    - Job
+    - CronJob
+    - Node
+    - ValidatingWebhookConfiguration
+    - MutatingWebhookConfiguration
+    - GatewayClass
+    - Gateway
+    - HTTPRoute
+    # - Ingress
+    # - ConfigMap
+    # HorizontalPodAutoscaler
+    # PodDisruptionBudget
+    # NetworkPolicy
+    # Log
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: GRPCRoute
