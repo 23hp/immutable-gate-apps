@@ -13,6 +13,6 @@ patches:
       kind: ServiceAccount
       name: default
     patch: |-
-      - op: replace
+      - op: add
         path: /automountServiceAccountToken
         value: false
