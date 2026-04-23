@@ -23,6 +23,7 @@ spec:
   dependsOn:
     - name: infra-controllers
   interval: 3m
+  retryInterval: 10s
   path: "./immutableGate" 
   prune: true
   sourceRef:
@@ -41,9 +42,9 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-    - name: infra-controllers
     - name: secrets-deployment
   interval: 1h
+  retryInterval: 10s
   path: ./infrastructure/configs
   prune: true
   sourceRef:
