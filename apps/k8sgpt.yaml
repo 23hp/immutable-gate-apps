@@ -9,6 +9,7 @@ spec:
     enabled: true
     backend: google
     model: gemini-3-flash-preview
+    maxConcurrency: 2
     secret:
       name: k8sgpt
       key: gemini
