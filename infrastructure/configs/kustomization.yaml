@@ -5,3 +5,5 @@ resources:
   - gateway.yaml
   # - k8sgpt-route.yaml
   # - issuer.yaml
+  # - ip-address-pool.yaml
+  # - l2-advertisement.yaml
