@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - envoy.yaml
+  - k8sgpt-operator.yaml
   - local-path-provisioner.yaml
   - metallb.yaml
   - secrets.yaml
