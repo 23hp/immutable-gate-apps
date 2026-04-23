@@ -12,20 +12,23 @@ spec:
     secret:
       name: k8sgpt
       key: openai
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: k8sgpt-route
-  namespace: k8sgpt-operator-system
-spec:
-  parentRefs:
-  - name: eg-gateway
-    namespace: envoy-gateway-system
-    sectionName: https
-  hostnames:
-  - "k8sgpt.${root_domain}"
-  rules:
-  - backendRefs:
-    - name: k8sgpt-operator-controller-manager-metrics-service
-      port: 8443
+  serve:
+    enabled: true
+    port: 8080
+# ---
+# apiVersion: gateway.networking.k8s.io/v1
+# kind: HTTPRoute
+# metadata:
+#   name: k8sgpt-route
+#   namespace: k8sgpt-operator-system
+# spec:
+#   parentRefs:
+#   - name: eg-gateway
+#     namespace: envoy-gateway-system
+#     sectionName: https
+#   hostnames:
+#   - "k8sgpt.${root_domain}"
+#   rules:
+#   - backendRefs:
+#     - name: k8sgpt-operator-controller-manager-metrics-service
+#       port: 8443
