@@ -9,9 +9,6 @@ spec:
     enabled: true
     backend: openai
     model: gpt-5.1
-    secretRef:
+    secret:
       name: k8sgpt
       key: openai
-  serve:
-    enabled: true
-    port: 8080
