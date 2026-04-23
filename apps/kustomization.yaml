@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - adguardhome.yaml
   - k8sgpt.yaml
+  - memos.yaml

@@ -6,13 +6,11 @@ metadata:
   name: adguard
 ---
 apiVersion: v1
-kind: ServiceAccount
+kind: Namespace
 metadata:
-  name: default
-  namespace: adguard
-automountServiceAccountToken: false
+  name: external-services
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: external-services
+  name: memos

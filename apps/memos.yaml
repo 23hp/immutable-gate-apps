@@ -1,0 +1,59 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: memos
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/gabe565/charts/memos
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    semver: "0.x"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: memos
+  namespace: memos
+spec:
+  interval: 30m
+  install:
+    strategy:
+      name: RetryOnFailure
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+  chartRef:
+    kind: OCIRepository
+    name: memos
+    namespace: flux-system
+  values:
+    ingress:
+      main:
+        enabled: false
+    persistence:
+      data:
+        enabled: true
+        size: 10Gi
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: memos
+  namespace: memos
+spec:
+  parentRefs:
+    - name: eg-gateway
+      namespace: envoy-gateway-system
+      sectionName: https
+  hostnames:
+    - "memos.${root_domain}"
+  rules:
+    - backendRefs:
+        - group: ""
+          kind: Service
+          name: memos
+          port: 5230
