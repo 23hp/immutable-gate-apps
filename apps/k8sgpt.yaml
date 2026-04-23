@@ -1,5 +1,5 @@
 ---
-apiVersion: core.k8sgpt.ai/v1
+apiVersion: core.k8sgpt.ai/v1alpha1
 kind: K8sGPT
 metadata:
   name: k8sgpt-sample
