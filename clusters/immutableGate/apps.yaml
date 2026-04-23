@@ -10,8 +10,7 @@ spec:
   wait: true
   timeout: 1m
   dependsOn:
-    # - name: infra-configs
-    - name: infrastructure
+    - name: infra-configs
   path: ./apps
   prune: true
   sourceRef:
