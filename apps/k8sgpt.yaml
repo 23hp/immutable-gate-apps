@@ -29,7 +29,7 @@ spec:
         name: k8sgpt
         namespace: flux-system
 ---
-apiVersion: core.k8sgpt.ai/v1alpha1
+apiVersion: core.k8sgpt.ai/v1
 kind: K8sGPT
 metadata:
   name: k8sgpt-sample
@@ -39,7 +39,7 @@ spec:
     enabled: true
     backend: openai
     model: gpt-5.1
-    secret:
+    secretRef:
       name: k8sgpt
       key: openai
   serve:
