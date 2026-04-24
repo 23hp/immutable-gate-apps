@@ -6,16 +6,14 @@ metadata:
   namespace: memos
 spec:
   interval: 24h
-  install:
-    strategy:
-      name: RetryOnFailure
-  upgrade:
-    strategy:
-      name: RetryOnFailure
-  chartRef:
-    kind: HelmRepository
-    name: memos
-    namespace: flux-system
+  chart:
+    spec:
+      chart: memos
+      version: "0.52.0"
+      sourceRef:
+        kind: HelmRepository
+        name: memos
+        namespace: flux-system
   values:
     env:
       TZ: Europe/Berlin
