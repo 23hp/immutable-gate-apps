@@ -62,4 +62,4 @@ spec:
     service:
       dns:
         type: LoadBalancer
-        loadBalancerIP: "192.168.20.153"
+        loadBalancerIP: "192.168.20.53"
