@@ -21,6 +21,7 @@ spec:
       dns:
         type: LoadBalancer
         loadBalancerIP: "192.168.20.53"
+        annotations: {}
     config:
       adGuardHome:
         http:
@@ -32,10 +33,10 @@ spec:
           bind_hosts:
             - 0.0.0.0
           port: 53
+          bootstrap_dns: [ "9.9.9.10", "1.1.1.1" ]
           upstream_dns:
             - https://dns10.quad9.net/dns-query
             - https://dns.cloudflare.com/dns-query
-          bootstrap_dns: [ "9.9.9.10", "1.1.1.1" ]
           protection_enabled: true
           filtering_enabled: true
         filters:
