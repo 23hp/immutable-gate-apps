@@ -17,10 +17,8 @@ spec:
   values:
     env:
       TZ: Europe/Berlin
-    # persistence:
-    #   ## If enabled is False, emptyDir will be used, data may be lost after Pod rebuild, it is recommended to use persistent volume
-    #   enabled: false
-    #   storageClass: "local"
-    #   existPersistClaim: ""
-    #   accessMode: ReadWriteOnce
-    #   size: 10Gi
+    service:
+      main:
+        ports:
+          http:
+            port: 5230
