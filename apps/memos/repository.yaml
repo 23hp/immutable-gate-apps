@@ -1,0 +1,9 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: memos
+  namespace: flux-system
+spec:
+  interval: 36h
+  url: https://zekker6.github.io/helm-charts
