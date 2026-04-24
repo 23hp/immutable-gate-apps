@@ -22,8 +22,8 @@ spec:
         http:
           address: 0.0.0.0:80
         users:
-          - name: plug
-            password: "$2b$12$i3qFAvOTnLV/E/ZDySSVJu.MuXobONG8KyC1pfcYWNsPCFKvw4Jze"
+          - name: tropical9595
+            password: "$2y$10$JZ6dspueaIYOTDXdJLoXcOhgrXrJAIgJwsus2nNbNB.dkPU0jkKxe"
       dns:
         bind_hosts:
           - 0.0.0.0
