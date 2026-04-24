@@ -4,5 +4,4 @@ resources:
   - cert-manager
   - envoy
   - gateway
-  - k8sgpt-operator
   - metallb
