@@ -24,41 +24,41 @@ spec:
         users:
           - name: tropical9595
             password: "$2y$10$JZ6dspueaIYOTDXdJLoXcOhgrXrJAIgJwsus2nNbNB.dkPU0jkKxe"
-      dns:
-        bind_hosts:
-          - 0.0.0.0
-        port: 53
-        upstream_dns:
-          - https://dns10.quad9.net/dns-query
-          - https://dns.cloudflare.com/dns-query
-        bootstrap_dns:
-          - 9.9.9.9
-          - 9.9.9.10
-          - 1.1.1.1
-          - 8.8.8.8
-        protection_enabled: true
-        filtering_enabled: true
-      filters:
-        - enabled: true
-          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
-          name: AdGuard DNS filter
-          id: 1
-        - enabled: true
-          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
-          name: AdAway Default Blocklist
-          id: 2
-        - enabled: true
-          url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt
-          name: AdGuard DNS Popup Hosts filter
-          id: 1773314055
-        - enabled: true
-          url: https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt
-          name: https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#ledger-multi-pro---extended-protection-recommended-
-          id: 1773316573
-        - enabled: true
-          url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_6_German/filter.txt
-          name: Germany
-          id: 1774109573
+        dns:
+          bind_hosts:
+            - 0.0.0.0
+          port: 53
+          upstream_dns:
+            - https://dns10.quad9.net/dns-query
+            - https://dns.cloudflare.com/dns-query
+          bootstrap_dns:
+            - 9.9.9.9
+            - 9.9.9.10
+            - 1.1.1.1
+            - 8.8.8.8
+          protection_enabled: true
+          filtering_enabled: true
+        filters:
+          - enabled: true
+            url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
+            name: AdGuard DNS filter
+            id: 1
+          - enabled: true
+            url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
+            name: AdAway Default Blocklist
+            id: 2
+          - enabled: true
+            url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_59.txt
+            name: AdGuard DNS Popup Hosts filter
+            id: 1773314055
+          - enabled: true
+            url: https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/pro.txt
+            name: https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#ledger-multi-pro---extended-protection-recommended-
+            id: 1773316573
+          - enabled: true
+            url: https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_6_German/filter.txt
+            name: Germany
+            id: 1774109573
     service:
       dns:
         type: LoadBalancer
