@@ -24,6 +24,7 @@ spec:
         annotations: {}
     config:
       adGuardHome:
+        schema_version: 29
         http:
           address: 0.0.0.0:80
         users:
