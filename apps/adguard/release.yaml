@@ -24,7 +24,7 @@ spec:
         annotations: {}
     config:
       adGuardHome:
-        schema_version: 29
+        schema_version: 33
         http:
           address: 0.0.0.0:80
         users:
@@ -34,14 +34,22 @@ spec:
           bind_hosts:
             - 0.0.0.0
           port: 53
-          bootstrap_dns: 
+          bootstrap_dns:
             - "9.9.9.10"
             - "1.1.1.1"
           upstream_dns:
             - https://dns10.quad9.net/dns-query
             - https://dns.cloudflare.com/dns-query
+        filtering:
           protection_enabled: true
           filtering_enabled: true
+          rewrites:
+            - domain: "*.${domain_name}"
+              answer: "${host_ip}"
+              enabled: true
+            - domain: "${domain_name}"
+              answer: "${host_ip}"
+              enabled: true
         filters:
           - enabled: true
             url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
