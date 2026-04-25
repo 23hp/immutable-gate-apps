@@ -11,7 +11,7 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/23hp/homelab-apps
+  url: ssh://git@github.com/23hp/immutable-gate-apps
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
