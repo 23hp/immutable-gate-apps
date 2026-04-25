@@ -16,9 +16,14 @@ spec:
         namespace: flux-system
   values:
     env:
-      TZ: Europe/Berlin
-    service:
-      main:
-        ports:
-          http:
-            port: 5230
+      MEMOS_PORT: 5230
+    # persistence:
+    #   # -- Configure persistence for data to use sqlite backend.
+    #   # @default -- See values.yaml
+    #   data:
+    #     enabled: false
+    #     mountPath: /var/opt/memos
+    #     accessMode: ReadWriteOnce
+    #     size: 100Mi
+    #     emptyDir:
+    #       enabled: false
