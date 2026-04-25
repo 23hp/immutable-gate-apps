@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: memos-route
+  namespace: memos
+spec:
+  parentRefs:
+  - name: eg-gateway
+    namespace: envoy-gateway-system
+    sectionName: https
+  hostnames:
+  - "memos.${domain_name}"
+  rules:
+  - backendRefs:
+    - name: memos
+      port: 5230
