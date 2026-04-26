@@ -5,4 +5,4 @@ resources:
   - envoy
   - local-path-provisioner
   - metallb
-  - postgresql
+  # - postgresql
