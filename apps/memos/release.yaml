@@ -17,13 +17,6 @@ spec:
   values:
     env:
       MEMOS_PORT: 5230
-    # persistence:
-    #   # -- Configure persistence for data to use sqlite backend.
-    #   # @default -- See values.yaml
-    #   data:
-    #     enabled: false
-    #     mountPath: /var/opt/memos
-    #     accessMode: ReadWriteOnce
-    #     size: 100Mi
-    #     emptyDir:
-    #       enabled: false
+    persistence:
+      enabled: true
+      existPersistClaim: memos-pvc
