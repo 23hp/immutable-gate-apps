@@ -14,7 +14,7 @@ spec:
     immich:
       persistence:
         library:
-          existingClaim: immich-server-pvc
+          existingClaim: server-pvc
     server:
       controllers:
         main:
@@ -22,6 +22,14 @@ spec:
             main:
               env:
                 TZ: Europe/Berlin
+    # controllers:
+    #   main:
+    #     containers:
+    #       main:
+    #         env:
+    #           TZ: Europe/Berlin
+      # ghcr.io/immich-app/immich-server:release
+      # ghcr.io/immich-app/immich-machine-learning:release-openvino
     machine-learning:
       controllers:
         main:
@@ -35,3 +43,4 @@ spec:
           size: 10Gi
           type: persistentVolumeClaim
           accessMode: ReadWriteOnce
+          # storageClass: your-class
