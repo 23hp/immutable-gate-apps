@@ -22,12 +22,14 @@ spec:
       extraEnvVars:
         - name: POSTGRESQL_CONF_DIR
           value: /opt/bitnami/postgresql/conf
-      # extraVolumes:
-      #   - name: postgre-config
-      #     emptyDir: {}
-      # extraVolumeMounts:
-      #   - name: postgre-config
-      #     mountPath: /opt/bitnami/postgresql/conf
+        - name: POSTGRESQL_CONF_FILE
+          value: /opt/bitnami/postgresql/conf/postgresql.conf
+      extraVolumes:
+        - name: postgre-config
+          emptyDir: {}
+      extraVolumeMounts:
+        - name: postgre-config
+          mountPath: /etc/postgresql
       persistence:
         mountPath: /var/lib/postgresql/data
         size: 2Gi
