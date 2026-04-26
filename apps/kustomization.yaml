@@ -4,4 +4,4 @@ resources:
   - adguard
   - data-restorer
   - memos
-  - tailscale
+  # - tailscale
