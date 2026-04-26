@@ -1,0 +1,46 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 24h
+  chartRef:
+    kind: GitRepository
+    name: immich-charts
+    namespace: flux-system
+  values:
+    immich:
+      persistence:
+        library:
+          existingClaim: server-pvc
+    server:
+      controllers:
+        main:
+          containers:
+            main:
+              env:
+                TZ: Europe/Berlin
+    # controllers:
+    #   main:
+    #     containers:
+    #       main:
+    #         env:
+    #           TZ: Europe/Berlin
+      # ghcr.io/immich-app/immich-server:release
+      # ghcr.io/immich-app/immich-machine-learning:release-openvino
+    machine-learning:
+      controllers:
+        main:
+          containers:
+            main:
+              image:
+                tag: release-openvino
+      persistence:
+        cache:
+          enabled: true
+          size: 10Gi
+          type: persistentVolumeClaim
+          accessMode: ReadWriteOnce
+          # storageClass: your-class
