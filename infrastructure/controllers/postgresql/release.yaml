@@ -22,8 +22,6 @@ spec:
       extraEnvVars:
         - name: POSTGRESQL_CONF_DIR
           value: /opt/bitnami/postgresql/conf
-        - name: POSTGRESQL_CONF_FILE
-          value: /opt/bitnami/postgresql/conf/postgresql.conf
       extraVolumes:
         - name: postgre-config
           emptyDir: {}
