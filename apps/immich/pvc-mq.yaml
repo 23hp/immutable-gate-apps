@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: server-pvc
+  name: message-queue-pvc
   namespace: immich
 spec:
   accessModes:
@@ -9,4 +9,4 @@ spec:
   storageClassName: local-path
   resources:
     requests:
-      storage: 500Gi
+      storage: 1Gi
