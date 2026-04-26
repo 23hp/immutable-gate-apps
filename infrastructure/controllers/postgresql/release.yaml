@@ -15,6 +15,7 @@ spec:
       registry: ghcr.io
       repository: immich-app/postgres
       tag: 16-vectorchord0.5.3
+    global.security.allowInsecureImages: true
     primary:
       persistence:
         mountPath: /var/lib/postgresql/data
