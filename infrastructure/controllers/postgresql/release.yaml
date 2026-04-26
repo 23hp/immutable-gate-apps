@@ -19,15 +19,8 @@ spec:
       security:
         allowInsecureImages: true
     primary:
-      extraEnvVars:
-        - name: POSTGRESQL_CONF_DIR
-          value: /opt/bitnami/postgresql/conf
-      extraVolumes:
-        - name: postgre-config
-          emptyDir: {}
-      extraVolumeMounts:
-        - name: postgre-config
-          mountPath: /etc/postgresql
+      containerSecurityContext:
+        readOnlyRootFilesystem: false
       persistence:
         mountPath: /var/lib/postgresql/data
         size: 2Gi
