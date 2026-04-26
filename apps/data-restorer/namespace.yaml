@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: data-restorer
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
