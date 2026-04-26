@@ -8,7 +8,7 @@ spec:
   interval: 24h
   chart:
     spec:
-      chart: bitnami/postgresql
+      chart: postgresql
       version: "18.6.2"
       sourceRef:
         kind: HelmRepository
