@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: recovery-pod
-  namespace: data-restorer
+  namespace: memos
 spec:
   containers:
   - name: ubuntu
@@ -22,4 +22,4 @@ spec:
       type: BlockDevice
   - name: target-pvc
     persistentVolumeClaim:
-      claimName: manual-recovery-pvc
+      claimName: memos-pvc
