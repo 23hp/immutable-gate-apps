@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: data-restorer
+  namespace: data-restorer
+spec:
+  containers:
+  - name: alpine
+    image: alpine
+    command: ["/bin/sh", "-c", "sleep 3600"]
+    volumeMounts:
+    - name: backup-data
+      mountPath: /mnt/backup
+    - name: target-pvc
+      mountPath: /mnt/target
+  volumes:
+  - name: backup-data
+    hostPath:
+      path: /var/mnt/external-disk
+      type: Directory
+  - name: target-pvc
+    persistentVolumeClaim:
+      claimName: manual-recovery-pvc
