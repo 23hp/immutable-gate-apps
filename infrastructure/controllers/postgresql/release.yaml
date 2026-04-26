@@ -6,14 +6,10 @@ metadata:
   namespace: postgresql
 spec:
   interval: 24h
-  chart:
-    spec:
-      chart: postgresql
-      version: "18.6.2"
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami-charts
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: postgresql
+    namespace: flux-system
   values:
     image:
       registry: ghcr.io
