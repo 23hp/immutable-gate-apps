@@ -5,30 +5,22 @@ metadata:
   namespace: immich
 spec:
   instances: 1
-
   storage:
     size: 1Gi
-
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.13-1.1.1
-
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
-    extensions:
-      - name: "vector"
-      - name: "vchord"
-      - name: "earthdistance"
-      - name: "cube"
-      - name: "uuid-ossp"
-      - name: "pg_trgm"
-    
-
   bootstrap:
     initdb:
       database: immich
       owner: immich
       secret:
         name: immich-database
-      # postInitApplicationSQL:
-      #   - CREATE EXTENSION vchord CASCADE;
-      #   - CREATE EXTENSION earthdistance CASCADE;
+      postInitApplicationSQL:
+        - CREATE EXTENSION IF NOT EXISTS "uuid-ossp" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "pg_trgm" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "vector" CASCADE;
