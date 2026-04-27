@@ -22,26 +22,14 @@ spec:
             main:
               env:
                 TZ: Europe/Berlin
-                DB_HOSTNAME:
-                  valueFrom:
-                    secretKeyRef:
-                      name: immich-database-app
-                      key: host
-                DB_USERNAME:
-                  valueFrom:
-                    secretKeyRef:
-                      name: immich-database-app
-                      key: username
+                DB_HOSTNAME: immich-database-rw
+                DB_DATABASE_NAME: immich
+                DB_USERNAME: immich
                 DB_PASSWORD:
                   valueFrom:
                     secretKeyRef:
                       name: immich-database-app
                       key: password
-                DB_DATABASE_NAME:
-                  valueFrom:
-                    secretKeyRef:
-                      name: immich-database-app
-                      key: dbname
     machine-learning:
       controllers:
         main:

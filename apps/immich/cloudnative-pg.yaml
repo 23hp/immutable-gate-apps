@@ -17,6 +17,11 @@ spec:
 
   bootstrap:
     initdb:
+      database: immich
+      owner: immich
+      secret:
+        name: immich-database-app
+        key: db_password
       postInitApplicationSQL:
         - CREATE EXTENSION vchord CASCADE;
         - CREATE EXTENSION earthdistance CASCADE;
