@@ -21,9 +21,6 @@ spec:
     primary:
       containerSecurityContext:
         readOnlyRootFilesystem: false
-      # persistence:
-      #   mountPath: /var/lib/postgresql/data
-      #   size: 2Gi
     common:
       resources:
         preset: "small"
