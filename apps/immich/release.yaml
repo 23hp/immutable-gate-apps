@@ -14,7 +14,7 @@ spec:
     immich:
       persistence:
         library:
-          existingClaim: server-pvc
+          existingClaim: immich-server-pvc
     server:
       controllers:
         main:
@@ -22,14 +22,26 @@ spec:
             main:
               env:
                 TZ: Europe/Berlin
-    # controllers:
-    #   main:
-    #     containers:
-    #       main:
-    #         env:
-    #           TZ: Europe/Berlin
-      # ghcr.io/immich-app/immich-server:release
-      # ghcr.io/immich-app/immich-machine-learning:release-openvino
+                DB_HOSTNAME:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-database-app
+                      key: host
+                DB_USERNAME:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-database-app
+                      key: user
+                DB_PASSWORD:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-database-app
+                      key: password
+                DB_DATABASE_NAME:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-database-app
+                      key: dbname
     machine-learning:
       controllers:
         main:
@@ -43,4 +55,8 @@ spec:
           size: 10Gi
           type: persistentVolumeClaim
           accessMode: ReadWriteOnce
-          # storageClass: your-class
+    valkey:
+      enabled: true
+      persistence:
+        data:
+          enabled: true
