@@ -20,8 +20,7 @@ spec:
       database: immich
       owner: immich
       secret:
-        name: immich-database-app
-        key: db_password
+        name: immich-database
       postInitApplicationSQL:
         - CREATE EXTENSION vchord CASCADE;
         - CREATE EXTENSION earthdistance CASCADE;
