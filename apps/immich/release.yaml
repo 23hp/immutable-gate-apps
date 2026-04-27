@@ -28,7 +28,7 @@ spec:
                 DB_PASSWORD:
                   valueFrom:
                     secretKeyRef:
-                      name: immich-database-app
+                      name: immich-database
                       key: password
     machine-learning:
       controllers:
