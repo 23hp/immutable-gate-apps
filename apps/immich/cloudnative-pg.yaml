@@ -14,6 +14,14 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
+    extensions:
+      - name: "vector"
+      - name: "vchord"
+      - name: "earthdistance"
+      - name: "cube"
+      - name: "uuid-ossp"
+      - name: "pg_trgm"
+    
 
   bootstrap:
     initdb:
@@ -21,6 +29,6 @@ spec:
       owner: immich
       secret:
         name: immich-database
-      postInitApplicationSQL:
-        - CREATE EXTENSION vchord CASCADE;
-        - CREATE EXTENSION earthdistance CASCADE;
+      # postInitApplicationSQL:
+      #   - CREATE EXTENSION vchord CASCADE;
+      #   - CREATE EXTENSION earthdistance CASCADE;
