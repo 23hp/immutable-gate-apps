@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: server-pvc
+  name: immich-server-pvc
   namespace: immich
 spec:
   accessModes:
