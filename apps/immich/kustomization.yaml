@@ -6,5 +6,5 @@ resources:
   - pvc.yaml
   - release.yaml
   - repository.yaml
-  # - route.yaml
+  - route.yaml
   - secret.sops.yaml
