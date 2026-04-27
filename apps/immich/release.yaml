@@ -31,7 +31,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: immich-database-app
-                      key: user
+                      key: username
                 DB_PASSWORD:
                   valueFrom:
                     secretKeyRef:
