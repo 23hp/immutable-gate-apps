@@ -16,13 +16,13 @@ spec:
         library:
           existingClaim: immich-server-pvc
     server:
-      resources:
-        limits:
-          gpu.intel.com/i915: 1
       controllers:
         main:
           containers:
             main:
+              resources:
+                limits:
+                  gpu.intel.com/i915: 1
               env:
                 TZ: Europe/Berlin
                 DB_HOSTNAME: immich-database-rw
@@ -36,13 +36,13 @@ spec:
               image:
                 tag: v2.7.5
     machine-learning:
-      resources:
-        limits:
-          gpu.intel.com/i915: 1
       controllers:
         main:
           containers:
             main:
+              resources:
+                limits:
+                  gpu.intel.com/i915: 1
               image:
                 tag: v2.7.5-openvino
       persistence:
