@@ -14,5 +14,9 @@ spec:
         kind: HelmRepository
         name: intel-charts
         namespace: flux-system
+  install:
+    crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   values:
     sharedDevNum: 5
