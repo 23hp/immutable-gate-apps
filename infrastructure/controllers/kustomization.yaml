@@ -7,5 +7,4 @@ resources:
   - intel-device-plugins
   - local-path-provisioner
   - metallb
-  - node-feature-discovery
   # - postgresql
