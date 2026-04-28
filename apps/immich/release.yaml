@@ -30,13 +30,15 @@ spec:
                     secretKeyRef:
                       name: immich-database
                       key: password
+              image:
+                tag: v2.7.5
     machine-learning:
       controllers:
         main:
           containers:
             main:
               image:
-                tag: release-openvino
+                tag: v2.7.5-openvino
       persistence:
         cache:
           enabled: true
