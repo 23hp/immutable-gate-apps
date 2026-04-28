@@ -16,6 +16,9 @@ spec:
         library:
           existingClaim: immich-server-pvc
     server:
+      resources:
+        limits:
+          gpu.intel.com/i915: 1
       controllers:
         main:
           containers:
@@ -33,6 +36,9 @@ spec:
               image:
                 tag: v2.7.5
     machine-learning:
+      resources:
+        limits:
+          gpu.intel.com/i915: 1
       controllers:
         main:
           containers:
