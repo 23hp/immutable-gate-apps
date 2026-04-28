@@ -16,7 +16,3 @@ spec:
     kind: OCIRepository
     name: node-feature-discovery
     namespace: flux-system
-  values:
-    master:
-      extraArgs:
-        - "--resource-labels=intel.feature.node.kubernetes.io/gpu"
