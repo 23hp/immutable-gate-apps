@@ -6,4 +6,5 @@ resources:
   - envoy
   - local-path-provisioner
   - metallb
+  - node-feature-discovery
   # - postgresql

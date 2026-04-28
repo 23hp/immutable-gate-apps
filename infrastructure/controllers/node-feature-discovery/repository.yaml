@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: node-feature-discovery
+  namespace: flux-system
+spec:
+  interval: 36h
+  url: oci://registry.k8s.io/nfd/charts/node-feature-discovery
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: "0.18.x"
