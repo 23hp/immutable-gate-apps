@@ -4,6 +4,7 @@ resources:
   - cert-manager
   - cloudnative-pg
   - envoy
+  - intel-device-plugins
   - local-path-provisioner
   - metallb
   - node-feature-discovery
