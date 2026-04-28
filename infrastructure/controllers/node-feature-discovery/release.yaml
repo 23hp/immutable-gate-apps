@@ -19,4 +19,4 @@ spec:
   values:
     master:
       extraArgs:
-        - "-resource-labels=intel.feature.node.kubernetes.io/gpu"
+        - "--resource-labels=intel.feature.node.kubernetes.io/gpu"
