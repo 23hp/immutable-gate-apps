@@ -1,0 +1,46 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: recovery-pod
+  namespace: data-restorer
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:latest
+    command: ["sleep", "7200"]
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: device-path
+      mountPath: /dev/sda1
+    # - name: target-pvc
+    #   mountPath: /mnt/target
+  volumes:
+  - name: device-path
+    hostPath:
+      path: /dev/sda1
+      type: BlockDevice
+#   - name: target-pvc
+#     persistentVolumeClaim:
+#       claimName: manual-recovery-pvc
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: manual-recovery-pvc
+#   namespace: data-restorer
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   storageClassName: local-path
+#   resources:
+#     requests:
+#       storage: 10Gi
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: data-restorer
+  labels:
+    pod-security.kubernetes.io/enforce: privileged

@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: intel_gpu_top
+  labels:
+    pod-security.kubernetes.io/enforce: privileged
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: intel-gpu-top
+  namespace: intel_gpu_top
+spec:
+  containers:
+    - name: tester
+      image: ghcr.io/onedr0p/intel-gpu-exporter:rolling
+      securityContext:
+        privileged: true
+        runAsUser: 0
+      resources:
+        limits:
+          gpu.intel.com/i915: 1
+        requests:
+          gpu.intel.com/i915: 1
