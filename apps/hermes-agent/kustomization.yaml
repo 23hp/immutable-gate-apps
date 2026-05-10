@@ -6,6 +6,6 @@ resources:
   - namespace.yaml
   - pvc.yaml
   - route.yaml
-  - secret-env.sop.yaml
-  - secret-sshkey.sop.yaml
+  - secret-env.sops.yaml
+  - secret-sshkey.sops.yaml
   - service.yaml
