@@ -26,17 +26,12 @@ spec:
       containers:
         - name: hermes-agent
           image: docker.io/nousresearch/hermes-agent:sha-e5af1dd6337b3db4eaf16b330f403e08f057a16d
-          command: ["/opt/hermes/hermes"]
           args: ["gateway", "run"]
           ports:
             - containerPort: 9119
           env:
             - name: HERMES_DASHBOARD
               value: "1"
-            - name: HERMES_UID
-              value: "10000"
-            - name: HERMES_GID
-              value: "10000"
           envFrom:
           - secretRef:
               name: hermes-agent-env
@@ -44,7 +39,6 @@ spec:
             runAsNonRoot: true
             runAsUser: 10000
             allowPrivilegeEscalation: false
-            readOnlyRootFilesystem: true
             capabilities:
               drop:
                 - ALL
