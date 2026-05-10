@@ -22,6 +22,8 @@ spec:
           env:
             - name: HERMES_DASHBOARD
               value: "1"
+            - name: TERMINAL_SSH_KEY
+              value: "/opt/data/id_rsa"
           envFrom:
           - secretRef:
               name: hermes-agent-env
@@ -45,6 +47,10 @@ spec:
             - name: config-volume
               mountPath: /opt/data/config.yaml
               subPath: config.yaml
+            - name: ssh-key-volume
+              mountPath: /opt/data/id_rsa
+              subPath: id_rsa
+              readOnly: true
       volumes:
       - name: data-volume
         persistentVolumeClaim:
@@ -52,3 +58,7 @@ spec:
       - name: config-volume
         configMap:
           name: hermes-config
+      - name: ssh-key-volume
+        secret:
+          secretName: hermes-ssh-key
+          defaultMode: 0400
