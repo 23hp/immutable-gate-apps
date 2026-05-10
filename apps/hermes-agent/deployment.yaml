@@ -33,6 +33,10 @@ spec:
           env:
             - name: HERMES_DASHBOARD
               value: "1"
+            - name: HERMES_UID
+              value: "10000"
+            - name: HERMES_GID
+              value: "10000"
           envFrom:
           - secretRef:
               name: hermes-agent-env
