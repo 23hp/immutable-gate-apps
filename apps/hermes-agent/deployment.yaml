@@ -31,7 +31,7 @@ spec:
             - containerPort: 9119
           env:
             - name: HERMES_DASHBOARD
-              value: 1
+              value: "1"
           envFrom:
           - secretRef:
               name: hermes-agent-env
