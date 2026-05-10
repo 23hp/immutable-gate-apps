@@ -63,4 +63,4 @@ spec:
       - name: ssh-key-volume
         secret:
           secretName: hermes-ssh-key
-          defaultMode: 0400
+          defaultMode: 0440
