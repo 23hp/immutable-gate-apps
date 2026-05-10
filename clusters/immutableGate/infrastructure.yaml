@@ -6,10 +6,10 @@ metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
-  interval: 1h
-  retryInterval: 1m
+  interval: 12h
+  retryInterval: 10m
   wait: true
-  timeout: 5m
+  timeout: 30m
   path: ./infrastructure/controllers
   prune: true
   sourceRef:
@@ -25,10 +25,10 @@ metadata:
 spec:
   dependsOn:
     - name: infra-controllers
-  interval: 1h
-  retryInterval: 1m
+  interval: 12h
+  retryInterval: 10m
   wait: true
-  timeout: 5m
+  timeout: 30m
   path: ./infrastructure/configs
   prune: true
   sourceRef:
