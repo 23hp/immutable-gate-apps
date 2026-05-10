@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hermes-config
+  namespace: hermes-agent
+data:
+  config.yaml: |
+    timezone: "Europe/Berlin"
+    model:
+      default: gemini-3.1-flash-lite-preview
+      provider: gemini
+      base_url: https://generativelanguage.googleapis.com/v1beta

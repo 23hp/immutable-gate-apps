@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hermes-agent
+  namespace: hermes-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hermes-agent
+  template:
+    metadata:
+      labels:
+        app: hermes-agent
+    spec:
+      initContainers:
+      - name: setup-config
+        image: busybox
+        command: ['sh', '-c', 'mkdir -p /opt/data/.hermes && cp /tmp/config.yaml /opt/data/.hermes/config.yaml']
+        volumeMounts:
+        - name: config-template
+          mountPath: /tmp/config.yaml
+          subPath: config.yaml
+        - name: data-volume
+          mountPath: /opt/data
+      containers:
+        - name: hermes-agent
+          image: nousresearch/hermes-agent:sha-e5af1dd6337b3db4eaf16b330f403e08f057a16d
+          command: ["hermes", "gateway", "run"]
+          ports:
+            - containerPort: 9119
+          env:
+            - name: HERMES_DASHBOARD
+              value: 1
+          envFrom:
+          - secretRef:
+              name: hermes-agent-env
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
+          volumeMounts:
+            - name: data-volume
+              mountPath: /opt/data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: hermes-agent-pvc
+      - name: config-template
+        configMap:
+          name: hermes-config
