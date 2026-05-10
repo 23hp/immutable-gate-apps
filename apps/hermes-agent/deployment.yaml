@@ -13,16 +13,6 @@ spec:
       labels:
         app: hermes-agent
     spec:
-      initContainers:
-      - name: setup-config
-        image: busybox
-        command: ['sh', '-c', 'mkdir -p /opt/data/.hermes && cp /tmp/config.yaml /opt/data/.hermes/config.yaml']
-        volumeMounts:
-        - name: config-template
-          mountPath: /tmp/config.yaml
-          subPath: config.yaml
-        - name: data-volume
-          mountPath: /opt/data
       containers:
         - name: hermes-agent
           image: docker.io/nousresearch/hermes-agent:sha-e5af1dd6337b3db4eaf16b330f403e08f057a16d
@@ -52,10 +42,13 @@ spec:
           volumeMounts:
             - name: data-volume
               mountPath: /opt/data
+            - name: config-volume
+              mountPath: /opt/data/config.yaml
+              subPath: config.yaml
       volumes:
       - name: data-volume
         persistentVolumeClaim:
           claimName: hermes-agent-pvc
-      - name: config-template
+      - name: config-volume
         configMap:
           name: hermes-config
