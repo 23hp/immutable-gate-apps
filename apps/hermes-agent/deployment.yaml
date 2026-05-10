@@ -27,14 +27,6 @@ spec:
           envFrom:
           - secretRef:
               name: hermes-agent-env
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 10000
-            runAsGroup: 10000
-            allowPrivilegeEscalation: false
-            capabilities:
-              drop:
-                - ALL
           resources:
             requests:
               memory: "1Gi"
@@ -54,6 +46,13 @@ spec:
               readOnly: true
       securityContext:
         fsGroup: 10000
+        runAsUser: 10000
+        runAsGroup: 10000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
       volumes:
       - name: data-volume
         persistentVolumeClaim:
