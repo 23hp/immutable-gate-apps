@@ -26,7 +26,8 @@ spec:
       containers:
         - name: hermes-agent
           image: docker.io/nousresearch/hermes-agent:sha-e5af1dd6337b3db4eaf16b330f403e08f057a16d
-          command: ["gateway", "run"]
+          command: ["/opt/hermes/hermes"]
+          args: ["gateway", "run"]
           ports:
             - containerPort: 9119
           env:
