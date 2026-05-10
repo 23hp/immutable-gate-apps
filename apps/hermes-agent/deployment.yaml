@@ -31,7 +31,6 @@ spec:
             runAsNonRoot: true
             runAsUser: 10000
             runAsGroup: 10000
-            fsGroup: 10000
             allowPrivilegeEscalation: false
             capabilities:
               drop:
@@ -53,6 +52,8 @@ spec:
               mountPath: /opt/data/id_rsa
               subPath: id_rsa
               readOnly: true
+      securityContext:
+        fsGroup: 10000
       volumes:
       - name: data-volume
         persistentVolumeClaim:
