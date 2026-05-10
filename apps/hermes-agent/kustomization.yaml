@@ -6,4 +6,5 @@ resources:
   - namespace.yaml
   - pvc.yaml
   - route.yaml
+  - secret.sops.yaml
   - service.yaml
