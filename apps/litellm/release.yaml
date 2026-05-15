@@ -13,10 +13,6 @@ spec:
   values:
     image:
       tag: "1.84.0"
-    db:
-      deployStandalone: false
-    migrationJob:
-      enabled: false
     environmentSecrets:
       - litellm-env
     general_settings:
