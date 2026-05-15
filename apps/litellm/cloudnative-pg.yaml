@@ -7,7 +7,7 @@ spec:
   instances: 1
   storage:
     size: 1Gi
-  imageName: docker.io/postgres:16-alpine
+  imageName: ghcr.io/cloudnative-pg/postgresql:16-minimal-trixie
   bootstrap:
     initdb:
       database: litellm
