@@ -1,7 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - cloudnative-pg.yaml
   - namespace.yaml
   - release.yaml
   - repository.yaml
-  - secret.sops.yaml
+  - secret-db.sops.yaml
+  - secret-env.sops.yaml

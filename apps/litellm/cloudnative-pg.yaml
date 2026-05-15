@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: litellm-database
+  namespace: litellm
+spec:
+  instances: 1
+  storage:
+    size: 1Gi
+  imageName: docker.io/postgres:16-alpine
+  bootstrap:
+    initdb:
+      database: litellm
+      owner: litellm
+      secret:
+        name: litellm-database
