@@ -8,6 +8,6 @@ data:
   config.yaml: |
     timezone: "Europe/Berlin"
     model:
-      default: gemini-3.1-flash-lite-preview
-      provider: gemini
-      base_url: https://generativelanguage.googleapis.com/v1beta
+      default: gemini
+      provider: custom
+      base_url: http://litellm.litellm.svc.cluster.local:4000
