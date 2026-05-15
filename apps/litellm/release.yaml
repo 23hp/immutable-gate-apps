@@ -33,23 +33,23 @@ spec:
       model_list:
         - model_name: gemini
           litellm_params:
-            model: gemini-3-flash-preview
+            model: gemini/gemini-3-flash-preview
             litellm_credential_name: default_gemini_credential
             rpm: 5
             tpm: 250000
         - model_name: gemini
           litellm_params:
-            model: gemini-3.1-flash-lite
+            model: gemini/gemini-3.1-flash-lite
             litellm_credential_name: default_gemini_credential
             rpm: 15
             tpm: 250000
         - model_name: gemini
           litellm_params:
-            model: gemma-4-31b-it
+            model: gemini/gemma-4-31b-it
             litellm_credential_name: default_gemini_credential
             rpm: 15
         - model_name: gemini
           litellm_params:
-            model: gemma-4-26b-a4b-it
+            model: gemini/gemma-4-26b-a4b-it
             litellm_credential_name: default_gemini_credential
             rpm: 15
