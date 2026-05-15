@@ -23,10 +23,13 @@ spec:
       master_key: os.environ/PROXY_MASTER_KEY
     proxy_config:
       credential_list:
-      - credential_name: default_gemini_credential
-        credential_values:
-          api_key: os.environ/GEMINI_API_KEY
-          api_base: https://generativelanguage.googleapis.com/v1beta
+        - credential_name: default_gemini_credential
+          credential_values:
+            api_key: os.environ/GEMINI_API_KEY
+            api_base: https://generativelanguage.googleapis.com/v1beta
+          credential_info:
+            description: "gemini gree tier"
+            custom_llm_provider: "gemini"
       model_list:
         - model_name: gemini
           litellm_params:
