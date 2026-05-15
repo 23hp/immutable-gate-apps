@@ -12,15 +12,12 @@ spec:
     namespace: flux-system
   values:
     image:
+      repository: ghcr.io/berriai/litellm
       tag: "1.84.0"
     db:
       deployStandalone: false
-      useExisting: true
-      endpoint: litellm-database-rw
-      secret:
-        name: litellm-database
-        usernameKey: username
-        passwordKey: password
+    migrationJob:
+      enabled: false
     environmentSecrets:
       - litellm-env
     general_settings:
