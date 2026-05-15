@@ -13,6 +13,10 @@ spec:
   values:
     image:
       tag: "1.84.0"
+    db:
+      deployStandalone: false
+    migrationJob:
+      enabled: false
     proxy_config:
       model_list:
         - model_name: gemini
