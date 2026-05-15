@@ -17,6 +17,8 @@ spec:
       deployStandalone: false
     migrationJob:
       enabled: false
+    masterkeySecretName: "llm-api-keys"
+    masterkeySecretKey: "masterkey"
     proxy_config:
       model_list:
         - model_name: gemini
