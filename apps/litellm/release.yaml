@@ -17,49 +17,36 @@ spec:
       deployStandalone: false
     migrationJob:
       enabled: false
-    masterkeySecretName: "llm-api-keys"
-    masterkeySecretKey: "masterkey"
+    environmentSecrets:
+      - litellm-env
+    general_settings:
+      master_key: os.environ/PROXY_MASTER_KEY
     proxy_config:
+      credential_list:
+      - credential_name: default_gemini_credential
+        credential_values:
+          api_key: os.environ/GEMINI_API_KEY
+          api_base: https://generativelanguage.googleapis.com/v1beta
       model_list:
         - model_name: gemini
           litellm_params:
             model: gemini-3-flash-preview
-            api_base: https://generativelanguage.googleapis.com/v1beta
-            api_key:
-              valueFrom:
-                secretKeyRef:
-                  name: llm-api-keys
-                  key: gemini
+            litellm_credential_name: default_gemini_credential
             rpm: 5
             tpm: 250000
         - model_name: gemini
           litellm_params:
             model: gemini-3.1-flash-lite
-            api_base: https://generativelanguage.googleapis.com/v1beta
-            api_key:
-              valueFrom:
-                secretKeyRef:
-                  name: llm-api-keys
-                  key: gemini
+            litellm_credential_name: default_gemini_credential
             rpm: 15
             tpm: 250000
         - model_name: gemini
           litellm_params:
             model: gemma-4-31b-it
-            api_base: https://generativelanguage.googleapis.com/v1beta
-            api_key:
-              valueFrom:
-                secretKeyRef:
-                  name: llm-api-keys
-                  key: gemini
+            litellm_credential_name: default_gemini_credential
             rpm: 15
         - model_name: gemini
           litellm_params:
             model: gemma-4-26b-a4b-it
-            api_base: https://generativelanguage.googleapis.com/v1beta
-            api_key:
-              valueFrom:
-                secretKeyRef:
-                  name: llm-api-keys
-                  key: gemini
+            litellm_credential_name: default_gemini_credential
             rpm: 15
