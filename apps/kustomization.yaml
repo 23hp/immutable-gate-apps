@@ -4,4 +4,5 @@ resources:
   - adguard
   - hermes-agent
   - immich
+  - litellm
   - memos

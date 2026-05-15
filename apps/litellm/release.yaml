@@ -1,0 +1,59 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: llm_api_keys
+  namespace: litellm
+spec:
+  interval: 24h
+  chartRef:
+    kind: OCIRepository
+    name: llm_api_keys
+    namespace: flux-system
+  values:
+    image:
+      tag: "1.84.0"
+    proxy_config:
+      model_list:
+        - model_name: gemini
+          litellm_params:
+            model: gemini-3-flash-preview
+            api_base: https://generativelanguage.googleapis.com/v1beta
+            api_key:
+              valueFrom:
+                secretKeyRef:
+                  name: llm_api_keys
+                  key: gemini
+            rpm: 5
+            tpm: 250000
+        - model_name: gemini
+          litellm_params:
+            model: gemini-3.1-flash-lite
+            api_base: https://generativelanguage.googleapis.com/v1beta
+            api_key:
+              valueFrom:
+                secretKeyRef:
+                  name: llm_api_keys
+                  key: gemini
+            rpm: 15
+            tpm: 250000
+        - model_name: gemini
+          litellm_params:
+            model: gemma-4-31b-it
+            api_base: https://generativelanguage.googleapis.com/v1beta
+            api_key:
+              valueFrom:
+                secretKeyRef:
+                  name: llm_api_keys
+                  key: gemini
+            rpm: 15
+        - model_name: gemini
+          litellm_params:
+            model: gemma-4-26b-a4b-it
+            api_base: https://generativelanguage.googleapis.com/v1beta
+            api_key:
+              valueFrom:
+                secretKeyRef:
+                  name: llm_api_keys
+                  key: gemini
+            rpm: 15
