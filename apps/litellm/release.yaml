@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: llm-api-keys
+  name: litellm
   namespace: litellm
 spec:
   interval: 24h
   chartRef:
     kind: OCIRepository
-    name: llm-api-keys
+    name: litellm
     namespace: flux-system
   values:
     image:
