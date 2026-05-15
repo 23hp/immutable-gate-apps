@@ -2,13 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: llm_api_keys
+  name: llm-api-keys
   namespace: litellm
 spec:
   interval: 24h
   chartRef:
     kind: OCIRepository
-    name: llm_api_keys
+    name: llm-api-keys
     namespace: flux-system
   values:
     image:
@@ -22,7 +22,7 @@ spec:
             api_key:
               valueFrom:
                 secretKeyRef:
-                  name: llm_api_keys
+                  name: llm-api-keys
                   key: gemini
             rpm: 5
             tpm: 250000
@@ -33,7 +33,7 @@ spec:
             api_key:
               valueFrom:
                 secretKeyRef:
-                  name: llm_api_keys
+                  name: llm-api-keys
                   key: gemini
             rpm: 15
             tpm: 250000
@@ -44,7 +44,7 @@ spec:
             api_key:
               valueFrom:
                 secretKeyRef:
-                  name: llm_api_keys
+                  name: llm-api-keys
                   key: gemini
             rpm: 15
         - model_name: gemini
@@ -54,6 +54,6 @@ spec:
             api_key:
               valueFrom:
                 secretKeyRef:
-                  name: llm_api_keys
+                  name: llm-api-keys
                   key: gemini
             rpm: 15
