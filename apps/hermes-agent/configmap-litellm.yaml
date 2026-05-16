@@ -52,7 +52,7 @@ data:
           litellm_credential_name: openrouter_credential
       - model_name: nemotron
         litellm_params:
-          model: nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
+          model: openrouter/nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free
           litellm_credential_name: openrouter_credential
     litellm_settings:
       fallbacks: [{"gemini": ["nemotron", "owl-alpha"]}] 
