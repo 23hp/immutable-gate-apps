@@ -15,27 +15,27 @@ data:
       provider: gemini
       base_url: https://generativelanguage.googleapis.com/v1beta
     fallback_providers:
+    - provider: gemini
+      model: gemini-3.1-flash-lite
+      base_url: https://generativelanguage.googleapis.com/v1beta
+    - provider: gemini
+      model: gemma-4-31b-it
+      base_url: https://generativelanguage.googleapis.com/v1beta
+    - provider: gemini
+      model: gemma-4-26b-a4b-it
+      base_url: https://generativelanguage.googleapis.com/v1beta
     - provider: custom
       model: gemini-3-flash-preview
       base_url: https://generativelanguage.googleapis.com/v1beta/openai
       key_env: GEMINI_API_KEY_2
-    - provider: gemini
-      model: gemini-3.1-flash-lite
-      base_url: https://generativelanguage.googleapis.com/v1beta
     - provider: custom
       model: gemini-3.1-flash-lite
       base_url: https://generativelanguage.googleapis.com/v1beta/openai
       key_env: GEMINI_API_KEY_2
-    - provider: gemini
-      model: gemma-4-31b-it
-      base_url: https://generativelanguage.googleapis.com/v1beta
     - provider: custom
       model: gemma-4-31b-it
       base_url: https://generativelanguage.googleapis.com/v1beta/openai
       key_env: GEMINI_API_KEY_2
-    - provider: gemini
-      model: gemma-4-26b-a4b-it
-      base_url: https://generativelanguage.googleapis.com/v1beta
     - provider: custom
       model: gemma-4-26b-a4b-it
       base_url: https://generativelanguage.googleapis.com/v1beta/openai
