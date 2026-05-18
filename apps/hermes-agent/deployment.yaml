@@ -44,20 +44,6 @@ spec:
               mountPath: /opt/data/id_rsa
               subPath: id_rsa
               readOnly: true
-        - name: litellm
-          image: docker.litellm.ai/berriai/litellm:1.84.0
-          args:
-            - "--config"
-            - "/app/proxy_server_config.yaml"
-          ports:
-          - containerPort: 4000
-          volumeMounts:
-          - name: litellm-config-volume
-            mountPath: /app/proxy_server_config.yaml
-            subPath: config.yaml
-          envFrom:
-          - secretRef:
-              name: litellm-env
       securityContext:
         fsGroup: 10000
         runAsUser: 10000
@@ -78,6 +64,3 @@ spec:
         secret:
           secretName: hermes-ssh-key
           defaultMode: 0440
-      - name: litellm-config-volume
-        configMap:
-          name: litellm-config
