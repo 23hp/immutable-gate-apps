@@ -7,7 +7,19 @@ metadata:
 data:
   config.yaml: |
     timezone: "Europe/Berlin"
+    agent:
+      max_turns: 20
     model:
-      default: gemini
-      provider: custom
-      base_url: http://localhost:4000/v1
+      default: gemini-3-flash-preview
+      provider: gemini
+      base_url: https://generativelanguage.googleapis.com/v1beta
+    fallback_providers:
+    - provider: gemini
+      model: gemini-3.1-flash-lite
+      base_url: https://generativelanguage.googleapis.com/v1beta
+    - provider: gemini
+      model: gemma-4-31b-it
+      base_url: https://generativelanguage.googleapis.com/v1beta
+    - provider: gemini
+      model: gemma-4-26b-a4b-it
+      base_url: https://generativelanguage.googleapis.com/v1beta
