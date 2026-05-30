@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless
+  template:
+    metadata:
+      labels:
+        app: paperless
+    spec:
+      containers:
+        - name: valkey
+          image: docker.io/valkey/valkey:alpine
+          resources:
+            requests: { memory: "128Mi", cpu: "50m" }
+            limits: { memory: "512Mi", cpu: "200m" }
+        - name: tika
+          image: docker.io/apache/tika:3.3.1.0
+          resources:
+            requests: { memory: "384Mi", cpu: "100m" }
+            limits: { memory: "1Gi", cpu: "500m" }
+        - name: gotenberg
+          image: docker.io/gotenberg/gotenberg:8.25
+          command: 
+            - "gotenberg"
+            - "--chromium-disable-javascript=true"
+            - "--chromium-allow-list=file:///tmp/.*"
+          resources:
+            requests: { memory: "512Mi", cpu: "250m" }
+            limits: { memory: "2Gi", cpu: "1000m" }
+        - name: paperless
+          image: ghcr.io/paperless-ngx/paperless-ngx:2.20.15
+          ports:
+            - containerPort: 8000
+          envFrom:
+          - configMapRef:
+              name: paperless-config
+          resources:
+            requests: { memory: "512Mi", cpu: "250m" }
+            limits: { memory: "2Gi", cpu: "1000m" }
+          volumeMounts:
+            - name: consume-volume
+              mountPath: /usr/src/paperless/consume
+            - name: data-volume
+              mountPath: /usr/src/paperless/data
+            - name: export-volume
+              mountPath: /usr/src/paperless/export
+            - name: media-volume
+              mountPath: /usr/src/paperless/media
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+      volumes:
+      - name: consume-volume
+        persistentVolumeClaim:
+          claimName: consume-pvc
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: data-pvc
+      - name: export-volume
+        persistentVolumeClaim:
+          claimName: export-pvc
+      - name: media-volume
+        persistentVolumeClaim:
+          claimName: media-pvc
