@@ -43,11 +43,6 @@ spec:
           resources:
             requests: { memory: "512Mi", cpu: "250m" }
             limits: { memory: "2Gi", cpu: "1000m" }
-          livenessProbe:
-            httpGet:
-              path: /
-              port: 8000
-            initialDelaySeconds: 30
           volumeMounts:
             - name: consume-volume
               mountPath: /usr/src/paperless/consume
