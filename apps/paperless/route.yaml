@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: paperless-route
+  namespace: paperless
+spec:
+  parentRefs:
+  - name: eg-gateway
+    namespace: envoy-gateway-system
+    sectionName: https
+  hostnames:
+  - "paperless.${domain_name}"
+  rules:
+    - backendRefs:
+        - name: paperless-svc
+          port: 80

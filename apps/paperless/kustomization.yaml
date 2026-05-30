@@ -8,3 +8,5 @@ resources:
   - pvc-data.yaml
   - pvc-export.yaml
   - pvc-media.yaml
+  - route.yaml
+  - service.yaml
