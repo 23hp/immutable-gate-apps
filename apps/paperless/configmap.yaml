@@ -5,7 +5,7 @@ metadata:
   name: paperless-config
   namespace: paperless
 data:
-  PAPERLESS_TIKA_ENABLED: 1
+  PAPERLESS_TIKA_ENABLED: "1"
   PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://127.0.0.1:3000
   PAPERLESS_TIKA_ENDPOINT: http://127.0.0.1:9998
   PAPERLESS_TIME_ZONE: Europe/Berlin
