@@ -6,3 +6,4 @@ resources:
   - gateway
   - intel-device-plugins
   - metallb
+  - tailscale
