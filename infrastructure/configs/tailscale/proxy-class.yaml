@@ -1,0 +1,10 @@
+apiVersion: tailscale.com/v1alpha1
+kind: ProxyClass
+metadata:
+  name: secure-subnet-router
+spec:
+  privileged: false
+  securityContext:
+    capabilities:
+      add:
+        - NET_ADMIN
