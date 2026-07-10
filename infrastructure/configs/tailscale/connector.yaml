@@ -4,7 +4,6 @@ metadata:
   name: subnet-router
 spec:
   hostname: local-subnet-router
-  proxyClass: secure-subnet-router
   subnetRouter:
     advertiseRoutes:
       - 192.168.20.0/24
