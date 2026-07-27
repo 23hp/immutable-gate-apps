@@ -20,5 +20,3 @@ spec:
     wallabag:
       domainName: "https://wallabag.${domain_name}"
       registration: true
-    postgresql:
-      enabled: false
