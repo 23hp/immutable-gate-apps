@@ -18,9 +18,6 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      domainName: "https://wallabag.${domain_name}"
-      extraEnv:
-        - name: "SYMFONY__ENV__DOMAIN_NAME"
-          value: "http://localhost"
+      domainName: "http://localhost"
     postgresql:
       enabled: false
