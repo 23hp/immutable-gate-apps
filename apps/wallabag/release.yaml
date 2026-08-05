@@ -19,4 +19,3 @@ spec:
   values:
     wallabag:
       domainName: "https://wallabag.${domain_name}"
-      registration: true
