@@ -19,5 +19,3 @@ spec:
   values:
     wallabag:
       domainName: "http://localhost"
-    postgresql:
-      enabled: false
