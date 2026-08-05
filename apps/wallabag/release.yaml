@@ -19,3 +19,8 @@ spec:
   values:
     wallabag:
       domainName: "https://wallabag.${domain_name}"
+      extraEnv:
+        - name: "SYMFONY__ENV__DOMAIN_NAME"
+          value: "http://localhost"
+    postgresql:
+      enabled: false
