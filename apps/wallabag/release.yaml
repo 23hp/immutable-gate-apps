@@ -23,7 +23,7 @@ spec:
       enabled: false
     database:
       external:
-        host: postgres-shared-rw.cloudnative-pg.svc.cluster.local
+        host: postgres-shared-rw.database.svc.cluster.local
         name: wallabag
         username: wallabag_user
         existingSecret: wallabag-db-credentials
