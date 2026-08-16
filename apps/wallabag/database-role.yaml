@@ -1,5 +1,5 @@
 apiVersion: postgresql.cnpg.io/v1
-kind: Role
+kind: DatabaseRole
 metadata:
   name: wallabag-user
   namespace: database
@@ -7,8 +7,11 @@ spec:
   cluster:
     name: postgres-shared
   name: wallabag_user
-  ensure: present
+
   login: true
+  superuser: false
+  createdb: true
+  databaseRoleReclaimPolicy: delete
   
   passwordSecret:
     name: wallabag-db-credentials
