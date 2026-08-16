@@ -7,4 +7,5 @@ resources:
   - intel-device-plugins
   - local-path-provisioner
   - metallb
+  - reflector
   - tailscale

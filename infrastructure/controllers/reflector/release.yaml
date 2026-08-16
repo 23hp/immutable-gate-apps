@@ -1,0 +1,12 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: reflector
+  namespace: reflector
+spec:
+  interval: 24h
+  chartRef:
+    kind: OCIRepository
+    name: reflector
+    namespace: flux-system
