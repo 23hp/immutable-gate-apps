@@ -18,4 +18,12 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      domainName: "http://localhost"
+      domainName: "https://wallabag.${domain_name}"
+    postgresql:
+      enabled: false
+    database:
+      external:
+        host: postgres-shared-rw.database.svc.cluster.local
+        name: wallabag
+        username: wallabag_user
+        existingSecret: wallabag-db-credentials
