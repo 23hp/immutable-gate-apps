@@ -15,9 +15,3 @@ spec:
   
   passwordSecret:
     name: wallabag-db-credentials
-
-  nodeTemplate:
-    metadata:
-      annotations:
-        reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-        reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "wallabag"
