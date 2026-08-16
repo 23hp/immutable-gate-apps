@@ -2,9 +2,10 @@ apiVersion: postgresql.cnpg.io/v1
 kind: User
 metadata:
   name: wallabag-user
-  namespace: database
+  namespace: wallabag
 spec:
   cluster:
     name: postgres-shared
+    namespace: database
   name: wallabag_user
   secretName: wallabag-db-credentials
