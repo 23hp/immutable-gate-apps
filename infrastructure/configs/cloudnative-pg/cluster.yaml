@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-shared
+  namespace: database
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:16-minimal-trixie
+  storage:
+    size: 5Gi
+
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "1Gi"
+
+  enableSuperuserAccess: true
