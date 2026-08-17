@@ -18,9 +18,24 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      domainName: "https://wallabag.${domain_name}"
-      existingSecret: app-secret
       extraEnv:
+        - name: "SYMFONY__ENV__DOMAIN_NAME"
+          value: "https://wallabag.${domain_name}"
+        - name: "SYMFONY__ENV__DATABASE_DRIVER"
+          value: "pdo_pgsql"
+        - name: "SYMFONY__ENV__DATABASE_HOST"
+          value: "postgres-shared-rw.database.svc.cluster.local"
+        - name: "SYMFONY__ENV__DATABASE_PORT"
+          value: "5432"
+        - name: "SYMFONY__ENV__DATABASE_NAME"
+          value: "wallabag"
+        - name: "SYMFONY__ENV__DATABASE_USER"
+          value: "wallabag_app_user"
+        - name: "SYMFONY__ENV__DATABASE_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: db-password
         - name: "POSTGRES_USER"
           valueFrom:
             secretKeyRef:
@@ -33,9 +48,3 @@ spec:
               key: password
     postgresql:
       enabled: false
-    database:
-      external:
-        host: postgres-shared-rw.database.svc.cluster.local
-        name: wallabag
-        username: wallabag_app_user
-        existingSecret: app-secret
