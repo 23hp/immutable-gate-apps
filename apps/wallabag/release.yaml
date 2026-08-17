@@ -18,7 +18,7 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      existingSecret: symfony_app_secret
+      existingSecret: symfony-secret
       domainName: "https://wallabag.${domain_name}"
       extraEnv:
         - name: "POPULATE_DATABASE" # for first time installation and single instance only
