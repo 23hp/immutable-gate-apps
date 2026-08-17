@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   # - database-role.yaml
   - database-secret.sops.yaml
-  # - database.yaml
+  - database.yaml
   - namespace.yaml
   - pvc.yaml
   - release.yaml
