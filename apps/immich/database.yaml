@@ -8,10 +8,10 @@ spec:
     name: postgres-shared
   name: immich
   owner: immich_user
-  postInitApplicationSQL:
-    - CREATE EXTENSION IF NOT EXISTS "uuid-ossp" CASCADE;
-    - CREATE EXTENSION IF NOT EXISTS "pg_trgm" CASCADE;
-    - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
-    - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
-    - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
-    - CREATE EXTENSION IF NOT EXISTS "vector" CASCADE;
+  extensions:
+      - name: "uuid-ossp"
+      - name: "pg_trgm"
+      - name: "cube"
+      - name: "earthdistance"
+      - name: "vchord"
+      - name: "vector"
