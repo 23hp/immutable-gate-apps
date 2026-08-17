@@ -11,7 +11,7 @@ spec:
   login: true
   superuser: false
   createdb: true
-  databaseRoleReclaimPolicy: retain
+  databaseRoleReclaimPolicy: delete
   
   passwordSecret:
     name: wallabag-db-credentials

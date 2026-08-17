@@ -8,3 +8,5 @@ spec:
     name: postgres-shared
   name: immich
   owner: immich_user
+
+  databaseReclaimPolicy: delete

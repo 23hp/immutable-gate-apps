@@ -8,3 +8,5 @@ spec:
     name: postgres-shared
   name: wallabag
   owner: wallabag_user
+
+  databaseReclaimPolicy: delete
