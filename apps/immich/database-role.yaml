@@ -11,7 +11,7 @@ spec:
   login: true
   superuser: true
   createdb: true
-  databaseRoleReclaimPolicy: delete
+  databaseRoleReclaimPolicy: retain
   
   passwordSecret:
     name: immich-db-credentials
