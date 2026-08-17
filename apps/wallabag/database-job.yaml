@@ -15,7 +15,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: wallabag-init
-          image: wallabag/wallabag:latest
+          image: docker.io/wallabag/wallabag:latest
           command:
             - /bin/sh
             - -c
