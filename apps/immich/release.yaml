@@ -25,16 +25,20 @@ spec:
                   gpu.intel.com/i915: 1
               env:
                 TZ: Europe/Berlin
-                DB_HOSTNAME: immich-database-rw
+                DB_HOSTNAME: postgres-shared-rw.database.svc.cluster.local
                 DB_DATABASE_NAME: immich
-                DB_USERNAME: immich
+                DB_USERNAME:
+                  valueFrom:
+                    secretKeyRef:
+                      name: immich-db-credentials
+                      key: username
                 DB_PASSWORD:
                   valueFrom:
                     secretKeyRef:
-                      name: immich-database
+                      name: immich-db-credentials
                       key: password
               image:
-                tag: v2.7.5
+                tag: v3.1.0
     machine-learning:
       controllers:
         main:
@@ -44,7 +48,7 @@ spec:
                 limits:
                   gpu.intel.com/i915: 1
               image:
-                tag: v2.7.5-openvino
+                tag: v3.1.0-openvino
       persistence:
         cache:
           enabled: true

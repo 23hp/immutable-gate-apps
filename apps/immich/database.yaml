@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: immich-db
+  namespace: database
+spec:
+  cluster:
+    name: postgres-shared
+  name: immich
+  owner: immich_user
+  postInitApplicationSQL:
+    - CREATE EXTENSION IF NOT EXISTS "uuid-ossp" CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "pg_trgm" CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "vector" CASCADE;

@@ -2,6 +2,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - cloudnative-pg.yaml
+  - database-role.yaml
+  - database-secret.sops.yaml
+  - database.yaml
   - namespace.yaml
   - pvc.yaml
   - release.yaml
