@@ -18,18 +18,24 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      existingSecret: symfony-secret
       domainName: "https://wallabag.${domain_name}"
+      existingSecret: app-secret
       extraEnv:
-        - name: "POPULATE_DATABASE" # for first time installation and single instance only
-          value: "True"
-        - name: "TZ"
-          value: "Europe/Berlin"
+        - name: "POSTGRES_USER"
+          valueFrom:
+            secretKeyRef:
+              name: wallabag-db-credentials
+              key: username
+        - name: "POSTGRES_PASSWORD"
+          valueFrom:
+            secretKeyRef:
+              name: wallabag-db-credentials
+              key: password
     postgresql:
       enabled: false
     database:
       external:
         host: postgres-shared-rw.database.svc.cluster.local
         name: wallabag
-        username: wallabag_user
-        existingSecret: wallabag-db-credentials
+        username: wallabag_app_user
+        existingSecret: app-secret
