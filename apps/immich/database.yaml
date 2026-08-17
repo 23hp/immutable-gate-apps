@@ -8,10 +8,3 @@ spec:
     name: postgres-shared
   name: immich
   owner: immich_user
-  extensions:
-      - name: "uuid-ossp"
-      - name: "pg_trgm"
-      - name: "cube"
-      - name: "earthdistance"
-      - name: "vchord"
-      - name: "vector"
