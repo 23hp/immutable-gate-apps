@@ -17,3 +17,4 @@ spec:
       cpu: "250m"
     limits:
       memory: "2Gi"
+  enableSuperuserAccess: true
