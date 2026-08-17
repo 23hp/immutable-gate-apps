@@ -6,4 +6,4 @@ resources:
   - immich
   - memos
   - paperless
-  - wallabag
+  # - wallabag
