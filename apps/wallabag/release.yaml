@@ -18,25 +18,13 @@ spec:
     namespace: flux-system
   values:
     wallabag:
-      existingSecret: app-secret
       domainName: "https://wallabag.${domain_name}"
-      extraEnv:
-        - name: "POSTGRES_USER"
-          valueFrom:
-            secretKeyRef:
-              name: wallabag-db-credentials
-              key: username
-        - name: "POSTGRES_PASSWORD"
-          valueFrom:
-            secretKeyRef:
-              name: wallabag-db-credentials
-              key: password
-    postgresql:
-      enabled: false
-    database:
-      external:
-        host: postgres-shared-rw.database.svc.cluster.local
-        name: wallabag
-        username: wallabag_app_user
-        existingSecret: app-secret
-        existingSecretPasswordKey: db-password
+    httpRoute:
+      enabled: true
+      hostnames:
+      - "wallabag.${domain_name}"
+      parentRefs:
+      - name: eg-gateway
+        namespace: envoy-gateway-system
+        sectionName: https
+
