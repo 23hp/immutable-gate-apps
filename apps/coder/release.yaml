@@ -35,9 +35,9 @@ spec:
           namespace: envoy-gateway-system
           sectionName: https
       resources:
-        limits:
+        requests:
          cpu: 150m
          memory: 512Mi
-        requests:
+        limits:
          cpu: 2000m
          memory: 2Gi
