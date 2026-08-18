@@ -28,8 +28,7 @@ spec:
               key: db-url
       httproute:
         enabled: true
-        hostnames:
-        - "coder.${domain_name}"
+        host: "coder.${domain_name}"
         parentRefs:
         - name: eg-gateway
           namespace: envoy-gateway-system
