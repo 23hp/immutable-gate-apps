@@ -27,7 +27,7 @@ spec:
               name: coder-db-credentials
               key: db-url
       httproute:
-        enabled: true
+        enable: true
         host: "coder.${domain_name}"
         parentRefs:
         - name: eg-gateway
