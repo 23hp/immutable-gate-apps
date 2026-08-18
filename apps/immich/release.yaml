@@ -21,8 +21,13 @@ spec:
           containers:
             main:
               resources:
+                requests:
+                  memory: 256Mi
+                  cpu: 100m
                 limits:
                   gpu.intel.com/i915: 1
+                  memory: 3Gi
+                  cpu: 2000m
               env:
                 TZ: Europe/Berlin
                 DB_HOSTNAME: postgres-shared-rw.database.svc.cluster.local
@@ -45,8 +50,13 @@ spec:
           containers:
             main:
               resources:
+                requests:
+                  memory: 256Mi
+                  cpu: 100m
                 limits:
                   gpu.intel.com/i915: 1
+                  memory: 3Gi
+                  cpu: 2000m
               image:
                 tag: v3.1.0-openvino
       persistence:
