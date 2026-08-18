@@ -26,7 +26,7 @@ spec:
             secretKeyRef:
               name: coder-db-credentials
               key: db-url
-      httpRoute:
+      httproute:
         enabled: true
         hostnames:
         - "coder.${domain_name}"
