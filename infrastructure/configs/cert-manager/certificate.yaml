@@ -13,3 +13,4 @@ spec:
   dnsNames:
   - "${domain_name}"
   - "*.${domain_name}"
+  - "*.coder.${domain_name}"
