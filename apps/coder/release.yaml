@@ -22,7 +22,7 @@ spec:
         - name: CODER_ACCESS_URL
           value: "https://coder.${domain_name}"
         - name: CODER_WILDCARD_ACCESS_URL
-          value: "*.coder.${domain_name}"
+          value: "*-coder.${domain_name}"
         - name: CODER_PG_CONNECTION_URL
           valueFrom:
             secretKeyRef:
@@ -49,7 +49,7 @@ spec:
       httproute:
         enable: true
         host: "coder.${domain_name}"
-        wildcardHost: "*.coder.${domain_name}"
+        wildcardHost: "*-coder.${domain_name}"
         parentRefs:
         - name: eg-gateway
           namespace: envoy-gateway-system
