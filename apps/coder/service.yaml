@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: coder-service
-  namespace: coder2
+  namespace: coder
   annotations:
     tailscale.com/tailnet-fqdn: "coder-coder.${tailscale_domain_name}"
     tailscale.com/proxy-group: "egress-proxies"
