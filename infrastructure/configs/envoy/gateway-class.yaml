@@ -7,6 +7,6 @@ spec:
   controllerName: gateway.envoyproxy.io/gatewayclass-controller
   parametersRef:
     group: gateway.envoyproxy.io
-    kind: EnvoyGateway
-    name: eg-config
+    kind: EnvoyProxy
+    name: envoy-proxy
     namespace: envoy-gateway-system
