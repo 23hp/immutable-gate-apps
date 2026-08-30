@@ -1,0 +1,10 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: remote-cluster-a-backend
+  namespace: external
+spec:
+  endpoints:
+  - fqdn:
+      hostname: "remote-cluster-a-service"
+      port: 80
