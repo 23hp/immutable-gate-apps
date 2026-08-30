@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - adguard
   - coder
+  - coder2
   - external
   - hermes-agent
   - immich

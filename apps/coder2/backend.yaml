@@ -1,0 +1,10 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: coder-backend
+  namespace: coder2
+spec:
+  endpoints:
+  - fqdn:
+      hostname: "coder-service"
+      port: 80
