@@ -4,7 +4,7 @@ metadata:
   name: remote-cluster-a-service
   namespace: external
   annotations:
-    tailscale.com/tailnet-fqdn: "example-backend.tail1fce8c.ts.net"
+    tailscale.com/tailnet-fqdn: "example-backend.${tailscale_domain_name}"
     tailscale.com/proxy-group: "egress-proxies"
 spec:
   type: ExternalName

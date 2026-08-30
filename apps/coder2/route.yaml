@@ -10,7 +10,7 @@ spec:
     namespace: envoy-gateway-system
     sectionName: https
   hostnames:
-  - "coder2.${tailscale_domain_name}"
+  - "coder2.${domain_name}"
   rules:
   - backendRefs:
     - group: gateway.envoyproxy.io
