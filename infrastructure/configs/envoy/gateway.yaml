@@ -1,0 +1,14 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyGateway
+metadata:
+  name: eg-config
+  namespace: envoy-gateway-system
+spec:
+  extensionApis:
+    enableBackend: true
+
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyProxy:
+        name: envoy-proxy
