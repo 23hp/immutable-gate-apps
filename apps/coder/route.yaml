@@ -11,6 +11,7 @@ spec:
     sectionName: https
   hostnames:
   - "coder.${domain_name}"
+  - "*.coder.${domain_name}"
   rules:
   - backendRefs:
     - group: gateway.envoyproxy.io
