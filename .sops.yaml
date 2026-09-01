@@ -1,5 +1,11 @@
 # .sops.yaml
 creation_rules:
-  - path_regex: .*.yaml
+  # encryption key for asus cluster
+  - path_regex: .*/asus/.*\.yaml
     encrypted_regex: ^(data|stringData)$
     age: "age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc"
+
+  # encryption key for oracle cluster
+  - path_regex: .*/oracle/.*\.yaml
+    encrypted_regex: ^(data|stringData)$
+    age: "age1u08wpcpz0a82pu639dssxehu0eanl65f0kldysjjvqh2u3mjcqlq428a87"
