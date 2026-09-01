@@ -4,6 +4,7 @@ resources:
   - cert-manager
   - cloudnative-pg
   - envoy
+  - flux-receiver
   - gateway
   - intel-device-plugins
   - metallb
