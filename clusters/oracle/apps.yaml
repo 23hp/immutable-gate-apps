@@ -7,19 +7,19 @@ metadata:
 spec:
   interval: 4h
   retryInterval: 30m
-  timeout: 30m
-  dependsOn:
-    - name: infra-configs
-  path: ./apps
+  timeout: 15m
   prune: true
+  path: ./oracle
   sourceRef:
-    kind: GitRepository
-    name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
+    kind: ExternalArtifact
+    name: apps
+  dependsOn:
+    - name: configuration
   postBuild:
     substituteFrom:
       - kind: ConfigMap
         name: init-config
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

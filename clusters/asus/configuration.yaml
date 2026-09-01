@@ -2,19 +2,19 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infra-configs
+  name: configuration
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: infra-controllers
   interval: 8h
   retryInterval: 1h
   timeout: 20m
-  path: ./infrastructure/configs
   prune: true
+  path: ./asus
   sourceRef:
-    kind: GitRepository
-    name: flux-system
+    kind: ExternalArtifact
+    name: configuration
+  dependsOn:
+    - name: infrastructure
   postBuild:
     substituteFrom:
       - kind: ConfigMap

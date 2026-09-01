@@ -1,0 +1,25 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: configuration
+  namespace: flux-system
+spec:
+  interval: 8h
+  retryInterval: 1h
+  timeout: 20m
+  prune: true
+  path: ./oracle
+  sourceRef:
+    kind: ExternalArtifact
+    name: configuration
+  dependsOn:
+    - name: infrastructure
+  postBuild:
+    substituteFrom:
+      - kind: ConfigMap
+        name: init-config
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

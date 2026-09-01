@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  path: ./clusters/immutableGate
+  path: ./clusters/oracle
   prune: true
   sourceRef:
     kind: GitRepository
