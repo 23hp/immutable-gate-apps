@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - connector.yaml
   - proxy-egress.yaml
+  - proxy-ingress.yaml
