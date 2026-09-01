@@ -6,14 +6,12 @@ metadata:
 spec:
   instances: 1
   storage:
-    size: 15Gi
-  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.13-1.1.1
-  postgresql:
-    shared_preload_libraries:
-      - "vchord.so"
+    size: 5Gi
+  imageName: docker.io/postgres:16.15
   resources:
     requests:
       memory: "512Mi"
-      cpu: "250m"
+      cpu: "150m"
     limits:
       memory: "2Gi"
+      cpu: "1"

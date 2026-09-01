@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/part-of: flux
   annotations:
     tailscale.com/proxy-group: ingress-proxies
-    tailscale.com/hostname: talos-flux-receiver
+    tailscale.com/hostname: flux-receiver
 spec:
   loadBalancerClass: tailscale
   type: LoadBalancer
