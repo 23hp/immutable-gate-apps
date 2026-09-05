@@ -65,7 +65,5 @@ spec:
         cache:
           enabled: true
           size: 10Gi
-          type: persistentVolumeClaim
-          accessMode: ReadWriteOnce
     valkey:
-      enabled: false
+      enabled: true
