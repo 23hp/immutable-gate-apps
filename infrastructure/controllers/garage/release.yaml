@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage
+  namespace: garage
+spec:
+  interval: 24h
+  chartRef:
+    kind: OCIRepository
+    name: garage
+    namespace: flux-system
+  values:
+    config:
+      defaultBucket: velero
+    existingSecret: garage-credentials
+    persistence:
+      storageClass: local-path-hdd
+      size: 2Ti
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
