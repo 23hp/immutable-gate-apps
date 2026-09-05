@@ -5,3 +5,4 @@ resources:
   - repository.yaml
   - release.yaml
   - secret.sops.yaml
+  - route.yaml
