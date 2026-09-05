@@ -53,7 +53,7 @@ spec:
             - paperless
             - wallabag
           storageLocation: default
-          defaultVolumesToFsBackup: true
           includedResources:
+            - pods
             - persistentvolumeclaims
             - persistentvolumes
