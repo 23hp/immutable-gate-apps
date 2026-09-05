@@ -11,9 +11,6 @@ spec:
     name: immich-charts
     namespace: flux-system
   values:
-    defaultPodOptions:
-      annotations:
-        backup.velero.io/backup-volumes: "data"
     immich:
       persistence:
         library:
@@ -23,6 +20,8 @@ spec:
         main:
           containers:
             main:
+              annotations: 
+                backup.velero.io/backup-volumes: "data"
               resources:
                 requests:
                   memory: 256Mi
