@@ -7,25 +7,21 @@ metadata:
 spec:
   interval: 24h
   releaseName: minio
-  chartRef:
-    kind: OCIRepository
-    name: minio
-    namespace: flux-system
+  chart:
+    spec:
+      chart: minio
+      version: ">= 8.0.10"
+      sourceRef:
+        kind: HelmRepository
+        name: minio
+        namespace: flux-system
   values:
-    global:
-      security:
-        allowInsecureImages: true
-    image:
-      registry: docker.io
-      repository: minio/minio
-      tag: RELEASE.2025-09-07T16-13-09Z
-    mode: standalone
-    auth:
-      existingSecret: minio-credentials
-      rootUserSecretKey: rootUser
-      rootPasswordSecretKey: rootPassword
+    existingSecret: minio-credentials
+    buckets:
+      - name: velero
+        policy: none
+        purge: false
     defaultBuckets: velero
     persistence:
-      enabled: true
       storageClass: local-path-hdd
-      size: 2000Gi
+      size: 2Ti

@@ -1,13 +1,9 @@
+---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: OCIRepository
+kind: HelmRepository
 metadata:
   name: minio
   namespace: flux-system
 spec:
   interval: 36h
-  url: oci://registry-1.docker.io/bitnamicharts/minio
-  layerSelector:
-    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
-    operation: copy
-  ref:
-    semver: "17.0.x"
+  url: https://charts.min.io/
