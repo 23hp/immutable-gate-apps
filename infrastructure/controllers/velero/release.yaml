@@ -31,7 +31,7 @@ spec:
           bucket: velero
           default: true
           config:
-            region: velero
+            region: garage
             s3ForcePathStyle: "true"
             s3Url: http://garage-garage-headless.garage.svc.cluster.local:3900
     initContainers:
@@ -41,3 +41,17 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
+
+    # schedules:
+    #   daily-default-backup:
+    #     disabled: false
+    #     schedule: "0 2 * * *" # daily at 2:00 AM
+    #     template:
+    #       ttl: "720h00m00s" # data retention period of 30 days
+    #       includedNamespaces:
+    #         - coder
+    #         - immich
+    #         - memos
+    #         - paperless
+    #         - wallabag
+    #       storageLocation: default
