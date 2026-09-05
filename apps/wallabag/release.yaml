@@ -11,8 +11,6 @@ spec:
     name: wallabag
     namespace: flux-system
   values:
-    podAnnotations:
-      backup.velero.io/backup-volumes: "wallabag-data,wallabag-images"
     wallabag:
       domainName: "https://wallabag.${domain_name}"
     httpRoute:

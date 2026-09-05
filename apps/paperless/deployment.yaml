@@ -10,8 +10,6 @@ spec:
       app: paperless
   template:
     metadata:
-      annotations:
-        backup.velero.io/backup-volumes: "data-volume,media-volume,consume-volume,export-volume"
       labels:
         app: paperless
     spec:

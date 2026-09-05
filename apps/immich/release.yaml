@@ -18,9 +18,6 @@ spec:
     server:
       controllers:
         main:
-          pod:
-            annotations:
-              backup.velero.io/backup-volumes: "data"
           containers:
             main:
               resources:
