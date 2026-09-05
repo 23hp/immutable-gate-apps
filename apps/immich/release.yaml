@@ -16,14 +16,10 @@ spec:
         library:
           existingClaim: immich-server-pvc
     server:
-      annotations: 
-        backup.velero.io/backup-volumes: "data"
-        "kakaak": "kakaak"
       controllers:
         main:
           annotations: 
             backup.velero.io/backup-volumes: "data"
-            "lalala": "lalala"
           containers:
             main:
               resources:
