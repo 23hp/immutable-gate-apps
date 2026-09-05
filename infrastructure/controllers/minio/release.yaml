@@ -12,6 +12,10 @@ spec:
     name: minio
     namespace: flux-system
   values:
+    image:
+      registry: docker.io
+      repository: minio/minio
+      tag: RELEASE.2025-09-07T16-13-09Z
     mode: standalone
     auth:
       existingSecret: minio-credentials
