@@ -4,9 +4,9 @@ resources:
   - cert-manager
   - cloudnative-pg
   - envoy
+  - garage
   - intel-device-plugins
   - local-path-provisioner
   - metallb
-  - minio
   - reflector
   - tailscale
