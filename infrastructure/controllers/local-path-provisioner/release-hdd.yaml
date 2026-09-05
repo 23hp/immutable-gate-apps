@@ -18,10 +18,10 @@ spec:
     storageClass:
       name: local-path-hdd
       defaultClass: false
-      provisionerName: rancher.io/u-hdd-4g
+      provisionerName: hdd-4g
     configmap:
       name: local-path-config-hdd
     nodePathMap:
       - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
         paths:
-          - /var/mnt/u-hdd-4g
+          - /var/mnt/hdd-4g
