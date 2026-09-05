@@ -7,14 +7,10 @@ metadata:
 spec:
   interval: 24h
   releaseName: minio
-  chart:
-    spec:
-      chart: minio
-      version: ">= 14.0.0"
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: minio
+    namespace: flux-system
   values:
     mode: standalone
     auth:
