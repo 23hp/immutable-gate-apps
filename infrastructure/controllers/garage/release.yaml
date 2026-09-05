@@ -13,6 +13,7 @@ spec:
   values:
     config:
       defaultBucket: velero
+      capacity: "2T"
     auth:
       existingSecret: garage-credentials
     persistence:
