@@ -33,7 +33,7 @@ spec:
           config:
             region: velero
             s3ForcePathStyle: "true"
-            s3Url: http://garage-garage-headless.velero.svc.cluster.local:3900
+            s3Url: http://garage-garage-headless.garage.svc.cluster.local:3900
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.14.2
