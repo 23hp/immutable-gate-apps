@@ -54,7 +54,6 @@ spec:
             - wallabag
           storageLocation: default
           defaultVolumesToFsBackup: true
-          includeClusterScopedResources: false
           includedResources:
             - persistentvolumeclaims
             - persistentvolumes
