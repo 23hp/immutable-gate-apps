@@ -4,10 +4,10 @@ resources:
   - cert-manager
   - cloudnative-pg
   - envoy
-  - garage
+  # - garage
   - intel-device-plugins
   - local-path-provisioner
   - metallb
   - reflector
   - tailscale
-  - velero
+  # - velero
