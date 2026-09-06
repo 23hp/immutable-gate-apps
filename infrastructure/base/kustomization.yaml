@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - ../base
   - cloudnative-pg
+  - envoy
+  - intel-device-plugins
   - local-path-provisioner
   - reflector
   - tailscale

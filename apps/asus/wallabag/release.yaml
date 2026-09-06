@@ -6,12 +6,6 @@ metadata:
   namespace: wallabag
 spec:
   interval: 24h
-  install:
-    strategy:
-      name: RetryOnFailure
-  upgrade:
-    strategy:
-      name: RetryOnFailure
   chartRef:
     kind: OCIRepository
     name: wallabag
@@ -27,4 +21,3 @@ spec:
       - name: eg-gateway
         namespace: envoy-gateway-system
         sectionName: https
-

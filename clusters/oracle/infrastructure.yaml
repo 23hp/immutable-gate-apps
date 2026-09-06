@@ -10,13 +10,6 @@ spec:
   timeout: 20m
   prune: true
   path: ./oracle
-  sourceRef:
-    kind: ExternalArtifact
-    name: infrastructure
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
@@ -34,3 +27,10 @@ spec:
       kind: HelmRelease
       name: tailscale-operator
       namespace: tailscale
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
