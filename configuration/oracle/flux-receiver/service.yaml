@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: flux-receiver-tailscale
-  namespace: flux-system
-  annotations:
-    tailscale.com/hostname: oracle-flux-receiver
