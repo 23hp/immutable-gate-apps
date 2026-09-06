@@ -9,10 +9,10 @@ spec:
   retryInterval: 1h
   timeout: 20m
   prune: true
-  path: ./local
+  path: "./configuration/local"
   sourceRef:
-    kind: ExternalArtifact
-    name: configuration
+    kind: GitRepository
+    name: flux-system
   dependsOn:
     - name: infrastructure
   postBuild:

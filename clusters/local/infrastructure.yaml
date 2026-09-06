@@ -9,10 +9,10 @@ spec:
   retryInterval: 1h
   timeout: 20m
   prune: true
-  path: ./local
+  path: "./infrastructure/local"
   sourceRef:
-    kind: ExternalArtifact
-    name: infrastructure
+    kind: GitRepository
+    name: flux-system
   decryption:
     provider: sops
     secretRef:
