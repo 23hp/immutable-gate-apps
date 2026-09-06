@@ -9,10 +9,10 @@ spec:
   retryInterval: 30m
   timeout: 15m
   prune: true
-  path: ./oracle
+  path: "./apps/oracle"
   sourceRef:
-    kind: ExternalArtifact
-    name: apps
+    kind: GitRepository
+    name: flux-system
   dependsOn:
     - name: configuration
   postBuild:
