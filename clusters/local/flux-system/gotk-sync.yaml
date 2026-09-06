@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  path: ./clusters/asus
+  path: ./clusters/local
   prune: true
   sourceRef:
     kind: GitRepository

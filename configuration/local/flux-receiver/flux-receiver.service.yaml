@@ -4,4 +4,4 @@ metadata:
   name: flux-receiver-tailscale
   namespace: flux-system
   annotations:
-    tailscale.com/hostname: asus-flux-receiver
+    tailscale.com/hostname: local-flux-receiver

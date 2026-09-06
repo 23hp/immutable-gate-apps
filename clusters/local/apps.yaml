@@ -9,7 +9,7 @@ spec:
   retryInterval: 30m
   timeout: 15m
   prune: true
-  path: ./asus
+  path: ./local
   sourceRef:
     kind: ExternalArtifact
     name: apps
