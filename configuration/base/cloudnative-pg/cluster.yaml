@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres-shared
+  namespace: database
+spec:
+  instances: 1
+  storage:
+    size: 5Gi
+  imageName: docker.io/postgres:16.15
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "150m"
+    limits:
+      memory: "2Gi"
+      cpu: "1"

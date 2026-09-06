@@ -1,0 +1,33 @@
+---
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+metadata:
+  name: flux-system
+  namespace: flux-system
+spec:
+  sources:
+    - alias: monorepo
+      kind: GitRepository
+      name: flux-system
+  artifacts:
+    - name: infrastructure
+      originRevision: "@monorepo"
+      copy:
+        - from: "@monorepo/infrastructure/base/**"
+          to: "@artifact/base/**"
+        - from: "@monorepo/infrastructure/oracle/**"
+          to: "@artifact/oracle/**"
+    - name: configuration
+      originRevision: "@monorepo"
+      copy:
+        - from: "@monorepo/configuration/base/**"
+          to: "@artifact/base/**"
+        - from: "@monorepo/configuration/oracle/**"
+          to: "@artifact/oracle/**"
+    - name: apps
+      originRevision: "@monorepo"
+      copy:
+        - from: "@monorepo/apps/base/**"
+          to: "@artifact/base/**"
+        - from: "@monorepo/apps/oracle/**"
+          to: "@artifact/oracle/**"

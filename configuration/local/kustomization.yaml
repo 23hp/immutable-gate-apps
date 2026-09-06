@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base
+  - cert-manager
+  - envoy
+  - flux-receiver
+  - gateway
+  - intel-device-plugins
+  - metallb
+  - flux-receiver.secret.sops.yaml
+  - tailscale.connector.yaml
+patches:
+  - path: cloudnative-pg.cluster.yaml
