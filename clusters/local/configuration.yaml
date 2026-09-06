@@ -9,7 +9,7 @@ spec:
   retryInterval: 1h
   timeout: 20m
   prune: true
-  path: ./asus
+  path: ./local
   sourceRef:
     kind: ExternalArtifact
     name: configuration
