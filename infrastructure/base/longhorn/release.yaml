@@ -16,7 +16,7 @@ spec:
         namespace: flux-system
   values:
     defaultSettings:
-      defaultDataPath: "/var/mnt/longhorn"
+      defaultDataPath: "/var/mnt/data/longhorn"
     persistence:
       defaultClass: false
       defaultClassReplicaCount: 1
