@@ -2,9 +2,9 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: vlan20-pool
+  name: default-pool
   namespace: metallb-system
 spec:
   addresses:
-    - 192.168.20.3-192.168.20.250
+    - 10.0.0.20-10.0.0.130
   autoAssign: true
