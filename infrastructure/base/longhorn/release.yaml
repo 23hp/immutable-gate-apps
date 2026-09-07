@@ -20,3 +20,4 @@ spec:
     persistence:
       defaultClass: false
       defaultClassReplicaCount: 1
+      defaultFsType: xfs
