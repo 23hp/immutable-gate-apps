@@ -8,8 +8,7 @@ spec:
   interval: 24h
   chart:
     spec:
-      chart: ./
-      version: "0.52.0"
+      chart: .
       sourceRef:
         kind: GitRepository
         name: memos-charts
@@ -18,7 +17,7 @@ spec:
     image:
       repo: ghcr.io
       imageName: usememos/memos
-      tag: "0.27.1"
+      tag: "0.30.0"
     persistence:
       enabled: true
       storageClass: "longhorn"
