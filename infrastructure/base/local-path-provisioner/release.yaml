@@ -18,7 +18,7 @@ spec:
   values:
     nodePathMap:
       - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
-        paths: ["/var/mnt/local-data"]
+        paths: ["/var/mnt/longhorn"]
     storageClass:
       name: local-path
       defaultClass: true

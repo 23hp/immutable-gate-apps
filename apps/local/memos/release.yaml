@@ -22,3 +22,8 @@ spec:
     persistence:
       enabled: true
       existPersistClaim: memos-pvc
+    persistence:
+      enabled: false
+      storageClass: "longhorn"
+      accessMode: ReadWriteOnce
+      size: 5Gi
