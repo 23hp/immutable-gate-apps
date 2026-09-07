@@ -21,3 +21,8 @@ spec:
       - name: eg-gateway
         namespace: envoy-gateway-system
         sectionName: https
+    persistence:
+      data:
+        storageClass: longhorn
+      images:
+        storageClass: longhorn
