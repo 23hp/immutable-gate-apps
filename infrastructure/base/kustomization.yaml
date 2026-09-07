@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - cloudnative-pg
   - local-path-provisioner
+  - longhorn
   - reflector
   - tailscale
