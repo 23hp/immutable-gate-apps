@@ -17,3 +17,5 @@ spec:
   values:
     defaultSettings:
       defaultDataPath: "/var/mnt/longhorn"
+    persistence:
+      defaultClassReplicaCount: 1
