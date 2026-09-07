@@ -2,6 +2,7 @@ apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
   name: postgres-shared
+  namespace: database
 spec:
   storage:
     size: 15Gi
