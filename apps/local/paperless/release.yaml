@@ -8,13 +8,13 @@ spec:
   interval: 24h
   chartRef:
     kind: OCIRepository
-    name: wallabag
+    name: paperless
     namespace: flux-system
   values:
     httpRoute:
       enabled: true
       hostnames:
-      - "wallabag.${domain_name}"
+      - "paperless.${domain_name}"
       parentRefs:
       - name: eg-gateway
         namespace: envoy-gateway-system
