@@ -48,7 +48,7 @@ spec:
       namespace: intel-device-plugins
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
-      name: gpu
+      name: operator
       namespace: intel-device-plugins
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
