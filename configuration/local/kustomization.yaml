@@ -4,7 +4,6 @@ resources:
   - ../base
   - cert-manager
   - envoy
-  - flux-receiver
   - gateway
   - intel-device-plugins
   - metallb
