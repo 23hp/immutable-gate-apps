@@ -1,0 +1,14 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: paperless
+  namespace: flux-system
+spec:
+  interval: 96h
+  url: oci://ghcr.io/23hp/paperless
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: ">=0.1.0"

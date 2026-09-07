@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: paperless
+  namespace: paperless
+spec:
+  interval: 24h
+  chartRef:
+    kind: OCIRepository
+    name: wallabag
+    namespace: flux-system
+  values:
+    httpRoute:
+      enabled: true
+      hostnames:
+      - "wallabag.${domain_name}"
+      parentRefs:
+      - name: eg-gateway
+        namespace: envoy-gateway-system
+        sectionName: https
+    paperless:
+      secretKeyRef: # env PAPERLESS_SECRET_KEY
+        create: false
+        name: "secretkey"
+      env:
+        PAPERLESS_URL: https://paperless.${domain_name}
+    persistence:
+      consume-pvc:
+        storageClass: longhorn
+      data-pvc:
+        storageClass: longhorn
+      export-pvc:
+        storageClass: longhorn
+      media-pvc:
+        storageClass: longhorn
