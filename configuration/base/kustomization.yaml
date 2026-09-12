@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
   - cloudnative-pg
   - flux-receiver
-  - tailscale
