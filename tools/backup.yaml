@@ -1,0 +1,70 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-storage-backup
+  namespace: kube-system
+spec:
+  containers:
+  - name: kopia
+    image: docker.io/kopia/kopia:latest
+    command: ["sleep", "infinity"]
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: backup-path
+      mountPath: /backup
+
+    - name: paperless-consume
+      mountPath: /host/paperless-consume
+      readOnly: true
+    - name: paperless-export
+      mountPath: /host/paperless-export
+      readOnly: true
+    - name: paperless-media
+      mountPath: /host/paperless-media
+      readOnly: true
+    - name: paperless-data
+      mountPath: /host/paperless-data
+      readOnly: true
+    - name: memos
+      mountPath: /host/memos
+      readOnly: true
+    - name: immich
+      mountPath: /host/immich
+      readOnly: true
+    - name: wallabag-images
+      mountPath: /host/wallabag-images
+      readOnly: true
+    - name: wallabag-data
+      mountPath: /host/wallabag-data
+      readOnly: true
+
+  volumes:
+  - name: backup-path
+    hostPath:
+      path: /var/mnt/hdd-4g/backup
+
+  - name: paperless-consume
+    hostPath:
+      path: /var/mnt/local-data/pvc-057d74e9-f131-4817-89be-a171578100aa_paperless_consume-pvc
+  - name: paperless-export
+    hostPath:
+      path: /var/mnt/local-data/pvc-267241c0-e591-4c9f-82da-e2e0f33b7fca_paperless_export-pvc
+  - name: paperless-media
+    hostPath:
+      path: /var/mnt/local-data/pvc-a261bf0d-c4ea-48f3-9274-5e3ea6a91d43_paperless_media-pvc
+  - name: paperless-data
+    hostPath:
+      path: /var/mnt/local-data/pvc-a93d1101-53cc-49c9-b7e9-3e112de88873_paperless_data-pvc
+  - name: memos
+    hostPath:
+      path: /var/mnt/local-data/pvc-15fe7665-2f62-4387-8508-0791ae6a5962_memos_memos-pvc
+  - name: immich
+    hostPath:
+      path: /var/mnt/local-data/pvc-3d646177-6cce-418f-864b-6efccf9bfec7_immich_immich-server-pvc
+  - name: wallabag-images
+    hostPath:
+      path: /var/mnt/local-data/pvc-a095e9bf-18d5-497f-ba01-3018ef2a4147_wallabag_wallabag-images
+  - name: wallabag-data
+    hostPath:
+      path: /var/mnt/local-data/pvc-ebb9c01e-5122-465d-a4fe-66e6ec7baafb_wallabag_wallabag-data
