@@ -19,4 +19,4 @@ jobs:
 
       - name: Trigger Internal Flux Webhook
         run: |
-          curl -fail -X POST "http://talos-flux-receiver/hook/${{ secrets.FLUX_WEBHOOK_HASH }}"
+          curl -fail -X POST "http://local-flux-receiver/hook/${{ secrets.FLUX_WEBHOOK_HASH }}"
