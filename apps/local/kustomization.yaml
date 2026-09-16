@@ -6,5 +6,6 @@ resources:
   - hermes-agent
   - immich
   - memos
+  - nextcloud
   - paperless
   - wallabag

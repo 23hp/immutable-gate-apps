@@ -1,0 +1,17 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: nextcloud-route
+  namespace: nextcloud
+spec:
+  parentRefs:
+  - name: eg-gateway
+    namespace: envoy-gateway-system
+    sectionName: https
+  hostnames:
+  - "nextcloud.${domain_name}"
+  rules:
+  - backendRefs:
+    - name: nextcloud
+      port: 8080
