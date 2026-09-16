@@ -9,6 +9,7 @@ spec:
   name: nextcloud_user
 
   login: true
+  createdb: true
   databaseRoleReclaimPolicy: delete
   
   passwordSecret:
