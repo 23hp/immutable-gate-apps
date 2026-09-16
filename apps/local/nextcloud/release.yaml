@@ -34,5 +34,11 @@ spec:
         secretName: nextcloud-db-credentials
         usernameKey: username
         passwordKey: password
-    # persistence:
-    #   enabled: true
+    persistence:
+      enabled: true
+      storageClass: longhorn
+      persistence: 1Gi
+      nextcloudData:
+        enabled: true
+        storageClass: longhorn
+        size: 15Gi
