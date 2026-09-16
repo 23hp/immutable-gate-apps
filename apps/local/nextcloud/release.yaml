@@ -17,3 +17,22 @@ spec:
   values:
     nextcloud:
       host: "nextcloud.${domain_name}"
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-admin
+        usernameKey: username
+        passwordKey: password
+    internalDatabase:
+      enabled: false
+    externalDatabase:
+      enabled: true
+      host: postgres-shared-rw.database.svc.cluster.local:5432
+      type: postgresql
+      database: nextcloud
+      existingSecret:
+        enabled: true
+        secretName: nextcloud-db-credentials
+        usernameKey: username
+        passwordKey: password
+    # persistence:
+    #   enabled: true
