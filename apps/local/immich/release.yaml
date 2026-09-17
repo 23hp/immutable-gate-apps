@@ -43,7 +43,7 @@ spec:
                       name: immich-db-credentials
                       key: password
               image:
-                tag: v3.1.0
+                tag: v3.2.2
     machine-learning:
       controllers:
         main:
@@ -58,7 +58,7 @@ spec:
                   memory: 3Gi
                   cpu: 2000m
               image:
-                tag: v3.1.0-openvino
+                tag: v3.2.2-openvino
       persistence:
         cache:
           enabled: true
