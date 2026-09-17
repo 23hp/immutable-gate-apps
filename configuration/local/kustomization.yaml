@@ -1,3 +1,4 @@
+# configuration/local/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
@@ -10,3 +11,5 @@ resources:
   - flux-receiver.secret.sops.yaml
   - intel-device-plugins.gpu.yaml
   - tailscale.connector.yaml
+patches:
+  - path: ./database/cluster.yaml
