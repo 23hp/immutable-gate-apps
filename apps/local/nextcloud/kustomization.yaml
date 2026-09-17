@@ -7,5 +7,4 @@ resources:
   - namespace.yaml
   - release.yaml
   - repository.yaml
-  - route.yaml
   - secret.sops.yaml

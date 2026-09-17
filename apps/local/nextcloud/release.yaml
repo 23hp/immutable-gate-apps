@@ -22,6 +22,12 @@ spec:
         secretName: nextcloud-admin
         usernameKey: username
         passwordKey: password
+      configs:
+        database.config.php: |-
+          <?php
+          $CONFIG = array (
+            'setup_create_db_user' => false,
+          );
     internalDatabase:
       enabled: false
     externalDatabase:
@@ -42,3 +48,11 @@ spec:
         enabled: true
         storageClass: longhorn
         size: 15Gi
+    httpRoute:
+      enabled: true
+      parentRefs:
+      - name: eg-gateway
+        namespace: envoy-gateway-system
+        sectionName: https
+      hostnames:
+      - "nextcloud.${domain_name}"
