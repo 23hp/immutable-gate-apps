@@ -6,5 +6,5 @@ resources:
   - hermes-agent
   - immich
   - memos
-  # - nextcloud
+  - nextcloud
   - wallabag
