@@ -71,3 +71,10 @@ spec:
         sectionName: https
       hostnames:
       - "nextcloud.${domain_name}"
+    collabora:
+      enabled: true
+      collabora:
+        aliasgroups:
+          - "nextcloud.${domain_name}"
+          - "collabora.${domain_name}"
+        server_name: "collabora.${domain_name}"
