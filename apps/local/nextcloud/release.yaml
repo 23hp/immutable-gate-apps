@@ -71,6 +71,10 @@ spec:
         sectionName: https
       hostnames:
       - "nextcloud.${domain_name}"
+    readinessProbe:
+      enabled: false
+    livenessProbe:
+      periodSeconds: 900
     collabora:
       enabled: true
       # collabora:
