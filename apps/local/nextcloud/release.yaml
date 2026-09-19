@@ -17,6 +17,11 @@ spec:
   values:
     nextcloud:
       host: "nextcloud.${domain_name}"
+      env:
+        - name: OVERWRITECLIURL
+          value: "https://nextcloud.${domain_name}"
+        - name: OVERWRITEPROTOCOL
+          value: "https"
       existingSecret:
         enabled: true
         secretName: nextcloud-admin
