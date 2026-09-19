@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextcloud-post-install-script
+  namespace: nextcloud
+data:
+  setup.sh: |
+    #!/bin/sh
+    set -eu
+    echo "Running custom post-installation script..."
+    php occ maintenance:repair --include-expensive

@@ -28,11 +28,21 @@ spec:
         usernameKey: username
         passwordKey: password
       configs:
-        database.config.php: |-
+        custom.config.php: |-
           <?php
           $CONFIG = array (
             'setup_create_db_user' => false,
+            'maintenance_window_start' => 3,
           );
+      extraVolumes:
+        - name: post-install-script-vol
+          configMap:
+            name: nextcloud-post-install-script
+            defaultMode: 0755
+      extraVolumeMounts:
+        - name: post-install-script-vol
+          mountPath: /docker-entrypoint-hooks.d/post-installation/setup.sh
+          subPath: setup.sh
     internalDatabase:
       enabled: false
     externalDatabase:
