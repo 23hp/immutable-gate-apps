@@ -81,7 +81,7 @@ spec:
         server_name: "https://collabora.${domain_name}"
         aliasgroups:
           - host: "https://nextcloud.${domain_name}"
-        extra_params: "--o:ssl.termination=true"
+        extra_params: "--o:ssl.enable=true --o:ssl.termination=true"
       route:
         enabled: true
         parentRefs:
