@@ -17,7 +17,7 @@ spec:
   values:
     nextcloud:
       host: "nextcloud.${domain_name}"
-      env:
+      extraEnv:
         - name: OVERWRITECLIURL
           value: "https://nextcloud.${domain_name}"
         - name: OVERWRITEPROTOCOL
