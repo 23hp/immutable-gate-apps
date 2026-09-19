@@ -73,16 +73,17 @@ spec:
       - "nextcloud.${domain_name}"
     collabora:
       enabled: true
-      collabora:
-        aliasgroups:
-          - "nextcloud.${domain_name}"
-          - "collabora.${domain_name}"
-        server_name: "collabora.${domain_name}"
-      route:
-        enabled: true
-        parentRefs:
-        - name: eg-gateway
-          namespace: envoy-gateway-system
-          sectionName: https
-        hostnames:
-        - "collabora.${domain_name}"
+      # collabora:
+      #   server_name: "nextcloud.${domain_name}"
+      #   aliasgroups:
+      #     - host: "https://nextcloud.${domain_name}:443"
+      #     - ""
+      #     - "collabora.${domain_name}"
+      # route:
+      #   enabled: true
+      #   parentRefs:
+      #   - name: eg-gateway
+      #     namespace: envoy-gateway-system
+      #     sectionName: https
+      #   hostnames:
+      #   - "collabora.${domain_name}"
