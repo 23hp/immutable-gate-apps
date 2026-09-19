@@ -75,19 +75,3 @@ spec:
       enabled: false
     livenessProbe:
       periodSeconds: 900
-    collabora:
-      enabled: true
-      collabora:
-        server_name: "collabora.${domain_name}"
-        extra_params: "--o:ssl.enable=false --o:ssl.termination=true --o:net.post_allow.host[0]=nextcloud.${domain_name} --o:storage.wopi.alias_groups[0].host=https://nextcloud.${domain_name}"
-        # extra_params: "--o:ssl.enable=false --o:ssl.termination=true"
-        aliasgroups:
-          - host: "https://nextcloud.${domain_name}"
-      route:
-        enabled: true
-        parentRefs:
-        - name: eg-gateway
-          namespace: envoy-gateway-system
-          sectionName: https
-        hostnames:
-        - "collabora.${domain_name}"
