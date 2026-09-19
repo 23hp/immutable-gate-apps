@@ -9,3 +9,4 @@ data:
     set -eu
     echo "Running custom post-installation script..."
     php occ maintenance:repair --include-expensive
+    php occ app:install richdocuments
