@@ -78,7 +78,8 @@ spec:
     collabora:
       enabled: true
       collabora:
-        server_name: "https://collabora.${domain_name}"
+        server_name: "collabora.${domain_name}"
+        extra_params: "--o:ssl.enable=false --o:ssl.termination=true"
         aliasgroups:
           - host: "https://nextcloud.${domain_name}"
       route:
