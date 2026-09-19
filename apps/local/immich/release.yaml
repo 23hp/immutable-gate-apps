@@ -61,6 +61,7 @@ spec:
                 tag: v3.2.2-openvino
       persistence:
         cache:
+          accessMode: ReadWriteOnce
           enabled: true
           size: 10Gi
     valkey:
