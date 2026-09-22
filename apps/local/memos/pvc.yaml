@@ -3,10 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: memos
   namespace: memos
+  labels:
+    k8up.io/backup: "true"
 spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 5Gi
