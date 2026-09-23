@@ -1,0 +1,15 @@
+apiVersion: k8up.io/v1
+kind: Backup
+metadata:
+  name: manual-pvc-backup-immich
+  namespace: immich
+spec:
+  backend:
+    rest:
+      url: "http://192.168.20.20:12345/zima"
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
+    restic -r rest:http://192.168.20.20:12345/zima snapshotsrestic -r rest:http://192.168.20.20:12345/zima snapshots
+
+    my-super-secret-restic

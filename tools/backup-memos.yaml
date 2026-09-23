@@ -1,0 +1,12 @@
+apiVersion: k8up.io/v1
+kind: Backup
+metadata:
+  name: manual-pvc-backup-memos
+  namespace: memos
+spec:
+  backend:
+    rest:
+      url: "http://192.168.20.20:12345/zima"
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: manual-pvc-restore
+  namespace: wallabag
+spec:
+  snapshot: "edbd73f352376096c595cc027e335841c7f0c9fe7eb5e0e76cc6ed83673c3ba1"
+  restoreMethod:
+    folder:
+      claimName: "wallabag-data"
+  backend:
+    rest:
+      url: "http://192.168.20.20:12345/zima"
+  # To allow changing the owner of the restored files, we need to run as root.
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

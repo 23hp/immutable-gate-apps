@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: manual-pvc-restore
+  namespace: memos
+spec:
+  snapshot: "63c2a110ea41f158910a0049cccf31cb220db3f44e6ab5b7668d6d1a82d37ba0"
+  restoreMethod:
+    folder:
+      claimName: "memos"
+  backend:
+    rest:
+      url: "http://192.168.20.20:12345/zima"
+  # To allow changing the owner of the restored files, we need to run as root.
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
