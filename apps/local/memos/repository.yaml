@@ -5,7 +5,7 @@ metadata:
   name: memos-charts
   namespace: flux-system
 spec:
-  interval: 36h
+  interval: 96h
   url: https://github.com/usememos/helm.git
   ref:
     branch: main
