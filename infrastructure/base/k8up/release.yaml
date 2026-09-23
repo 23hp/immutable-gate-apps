@@ -14,3 +14,12 @@ spec:
         kind: HelmRepository
         name: k8up
         namespace: flux-system
+  values:
+    k8up:
+      skipWithoutAnnotation: true
+      envVars:
+      - name: BACKUP_GLOBALREPOPASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: k8up-credentials
+            key: repo-password

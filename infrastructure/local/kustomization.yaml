@@ -6,4 +6,5 @@ resources:
   - envoy
   - intel-device-plugins
   - metallb
+  - k8up.secret.sops.yaml
   - tailscale.secret.sops.yaml
