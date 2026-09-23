@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: immich-server-pvc
   namespace: immich
-  labels:
+  annotations:
     k8up.io/backup: "true"
 spec:
   accessModes:
