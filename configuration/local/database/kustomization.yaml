@@ -5,6 +5,9 @@ resources:
   - immich-database.yaml
   - immich-role.yaml
   - immich-secret.sops.yaml
+  - memos-database.yaml
+  - memos-role.yaml
+  - memos-secret.sops.yaml
   - nextcloud-database.yaml
   - nextcloud-role.yaml
   - nextcloud-secret.sops.yaml
