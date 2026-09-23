@@ -28,3 +28,10 @@ spec:
       mountPath: /var/www/wallabag/data
     - name: wallabag-images
       mountPath: /var/www/wallabag/web/assets/images
+    volumes:
+    - name: wallabag-data
+      persistentVolumeClaim:
+        claimName: wallabag-data
+    - name: wallabag-images
+      persistentVolumeClaim:
+        claimName: wallabag-images
