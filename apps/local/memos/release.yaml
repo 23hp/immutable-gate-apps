@@ -20,4 +20,5 @@ spec:
       tag: "0.31.0"
     persistence:
       enabled: true
-      existPersistClaim: "memos"
+      storageClass: "longhorn"
+      size: 5Gi
