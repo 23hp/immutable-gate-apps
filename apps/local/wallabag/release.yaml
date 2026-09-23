@@ -23,3 +23,8 @@ spec:
         sectionName: https
     persistence:
       enabled: false
+    volumeMounts:
+    - name: wallabag-data
+      mountPath: /var/www/wallabag/data
+    - name: wallabag-images
+      mountPath: /var/www/wallabag/web/assets/images
