@@ -59,6 +59,7 @@ spec:
       enabled: true
       existingClaim: nextcloud-app
       nextcloudData:
+        enabled: true
         existingClaim: nextcloud-data
 
     httpRoute:
