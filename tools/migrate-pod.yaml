@@ -1,18 +1,24 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: memos-migration
-  namespace: memos
+  name: migration
+  namespace: immich
 spec:
   restartPolicy: Never
   containers:
     - name: migrator
-      image: ghcr.io/dimitri/pgloader:latest
-      command: ["sh", "-c", "sleep 3600"]
+      # image: ghcr.io/dimitri/pgloader:latest # for database migration
+      image: docker.io/eeacms/rsync:latest
+      command: ["sh", "-c", "sleep infinity"]
       volumeMounts:
-        - name: storage
-          mountPath: /var/opt/memos
+        - name: src
+          mountPath: /src
+        - name: dst
+          mountPath: /dst
   volumes:
-    - name: storage
+    - name: src
       persistentVolumeClaim:
-        claimName: memos
+        claimName: immich-server-pvc
+    - name: dst
+      persistentVolumeClaim:
+        claimName: immich
