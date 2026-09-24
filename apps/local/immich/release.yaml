@@ -14,7 +14,7 @@ spec:
     immich:
       persistence:
         library:
-          existingClaim: immich-server-pvc
+          existingClaim: immich
     server:
       controllers:
         main:

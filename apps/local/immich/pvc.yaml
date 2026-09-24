@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: immich-server-pvc
+  name: immich
   namespace: immich
   annotations:
     k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
   resources:
     requests:
       storage: 120Gi
