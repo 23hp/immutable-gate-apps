@@ -8,9 +8,8 @@ resources:
   - envoy
   - gateway
   - metallb
-  - tailscale
   - flux-receiver.secret.sops.yaml
   - intel-device-plugins.gpu.yaml
-  # - tailscale.connector.yaml
+  - tailscale.connector.yaml
 patches:
   - path: ./database/cluster.yaml

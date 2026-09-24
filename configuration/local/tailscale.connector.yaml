@@ -6,4 +6,4 @@ spec:
   hostname: local-subnet-router
   subnetRouter:
     advertiseRoutes:
-      - 192.168.20.0/24
+      - 10.0.20.2/32
