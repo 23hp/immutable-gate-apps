@@ -57,12 +57,10 @@ spec:
         passwordKey: password
     persistence:
       enabled: true
-      storageClass: longhorn
-      size: 5Gi
+      existingClaim: nextcloud-app
       nextcloudData:
-        enabled: true
-        storageClass: longhorn
-        size: 15Gi
+        existingClaim: nextcloud-data
+
     httpRoute:
       enabled: true
       parentRefs:

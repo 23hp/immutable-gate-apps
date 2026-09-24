@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - configmap.yaml
   - namespace.yaml
+  - pvc-app.yaml
+  - pvc-data.yaml
   - release.yaml
   - repository.yaml
   - secret.sops.yaml
