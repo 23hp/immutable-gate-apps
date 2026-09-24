@@ -4,6 +4,5 @@ resources:
   - cloudnative-pg
   - k8up
   - local-path-provisioner
-  - longhorn
   - reflector
   - tailscale
