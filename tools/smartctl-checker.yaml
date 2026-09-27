@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: smartctl-checker
+  namespace: kube-system
+spec:
+  # nodeName: your-node-name
+  restartPolicy: Never
+  containers:
+  - name: smartctl
+    image: alpine:latest
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        apk add --no-cache smartmontools
+        echo "=== Listing disks ==="
+        lsblk
+        echo -e "\n=== Fetching S.M.A.R.T: /dev/sda ==="
+        smartctl -a /dev/sda || true
+        sleep 600
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - name: dev-vol
+      mountPath: /dev
+  volumes:
+  - name: dev-vol
+    hostPath:
+      path: /dev
