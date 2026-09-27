@@ -4,4 +4,5 @@ resources:
   - ../base
   - ../local/cert-manager
   - ../local/intel-device-plugins
+  - ../local/k8up.secret.sops.yaml
   - tailscale.secret.sops.yaml
