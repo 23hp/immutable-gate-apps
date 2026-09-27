@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - database
   - flux-receiver
+  - tailscale

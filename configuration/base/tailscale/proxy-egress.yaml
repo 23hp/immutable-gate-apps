@@ -4,4 +4,4 @@ metadata:
   name: egress-proxies
 spec:
   type: egress
-  replicas: 1
+  replicas: 2
