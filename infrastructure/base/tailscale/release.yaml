@@ -5,6 +5,9 @@ metadata:
   name: tailscale-operator
 spec:
   interval: 24h
+  valuesFrom:
+    - kind: Secret
+      name: helm-release-values
   chart:
     spec:
       chart: tailscale-operator
@@ -12,13 +15,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: tailscale
-  # values:
-  #   operatorConfig:
-  #     image:
-  #       repository: docker.io/tailscale/k8s-operator
-  #   proxyConfig:
-  #     image:
-  #       repository: docker.io/tailscale/tailscale
-  #   oauthSecretVolume:
-  #     secret:
-  #       secretName: oauth
