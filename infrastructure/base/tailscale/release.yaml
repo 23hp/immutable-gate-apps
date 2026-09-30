@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: tailscale-operator
-  namespace: tailscale
 spec:
   interval: 24h
   chart:
@@ -12,15 +11,13 @@ spec:
       version: "1.96.5"
       sourceRef:
         kind: HelmRepository
-        name: tailscale
-        namespace: flux-system
-  values:
-    operatorConfig:
-      image:
-        repository: docker.io/tailscale/k8s-operator
-    proxyConfig:
-      image:
-        repository: docker.io/tailscale/tailscale
-    oauthSecretVolume:
-      secret:
-        secretName: oauth
+  # values:
+  #   operatorConfig:
+  #     image:
+  #       repository: docker.io/tailscale/k8s-operator
+  #   proxyConfig:
+  #     image:
+  #       repository: docker.io/tailscale/tailscale
+  #   oauthSecretVolume:
+  #     secret:
+  #       secretName: oauth

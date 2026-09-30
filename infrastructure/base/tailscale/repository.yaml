@@ -3,7 +3,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
   name: tailscale
-  namespace: flux-system
 spec:
-  interval: 36h
+  interval: 96h
   url: https://pkgs.tailscale.com/helmcharts
