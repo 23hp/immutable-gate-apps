@@ -2,23 +2,23 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - ../base/cert-manager
+  - ../base/cert-manager
   - ../base/cilium
-#   - ../base/cloudnative-pg
-#   - ../base/intel-device-plugins
-#   - ../base/k8up
-#   - ../base/local-path-provisioner
-#   - ../base/reflector
-#   - ../base/tailscale
+  - ../base/cloudnative-pg
+  - ../base/intel-device-plugins
+  - ../base/k8up
+  - ../base/local-path-provisioner
+  - ../base/reflector
+  - ../base/tailscale
 
-# secretGenerator:
-#   - name: helm-release-values
-#     namespace: k8up
-#     behavior: replace
-#     files:
-#       - values.yaml=k8up.values.enc.yaml
-#   - name: helm-release-values
-#     namespace: tailscale
-#     behavior: replace
-#     files:
-#       - values.yaml=tailscale.values.enc.yaml
+secretGenerator:
+  - name: helm-release-values
+    namespace: k8up
+    behavior: replace
+    files:
+      - values.yaml=k8up.values.enc.yaml
+  - name: helm-release-values
+    namespace: tailscale
+    behavior: replace
+    files:
+      - values.yaml=tailscale.values.enc.yaml
