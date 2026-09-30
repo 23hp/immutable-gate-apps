@@ -1,7 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base/cloudnative-pg
+  - ../base/cert-manager
+  - ../base/intel-device-plugins
   - ../base/k8up
   - ../base/local-path-provisioner
   - ../base/reflector
