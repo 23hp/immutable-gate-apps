@@ -11,3 +11,6 @@ configMapGenerator:
   - name: helm-release-values
     files:
       - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml
