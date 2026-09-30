@@ -5,6 +5,7 @@ metadata:
   name: apps
   namespace: flux-system
 spec:
+  suspend: true
   interval: 4h
   retryInterval: 30m
   timeout: 15m
