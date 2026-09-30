@@ -3,3 +3,32 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+
+patches:
+  - target:
+      group: source.toolkit.fluxcd.io
+      kind: GitRepository
+      namespace: flux-system
+      name: flux-system
+    patch: |-
+      - op: replace
+        path: /spec/interval
+        value: 6h
+
+  - target:
+      group: kustomize.toolkit.fluxcd.io
+      kind: Kustomization
+      namespace: flux-system
+      name: flux-system
+    patch: |-
+      - op: replace
+        path: /spec/interval
+        value: 12h
+
+  - target:
+      kind: Deployment
+      name: "kustomize-controller"
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: --requeue-dependency=5s

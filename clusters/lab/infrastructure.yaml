@@ -17,32 +17,3 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: cloudnative-pg
-      namespace: cloudnative-pg
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: k8up
-      namespace: k8up
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: lab-path-provisioner
-      namespace: lab-path-storage
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: reflector
-      namespace: reflector
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: tailscale-operator
-      namespace: tailscale
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: cert-manager
-      namespace: cert-manager
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: operator
-      namespace: intel-device-plugins
