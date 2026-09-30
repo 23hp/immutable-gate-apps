@@ -5,16 +5,10 @@ metadata:
   name: cert-manager
 spec:
   interval: 24h
-  install:
-    strategy:
-      name: RetryOnFailure
-  upgrade:
-    strategy:
-      name: RetryOnFailure
+  valuesFrom:
+    - kind: ConfigMap
+      name: helm-release-values
   chartRef:
     kind: OCIRepository
     name: cert-manager
-  values:
-    crds:
-      enabled: true
-      keep: false
+

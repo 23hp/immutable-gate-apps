@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   # - ../base
-  # - ../local/cert-manager
-  - ../local/intel-device-plugins
+  - ../base/cert-manager
+  - ../base/intel-device-plugins
   # - ../local/k8up.secret.sops.yaml
   # - tailscale.secret.sops.yaml
