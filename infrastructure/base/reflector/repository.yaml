@@ -4,7 +4,7 @@ kind: OCIRepository
 metadata:
   name: reflector
 spec:
-  interval: 36h
+  interval: 96h
   url: oci://ghcr.io/emberstack/helm-charts/reflector
   layerSelector:
     mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
