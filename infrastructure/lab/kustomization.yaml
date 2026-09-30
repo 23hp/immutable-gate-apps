@@ -1,8 +1,16 @@
+# infrastructure/lab/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  # - ../base
   - ../base/cert-manager
   - ../base/intel-device-plugins
+  - ../base/k8up
   # - ../local/k8up.secret.sops.yaml
   # - tailscale.secret.sops.yaml
+
+secretGenerator:
+  - name: helm-release-values
+    namespace: k8up
+    behavior: replace
+    files:
+      - values.yaml=k8up.values.enc.yaml

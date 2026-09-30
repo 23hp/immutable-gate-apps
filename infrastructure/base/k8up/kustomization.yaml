@@ -1,6 +1,18 @@
+# infrastructure/base/k8up/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: k8up
+metadata:
+  name: k8up
 resources:
   - namespace.yaml
   - release.yaml
   - repository.yaml
+
+secretGenerator:
+  - name: helm-release-values
+    files:
+      - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml

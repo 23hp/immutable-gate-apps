@@ -1,0 +1,5 @@
+k8up:
+  skipWithoutAnnotation: true
+  envVars:
+  - name: BACKUP_GLOBALREPOPASSWORD
+    value: PLACEHOLDER

@@ -3,7 +3,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: k8up
-  namespace: k8up
 spec:
   interval: 24h
   chart:
@@ -13,13 +12,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: k8up
-        namespace: flux-system
-  values:
-    k8up:
-      skipWithoutAnnotation: true
-      envVars:
-      - name: BACKUP_GLOBALREPOPASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: k8up-credentials
-            key: repo-password
+  valuesFrom:
+    - kind: Secret
+      name: helm-release-values
