@@ -9,8 +9,6 @@ resources:
   - ../base/local-path-provisioner
   - ../base/reflector
   - ../base/tailscale
-  # - ../local/k8up.secret.sops.yaml
-  # - tailscale.secret.sops.yaml
 
 secretGenerator:
   - name: helm-release-values
@@ -18,3 +16,8 @@ secretGenerator:
     behavior: replace
     files:
       - values.yaml=k8up.values.enc.yaml
+  - name: helm-release-values
+    namespace: tailscale
+    behavior: replace
+    files:
+      - values.yaml=tailscale.values.enc.yaml

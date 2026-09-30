@@ -5,3 +5,11 @@ resources:
   - namespace.yaml
   - release.yaml
   - repository.yaml
+
+secretGenerator:
+  - name: helm-release-values
+    files:
+      - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml
