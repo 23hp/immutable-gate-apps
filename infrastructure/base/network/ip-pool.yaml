@@ -1,0 +1,7 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: bgp-ip-pool
+spec:
+  cidrs:
+    - cidr: "10.10.10.0/24"
