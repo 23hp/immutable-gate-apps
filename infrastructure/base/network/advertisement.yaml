@@ -1,0 +1,15 @@
+# 1. 允许将 bgp-ip-pool 的地址通告给 BGP 邻居
+apiVersion: cilium.io/v2
+kind: CiliumBGPAdvertisement
+metadata:
+  name: lb-adv
+  labels:
+    advertise: lb
+spec:
+  advertisements:
+  - advertisementType: Service
+    service:
+      addresses: [LoadBalancerIP]
+    selector:
+      matchLabels:
+        bgp: advertise
