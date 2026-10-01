@@ -1,5 +1,0 @@
-bgpControlPlane:
-  enabled: true
-
-gatewayAPI:
-  enabled: true
