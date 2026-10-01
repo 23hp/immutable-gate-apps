@@ -3,5 +3,5 @@ kind: CiliumLoadBalancerIPPool
 metadata:
   name: bgp-ip-pool
 spec:
-  cidrs:
+  blocks:
     - cidr: "10.10.10.0/24"
