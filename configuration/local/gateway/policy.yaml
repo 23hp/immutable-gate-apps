@@ -2,12 +2,11 @@ apiVersion: gateway.envoyproxy.io/v1alpha1
 kind: ClientTrafficPolicy
 metadata:
   name: security-headers
-  namespace: envoy-gateway-system
 spec:
   targetRef:
     group: gateway.networking.k8s.io
     kind: Gateway
-    name: eg-gateway
+    name: gateway
     sectionName: https
   headers:
     lateResponseHeaders:

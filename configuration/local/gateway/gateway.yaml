@@ -2,12 +2,14 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: eg-gateway
-  namespace: envoy-gateway-system
+  name: gateway
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
-  gatewayClassName: envoy-gateway
+  gatewayClassName: cilium
+  infrastructure:
+    labels:
+      bgp: advertise
   listeners:
     - name: http
       protocol: HTTP

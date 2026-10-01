@@ -3,5 +3,8 @@ kind: Kustomization
 namespace: network 
 resources:
   - https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.1/standard-install.yaml
-  - namespace.yaml
+  - advertisement.yaml
+  - cluster-config.yaml
   - ip-pool.yaml
+  - namespace.yaml
+  - peer-config.yaml
