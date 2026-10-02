@@ -14,4 +14,4 @@ secretGenerator:
     namespace: cert-manager
     behavior: replace
     files:
-      - api-token=cert-manager.cloudflare-api-token.enc
+      - cert-manager.enc.env

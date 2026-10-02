@@ -8,7 +8,7 @@ resources:
 secretGenerator:
   - name: cloudflare
     files:
-      - api-token=cloudflare-api-token
+      - cert-manager.env
 
 configurations:
   - kustomizeconfig.yaml
