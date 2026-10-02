@@ -8,7 +8,6 @@ resources:
   - ../base/k8up
   - ../base/local-path-provisioner
   - ../base/network
-  - ../base/reflector
   - ../base/tailscale
 
 secretGenerator:
