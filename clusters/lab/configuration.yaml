@@ -2,11 +2,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: infrastructure
+  name: configuration
 spec:
-  interval: 12h
+  interval: 8h
   retryInterval: 1h
   timeout: 20m
   wait: true
   prune: true
-  path: "./infrastructure/lab"
+  path: "./configuration/lab"
+  dependsOn:
+    - name: infrastructure

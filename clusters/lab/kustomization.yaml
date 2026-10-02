@@ -4,8 +4,15 @@ namespace: flux-system
 
 resources:
   - infrastructure.yaml
+  - configuration.yaml
+
+patches:
+  - path: flux-common.yaml
+    target:
+      group: kustomize.toolkit.fluxcd.io
+      kind: Kustomization
 
 secretGenerator:
   - name: init-config
     envs:
-    - init-config.enc.env
+      - init-config.enc.env
