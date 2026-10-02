@@ -3,9 +3,8 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: wallabag
-  namespace: flux-system
 spec:
-  interval: 36h
+  interval: 96h
   url: oci://ghcr.io/23hp/wallabag
   layerSelector:
     mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
