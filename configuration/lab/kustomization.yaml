@@ -1,0 +1,12 @@
+# infrastructure/lab/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../base/cert-manager
+
+secretGenerator:
+  - name: cloudflare
+    namespace: cert-manager
+    behavior: replace
+    files:
+      - api-token=cert-manager.cloudflare-api-token.enc
