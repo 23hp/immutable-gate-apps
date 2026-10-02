@@ -5,7 +5,7 @@ namespace: flux-system
 resources:
   - infrastructure.yaml
 
-configMapGenerator:
+secretGenerator:
   - name: init-config
     envs:
     - init-config.enc.env
