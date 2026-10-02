@@ -7,8 +7,8 @@ resources:
 
 secretGenerator:
   - name: cloudflare
-    files:
-      - cert-manager.env
+    envs:
+      - cloudflare.env
 
 configurations:
   - kustomizeconfig.yaml

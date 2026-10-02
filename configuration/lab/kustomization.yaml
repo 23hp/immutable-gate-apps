@@ -13,5 +13,5 @@ secretGenerator:
   - name: cloudflare
     namespace: cert-manager
     behavior: replace
-    files:
-      - cert-manager.enc.env
+    envs:
+      - cert-manager.cloudflare.enc.env
