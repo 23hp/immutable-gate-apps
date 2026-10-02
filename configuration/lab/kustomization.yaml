@@ -6,6 +6,7 @@ resources:
   - ../base/gateway
   - ../base/tailscale
   - ../base/intel-device-plugins.gpu.yaml
+  - database
   - tailscale.connector.yaml
 
 secretGenerator:
