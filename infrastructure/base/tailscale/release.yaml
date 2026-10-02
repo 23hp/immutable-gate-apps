@@ -8,6 +8,14 @@ spec:
   valuesFrom:
     - kind: Secret
       name: helm-release-values
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
       chart: tailscale-operator
