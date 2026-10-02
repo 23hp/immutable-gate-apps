@@ -16,8 +16,8 @@ spec:
       hostnames:
       - "wallabag.${domain_name}"
       parentRefs:
-      - name: eg-gateway
-        namespace: envoy-gateway-system
+      - name: gateway
+        namespace: network
         sectionName: https
     persistence:
       enabled: false
