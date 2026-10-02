@@ -12,10 +12,12 @@ resources:
 secretGenerator:
   - name: immich-db-credentials
     type: kubernetes.io/basic-auth
-    env: immich-credential.enc.env
+    envs:
+      - immich-credential.enc.env
   - name: nextcloud-db-credentials
     type: kubernetes.io/basic-auth
-    env: nextcloud-credential.enc.env
+    envs:
+      - nextcloud-credential.enc.env
 
 configurations:
   - kustomizeconfig.yaml
