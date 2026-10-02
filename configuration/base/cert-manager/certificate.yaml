@@ -11,6 +11,6 @@ spec:
     name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
-  - "${domain_name}"
-  - "*.${domain_name}"
-  - "*.coder.${domain_name}"
+    - "${domain_name}"
+    - "*.${domain_name}"
+    - "*.coder.${domain_name}"

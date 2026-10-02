@@ -6,14 +6,14 @@ metadata:
   name: letsencrypt
 spec:
   acme:
-    email: ${acme_email}
+    email: info@immutable.gate
     server: https://acme-v02.api.letsencrypt.org/directory
     # server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-account-key
     solvers:
-    - dns01:
-        cloudflare:
-          apiTokenSecretRef:
-            name: cloudflare
-            key: api-token
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare
+              key: api-token
