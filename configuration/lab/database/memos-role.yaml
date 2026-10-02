@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: memos-user
+  namespace: database
+spec:
+  cluster:
+    name: postgres-shared
+  name: memos_user
+
+  login: true
+  databaseRoleReclaimPolicy: delete
+  
+  passwordSecret:
+    name: memos-db-credentials
