@@ -7,6 +7,9 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 10.10.10.10
   infrastructure:
     labels:
       bgp: advertise
