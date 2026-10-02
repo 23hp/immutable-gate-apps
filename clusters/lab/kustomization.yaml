@@ -4,6 +4,7 @@ namespace: flux-system
 resources:
   - infrastructure.yaml
   - configuration.yaml
+  - apps.yaml
 
 patches:
   - path: flux-common.yaml
