@@ -7,7 +7,7 @@ resources:
   - ../base/intel-device-plugins
   - ../base/k8up
   - ../base/local-path-provisioner
-  - ../base/network
+  # - ../base/network
   - ../base/tailscale
 
 secretGenerator:
