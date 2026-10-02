@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: network
 
 resources:
+  - certificate.yaml
   - gateway.yaml
   - gateway-class.yaml
   - http-https-redirect.yaml
