@@ -13,7 +13,8 @@ patches:
 
 secretGenerator:
   - name: init-config
-    env: init-config.enc.env
+    envs:
+      - init-config.enc.env
 
 configurations:
   - kustomizeconfig.yaml
