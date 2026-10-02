@@ -5,6 +5,7 @@ namespace: database
 resources:
   - immich-database.yaml
   - immich-role.yaml
+  - namespace.yaml
   - nextcloud-database.yaml
   - nextcloud-role.yaml
 
