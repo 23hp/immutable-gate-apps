@@ -9,9 +9,9 @@ resources:
   - database
   - tailscale.connector.yaml
 
-secretGenerator:
-  - name: cloudflare
-    namespace: cert-manager
-    behavior: replace
-    files:
-      - api-token=cert-manager.cloudflare-api-token.enc
+# secretGenerator:
+#   - name: cloudflare
+#     namespace: cert-manager
+#     behavior: replace
+#     files:
+#       - api-token=cert-manager.cloudflare-api-token.enc
