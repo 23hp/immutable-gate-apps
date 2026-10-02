@@ -2,7 +2,6 @@ apiVersion: postgresql.cnpg.io/v1
 kind: DatabaseRole
 metadata:
   name: nextcloud-user
-  namespace: database
 spec:
   cluster:
     name: postgres-shared
