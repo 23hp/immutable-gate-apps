@@ -5,8 +5,8 @@ metadata:
   name: apps
 spec:
   interval: 4h
-  retryInterval: 30m
-  timeout: 15m
+  retryInterval: 2m
+  timeout: 5m
   prune: true
   path: "./apps/lab"
   dependsOn:

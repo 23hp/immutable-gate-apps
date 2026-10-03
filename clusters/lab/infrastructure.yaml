@@ -5,8 +5,8 @@ metadata:
   name: infrastructure
 spec:
   interval: 12h
-  retryInterval: 1h
-  timeout: 20m
+  retryInterval: 2m
+  timeout: 10m
   wait: true
   prune: true
   path: "./infrastructure/lab"
