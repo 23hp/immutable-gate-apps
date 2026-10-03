@@ -14,3 +14,5 @@ spec:
   extensions:
     - name: cube
     - name: earthdistance
+    - name: vector
+    - name: vchord
