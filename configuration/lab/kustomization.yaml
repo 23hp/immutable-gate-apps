@@ -15,3 +15,8 @@ secretGenerator:
     behavior: replace
     envs:
       - cert-manager.cloudflare.enc.env
+  - name: token
+    namespace: flux-system
+    behavior: replace
+    envs:
+      - flux-receiver.token.enc.env

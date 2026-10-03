@@ -3,12 +3,11 @@ apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: flux-receiver
-  namespace: flux-system
 spec:
   interval: 24h
   type: generic
   secretRef:
-    name: receiver-token
+    name: token
   resources:
     - kind: GitRepository
       name: flux-system
