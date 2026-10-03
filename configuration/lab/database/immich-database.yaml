@@ -9,3 +9,8 @@ spec:
   owner: immich_user
 
   databaseReclaimPolicy: delete
+  postInitSQL:
+    - CREATE EXTENSION IF NOT EXISTS vchord CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS vectors CASCADE;
+    - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+    - GRANT ALL ON SCHEMA public TO immich_user;
