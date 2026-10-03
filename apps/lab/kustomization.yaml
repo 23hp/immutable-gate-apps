@@ -2,13 +2,27 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base/wallabag
+  - ../base/coder
+  - ../base/hermes-agent
+  - ../base/immich
+  - ../base/memos
   - ../base/nextcloud
+  - ../base/wallabag
 
 secretGenerator:
-  - name: nextcloud-admin
+  - name: db-credentials
+    namespace: immich
+    behavior: replace
+    envs:
+      - ../../configuration/lab/database/immich-credential.enc.env
+  - name: admin
     namespace: nextcloud
     type: kubernetes.io/basic-auth
     behavior: replace
     envs:
       - nextcloud.admin.enc.env
+  - name: db-credentials
+    namespace: immich
+    behavior: replace
+    envs:
+      - ../../configuration/lab/database/nextcloud-credential.enc.env

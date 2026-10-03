@@ -5,17 +5,12 @@ metadata:
   name: memos
 spec:
   interval: 24h
+  valuesFrom:
+    - kind: ConfigMap
+      name: helm-release-values
   chart:
     spec:
       chart: .
       sourceRef:
         kind: GitRepository
         name: memos-charts
-  values:
-    image:
-      repo: ghcr.io
-      imageName: usememos/memos
-      tag: "0.31.0"
-    persistence:
-      enabled: true
-      existPersistClaim: "memos"

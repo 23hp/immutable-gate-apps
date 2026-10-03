@@ -1,0 +1,7 @@
+image:
+  repo: ghcr.io
+  imageName: usememos/memos
+  tag: "0.31.0"
+persistence:
+  enabled: true
+  existPersistClaim: "memos"

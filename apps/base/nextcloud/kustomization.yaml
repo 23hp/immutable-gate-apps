@@ -9,15 +9,18 @@ resources:
   - repository.yaml
 
 configMapGenerator:
+  - name: helm-release-values
+    files:
+      - values.yaml
   - name: nextcloud-post-install-script
     files:
       - setup.sh
 
 secretGenerator:
-  - name: nextcloud-db-credentials
+  - name: db-credentials
     envs:
-      - ../../../configuration/lab/database/nextcloud-credential.enc.env
-  - name: nextcloud-admin
+      - db-credentials.env
+  - name: admin
     type: kubernetes.io/basic-auth
     envs:
       - admin.env

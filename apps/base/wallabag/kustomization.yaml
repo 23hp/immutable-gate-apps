@@ -7,3 +7,11 @@ resources:
   - pvc-images.yaml
   - release.yaml
   - repository.yaml
+
+configMapGenerator:
+  - name: helm-release-values
+    files:
+      - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml

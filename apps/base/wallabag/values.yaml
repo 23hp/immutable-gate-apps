@@ -1,0 +1,24 @@
+wallabag:
+  domainName: "https://wallabag.${domain_name}"
+httpRoute:
+  enabled: true
+  hostnames:
+  - "wallabag.${domain_name}"
+  parentRefs:
+  - name: gateway
+    namespace: network
+    sectionName: https
+persistence:
+  enabled: false
+volumeMounts:
+- name: wallabag-data
+  mountPath: /var/www/wallabag/data
+- name: wallabag-images
+  mountPath: /var/www/wallabag/web/assets/images
+volumes:
+- name: wallabag-data
+  persistentVolumeClaim:
+    claimName: wallabag-data
+- name: wallabag-images
+  persistentVolumeClaim:
+    claimName: wallabag-images

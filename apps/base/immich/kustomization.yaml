@@ -9,9 +9,14 @@ resources:
   - route.yaml
 
 secretGenerator:
-  - name: immich-db-credentials
+  - name: db-credentials
     envs:
-      - ../../../configuration/lab/database/immich-credential.enc.env
+      - db-credentials.env
+
+configMapGenerator:
+  - name: helm-release-values
+    files:
+      - values.yaml
 
 configurations:
   - kustomizeconfig.yaml

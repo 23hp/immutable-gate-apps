@@ -5,63 +5,18 @@ metadata:
   name: immich
 spec:
   interval: 24h
-  chartRef:
-    kind: OCIRepository
-    name: immich-charts
+  valuesFrom:
+    - kind: ConfigMap
+      name: helm-release-values
   values:
-    immich:
-      persistence:
-        library:
-          existingClaim: immich
     server:
       controllers:
         main:
           containers:
             main:
-              resources:
-                requests:
-                  memory: 256Mi
-                  cpu: 100m
-                limits:
-                  gpu.intel.com/i915: 1
-                  memory: 3Gi
-                  cpu: 2000m
               env:
-                TZ: Europe/Berlin
-                DB_HOSTNAME: postgres-shared-rw.database.svc.cluster.local
-                DB_DATABASE_NAME: immich
-                DB_USERNAME:
-                  valueFrom:
-                    secretKeyRef:
-                      name: immich-db-credentials
-                      key: username
-                DB_PASSWORD:
-                  valueFrom:
-                    secretKeyRef:
-                      name: immich-db-credentials
-                      key: password
-              image:
-                tag: v3.2.2
-    machine-learning:
-      controllers:
-        main:
-          containers:
-            main:
-              resources:
-                requests:
-                  memory: 256Mi
-                  cpu: 100m
-                limits:
-                  gpu.intel.com/i915: 1
-                  memory: 3Gi
-                  cpu: 2000m
-              image:
-                tag: v3.2.2-openvino
-      persistence:
-        cache:
-          enabled: true
-          type: persistentVolumeClaim
-          accessMode: ReadWriteOnce
-          size: 10Gi
-    valkey:
-      enabled: true
+                DB_USERNAME: { valueFrom: { secretKeyRef: { name: db-credentials } } }
+                DB_PASSWORD: { valueFrom: { secretKeyRef: { name: db-credentials } } }
+  chartRef:
+    kind: OCIRepository
+    name: immich-charts

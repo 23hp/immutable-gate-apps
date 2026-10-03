@@ -1,0 +1,59 @@
+nextcloud:
+  host: "nextcloud.${domain_name}"
+  extraEnv:
+    - name: OVERWRITECLIURL
+      value: "https://nextcloud.${domain_name}"
+    - name: OVERWRITEPROTOCOL
+      value: "https"
+  existingSecret:
+    enabled: true
+    # secretName: nextcloud-admin
+    usernameKey: username
+    passwordKey: password
+  configs:
+    custom.config.php: |-
+      <?php
+      $CONFIG = array (
+        'setup_create_db_user' => false,
+        'maintenance_window_start' => 3,
+      );
+  extraVolumes:
+    - name: post-install-script-vol
+      configMap:
+        # name: nextcloud-post-install-script
+        defaultMode: 0755
+  extraVolumeMounts:
+    - name: post-install-script-vol
+      mountPath: /docker-entrypoint-hooks.d/post-installation/setup.sh
+      subPath: setup.sh
+internalDatabase:
+  enabled: false
+externalDatabase:
+  enabled: true
+  host: postgres-shared-rw.database.svc.cluster.local:5432
+  type: postgresql
+  database: nextcloud
+  existingSecret:
+    enabled: true
+    # secretName: nextcloud-db-credentials
+    usernameKey: username
+    passwordKey: password
+persistence:
+  enabled: true
+  existingClaim: nextcloud-app
+  nextcloudData:
+    enabled: true
+    existingClaim: nextcloud-data
+
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: gateway
+      namespace: network
+      sectionName: https
+  hostnames:
+    - "nextcloud.${domain_name}"
+readinessProbe:
+  enabled: false
+livenessProbe:
+  periodSeconds: 900

@@ -1,8 +1,13 @@
 nameReference:
-- kind: Secret
-  version: v1
-  fieldSpecs:
-  - path: spec/values/server/controllers/main/containers/main/env/DB_USERNAME/valueFrom/secretKeyRef/name
-    kind: HelmRelease
-  - path: spec/values/server/controllers/main/containers/main/env/DB_PASSWORD/valueFrom/secretKeyRef/name
-    kind: HelmRelease
+  - kind: ConfigMap
+    version: v1
+    fieldSpecs:
+      - path: spec/valuesFrom/name
+        kind: HelmRelease
+  - kind: Secret
+    version: v1
+    fieldSpecs:
+      - path: spec/values/server/controllers/main/containers/main/env/DB_USERNAME/valueFrom/secretKeyRef/name
+        kind: HelmRelease
+      - path: spec/values/server/controllers/main/containers/main/env/DB_PASSWORD/valueFrom/secretKeyRef/name
+        kind: HelmRelease
