@@ -10,9 +10,9 @@ resources:
   - repository.yaml
 
 secretGenerator:
-  - name: helm-release-values
-    files:
-      - values.yaml
+  - name: credentials
+    envs:
+      - credentials.env
 
 configurations:
   - kustomizeconfig.yaml

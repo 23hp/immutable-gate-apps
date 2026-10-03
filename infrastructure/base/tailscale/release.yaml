@@ -6,8 +6,12 @@ metadata:
 spec:
   interval: 24h
   valuesFrom:
-    - kind: Secret
+    - kind: ConfigMap
       name: helm-release-values
+  values:
+    oauthSecretVolume:
+      secret:
+        secretName: oauth
   install:
     crds: CreateReplace
     remediation:

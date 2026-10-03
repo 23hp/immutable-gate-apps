@@ -1,6 +1,11 @@
 nameReference:
-- kind: Secret
+- kind: ConfigMap
   version: v1
   fieldSpecs:
   - path: spec/valuesFrom/name
+    kind: HelmRelease
+- kind: Secret
+  version: v1
+  fieldSpecs:
+  - path: spec/values/oauthSecretVolume/secret/secretName
     kind: HelmRelease

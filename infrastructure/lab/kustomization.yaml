@@ -11,13 +11,13 @@ resources:
   - ../base/tailscale
 
 secretGenerator:
-  - name: helm-release-values
+  - name: credentials
     namespace: k8up
     behavior: replace
-    files:
-      - values.yaml=k8up.values.enc.yaml
-  - name: helm-release-values
+    envs:
+      - k8up.credentials.enc.env
+  - name: oauth
     namespace: tailscale
     behavior: replace
-    files:
-      - values.yaml=tailscale.values.enc.yaml
+    envs:
+      - tailscale.oauth.enc.env

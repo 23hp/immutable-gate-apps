@@ -6,10 +6,15 @@ resources:
   - release.yaml
   - repository.yaml
 
-secretGenerator:
+configMapGenerator:
   - name: helm-release-values
     files:
       - values.yaml
+
+secretGenerator:
+  - name: oauth
+    envs:
+      - oauth.env
 
 configurations:
   - kustomizeconfig.yaml
