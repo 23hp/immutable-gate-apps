@@ -22,12 +22,12 @@ server:
             DB_USERNAME:
               valueFrom:
                 secretKeyRef:
-                  # name: immich-db-credentials
+                  # name: db-credentials
                   key: username
             DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  # name: immich-db-credentials
+                  # name: db-credentials
                   key: password
           image:
             tag: v3.2.2
