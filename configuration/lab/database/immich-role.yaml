@@ -8,8 +8,6 @@ spec:
   name: immich_user
 
   login: true
-  superuser: true
-  createdb: true
   databaseRoleReclaimPolicy: delete
   
   passwordSecret:
