@@ -14,6 +14,9 @@ spec:
       capacity: "2Ti"
     auth:
       existingSecret: garage-credentials
+    networkPolicy:
+      enabled: true
+      allowExternal: true
     persistence:
       storageClass: local-path-extdisk
       size: 2Ti
