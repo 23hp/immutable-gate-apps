@@ -3,6 +3,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base/cert-manager
+  - ../base/flux-receiver
   - ../base/gateway
   - ../base/tailscale
   - ../base/intel-device-plugins.gpu.yaml
