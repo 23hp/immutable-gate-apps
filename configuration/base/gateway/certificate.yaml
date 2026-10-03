@@ -13,3 +13,4 @@ spec:
     - "${domain_name}"
     - "*.${domain_name}"
     - "*.coder.${domain_name}"
+    - "*.s3.${domain_name}"

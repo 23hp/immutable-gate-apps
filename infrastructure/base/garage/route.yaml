@@ -9,7 +9,8 @@ spec:
     namespace: network
     sectionName: https
   hostnames:
-  - "garage.${domain_name}"
+  - "s3.${domain_name}"
+  - "*.s3.${domain_name}"
   rules:
     - backendRefs:
         - name: garage-garage
