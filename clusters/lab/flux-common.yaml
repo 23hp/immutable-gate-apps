@@ -12,5 +12,5 @@ spec:
       name: sops-age
   postBuild:
     substituteFrom:
-      - kind: Secret
+      - kind: ConfigMap
         name: init-config
