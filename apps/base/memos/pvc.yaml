@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: hermes-agent-pvc
-  namespace: hermes-agent
+  name: memos
+  annotations:
+    k8up.io/backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 5Gi

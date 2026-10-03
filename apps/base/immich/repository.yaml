@@ -3,7 +3,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: immich-charts
-  namespace: flux-system
 spec:
   interval: 36h
   url: oci://ghcr.io/immich-app/immich-charts/immich

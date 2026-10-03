@@ -3,7 +3,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: hermes-config
-  namespace: hermes-agent
 data:
   config.yaml: |
     timezone: "Europe/Berlin"

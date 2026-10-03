@@ -3,7 +3,6 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: memos-charts
-  namespace: flux-system
 spec:
   interval: 96h
   url: https://github.com/usememos/helm.git

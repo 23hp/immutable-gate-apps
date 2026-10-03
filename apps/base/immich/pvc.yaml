@@ -1,8 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: memos
-  namespace: memos
+  name: immich
   annotations:
     k8up.io/backup: "true"
 spec:
@@ -10,4 +9,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 120Gi
