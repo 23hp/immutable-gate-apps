@@ -2,10 +2,26 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: nextcloud
 resources:
-  - configmap.yaml
   - namespace.yaml
   - pvc-app.yaml
   - pvc-data.yaml
   - release.yaml
   - repository.yaml
-  - secret.sops.yaml
+
+configMapGenerator:
+  - name: nextcloud-post-install-script
+    files:
+      - setup.sh
+
+secretGenerator:
+  - name: nextcloud-db-credentials
+    envs:
+      - ../../../configuration/lab/database/nextcloud-credential.enc.env
+  - name: nextcloud-admin
+    type: kubernetes.io/basic-auth
+    envs:
+      - admin.env
+
+
+configurations:
+  - kustomizeconfig.yaml
