@@ -11,3 +11,6 @@ spec:
   schemas:
     - name: public
       owner: immich_user
+  extensions:
+    - name: cube
+    - name: earthdistance
