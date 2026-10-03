@@ -6,24 +6,24 @@ spec:
   artifacts:
     - name: apps
       copy:
-        - from: "@repo/apps/base"
-          to: "@artifact/apps/base/"
-        - from: "@repo/apps/lab"
-          to: "@artifact/apps/lab/"
+        - from: "@repo/apps/base/"
+          to: "@artifact/apps/"
+        - from: "@repo/apps/lab/"
+          to: "@artifact/apps/"
         - from: "@repo/configuration/lab/database/*.enc.env"
           to: "@artifact/configuration/lab/database/"
     - name: configuration
       copy:
-        - from: "@repo/configuration/base"
-          to: "@artifact/configuration/base/"
-        - from: "@repo/configuration/lab"
-          to: "@artifact/configuration/lab/"
+        - from: "@repo/configuration/base/"
+          to: "@artifact/configuration/"
+        - from: "@repo/configuration/lab/"
+          to: "@artifact/configuration/"
     - name: infrastructure
       copy:
-        - from: "@repo/infrastructure/base"
-          to: "@artifact/infrastructure/base/"
-        - from: "@repo/infrastructure/lab"
-          to: "@artifact/infrastructure/lab/"
+        - from: "@repo/infrastructure/base/"
+          to: "@artifact/infrastructure/"
+        - from: "@repo/infrastructure/lab/"
+          to: "@artifact/infrastructure/"
   sources:
     - alias: repo
       kind: GitRepository
