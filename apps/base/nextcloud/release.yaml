@@ -13,7 +13,8 @@ spec:
       existingSecret:
         secretName: admin
       extraVolumes:
-        - configMap:
+        - name: post-install-script-vol
+          configMap:
             name: nextcloud-post-install-script
     externalDatabase:
       existingSecret:
