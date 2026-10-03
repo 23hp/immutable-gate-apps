@@ -11,3 +11,6 @@ spec:
   path: "./apps/lab"
   dependsOn:
     - name: configuration
+  sourceRef:
+    kind: ExternalArtifact
+    name: apps

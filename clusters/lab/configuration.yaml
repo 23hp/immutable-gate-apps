@@ -12,6 +12,9 @@ spec:
   path: "./configuration/lab"
   dependsOn:
     - name: infrastructure
+  sourceRef:
+    kind: ExternalArtifact
+    name: configuration
   healthCheckExprs:
     - apiVersion: tailscale.com/v1alpha1
       kind: Connector

@@ -2,20 +2,13 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: flux-system
 resources:
-  - infrastructure.yaml
-  - configuration.yaml
+  - _artifact-gen.yaml
   - apps.yaml
+  - configuration.yaml
+  - infrastructure.yaml
 
 patches:
-  - path: flux-common.yaml
+  - path: _flux-common.yaml
     target:
       group: kustomize.toolkit.fluxcd.io
       kind: Kustomization
-
-secretGenerator:
-  - name: init-config
-    envs:
-      - init-config.enc.env
-
-configurations:
-  - kustomizeconfig.yaml

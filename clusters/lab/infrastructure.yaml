@@ -10,3 +10,6 @@ spec:
   wait: true
   prune: true
   path: "./infrastructure/lab"
+  sourceRef:
+    kind: ExternalArtifact
+    name: infrastructure
