@@ -7,3 +7,11 @@ resources:
   - release.yaml
   - repository.yaml
   - route.yaml
+
+secretGenerator:
+  - name: immich-db-credentials
+    envs:
+      - ../../../configuration/lab/database/immich-credential.enc.env
+
+configurations:
+  - kustomizeconfig.yaml
