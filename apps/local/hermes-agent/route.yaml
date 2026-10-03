@@ -6,8 +6,8 @@ metadata:
   namespace: hermes-agent
 spec:
   parentRefs:
-  - name: eg-gateway
-    namespace: envoy-gateway-system
+  - name: gateway
+    namespace: network
     sectionName: https
   hostnames:
   - "hermes.${domain_name}"

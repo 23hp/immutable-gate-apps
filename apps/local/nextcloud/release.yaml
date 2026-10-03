@@ -65,8 +65,8 @@ spec:
     httpRoute:
       enabled: true
       parentRefs:
-      - name: eg-gateway
-        namespace: envoy-gateway-system
+      - name: gateway
+        namespace: network
         sectionName: https
       hostnames:
       - "nextcloud.${domain_name}"

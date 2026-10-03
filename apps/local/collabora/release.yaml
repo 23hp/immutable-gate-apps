@@ -20,8 +20,8 @@ spec:
     route:
       enabled: true
       parentRefs:
-      - name: eg-gateway
-        namespace: envoy-gateway-system
+      - name: gateway
+        namespace: network
         sectionName: https
       hostnames:
       - "collabora.${domain_name}"

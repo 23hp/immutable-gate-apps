@@ -6,8 +6,8 @@ metadata:
   namespace: memos
 spec:
   parentRefs:
-  - name: eg-gateway
-    namespace: envoy-gateway-system
+  - name: gateway
+    namespace: network
     sectionName: https
   hostnames:
   - "memos.${domain_name}"
