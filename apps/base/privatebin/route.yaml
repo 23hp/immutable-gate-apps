@@ -9,8 +9,8 @@ spec:
     namespace: network
     sectionName: https
   hostnames:
-  - "privatebin.${domain_name}"
+  - "bin.${domain_name}"
   rules:
   - backendRefs:
-    - name: privatebin-privatebin
+    - name: privatebin
       port: 80
