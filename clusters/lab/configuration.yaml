@@ -5,8 +5,8 @@ metadata:
   name: configuration
 spec:
   interval: 8h
-  retryInterval: 1h
-  timeout: 20m
+  retryInterval: 2m
+  timeout: 5m
   wait: true
   prune: true
   path: "./configuration/lab"
@@ -15,4 +15,4 @@ spec:
   healthCheckExprs:
     - apiVersion: tailscale.com/v1alpha1
       kind: Connector
-      current: self.status.conditions.exists(c, c.type == 'ConnectorReady' && c.status == 'True')
+      current: status.conditions.exists(c, c.type == 'ConnectorReady' && c.status == 'True')
