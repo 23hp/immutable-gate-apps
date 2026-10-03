@@ -12,3 +12,7 @@ spec:
   path: "./configuration/lab"
   dependsOn:
     - name: infrastructure
+  healthCheckExprs:
+    - apiVersion: tailscale.com/v1alpha1
+      kind: Connector
+      current: self.status.conditions.exists(c, c.type == 'ConnectorReady' && c.status == 'True')
