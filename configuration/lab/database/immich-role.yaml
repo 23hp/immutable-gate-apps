@@ -10,8 +10,7 @@ spec:
   login: true
 
   # Only enable superuser during restore
-  superuser: true
-
+  # superuser: true
 
   databaseRoleReclaimPolicy: delete
   
