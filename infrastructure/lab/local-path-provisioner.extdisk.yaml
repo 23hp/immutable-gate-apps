@@ -16,8 +16,8 @@ spec:
   values:
     storageClass:
       name: local-path-extdisk
-      provisionerName: rancher.io/local-path-extdisk
       reclaimPolicy: Retain
+      provisionerName: rancher.io/local-path-extdisk
     nodePathMap:
       - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
         paths:
