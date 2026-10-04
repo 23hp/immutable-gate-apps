@@ -5,6 +5,10 @@ metadata:
   name: garage
 spec:
   interval: 24h
+  # dependsOn:
+  #   - namespace: local-path-storage
+  #     name: local-path-provisioner
+  #     name: extdisk
   chartRef:
     kind: OCIRepository
     name: garage
@@ -18,7 +22,7 @@ spec:
       enabled: true
       allowExternal: true
     persistence:
-      storageClass: local-path-extdisk
+      storageClass: extdisk-retain
       size: 2Ti
     resources:
       requests:
