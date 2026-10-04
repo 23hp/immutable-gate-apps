@@ -12,6 +12,9 @@ spec:
     - name: public
       owner: immich_user
   extensions:
+    - name: uuid-ossp
+    - name: unaccent
+    - name: pg_trgm
     - name: cube
     - name: earthdistance
     - name: vector
