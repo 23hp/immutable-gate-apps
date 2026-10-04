@@ -10,7 +10,7 @@ resources:
   - ../base/local-path-provisioner
   - ../base/network
   - ../base/tailscale
-  # - local-path-provisioner.extdisk.yaml
+  - local-path-provisioner.extdisk.yaml
 
 secretGenerator:
   - name: credentials
