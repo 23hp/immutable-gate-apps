@@ -5,8 +5,15 @@ metadata:
   namespace: memos
 spec:
   backend:
-    rest:
-      url: "http://192.168.20.20:12345/zima"
+    s3:
+      bucket: backup
+      endpoint: "https://s3.labs123.uk"
+      accessKeyIDSecretRef:
+          name: s3-credentials
+          key: accessKeyID
+      secretAccessKeySecretRef:
+          name: s3-credentials
+          key: secretAccessKey
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
