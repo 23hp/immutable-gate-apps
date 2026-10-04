@@ -8,6 +8,11 @@ spec:
   name: immich_user
 
   login: true
+
+  # Only enable superuser during restore
+  superuser: true
+
+
   databaseRoleReclaimPolicy: delete
   
   passwordSecret:
