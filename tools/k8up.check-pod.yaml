@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: check-pod
+  namespace: k8up-test
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu:latest
+    command: ["sleep", "7200"]
+    volumeMounts:
+    - name: data
+      mountPath: /data
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: restore-target
+    # nfs:
+    #   server: wifi
+    #   path: /mnt/sda1/garage
+    #   readOnly: false

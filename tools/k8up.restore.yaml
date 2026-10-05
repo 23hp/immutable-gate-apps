@@ -1,0 +1,18 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: wallabag
+spec:
+  snapshot: "f5d94570"
+  restoreMethod:
+    folder:
+      claimName: wallabag-images
+  podConfigRef:
+    name: podconfig
+  backend:
+    local:
+      mountPath: /mnt/nfs-backup
+    volumeMounts:
+      - name: nfs-backup
+        mountPath: /mnt/nfs-backup
