@@ -10,8 +10,8 @@ spec:
           to: "@artifact/apps/"
         - from: "@repo/apps/lab/"
           to: "@artifact/apps/"
-        - from: "@repo/configuration/lab/database/*.enc.env"
-          to: "@artifact/"
+        - from: "@repo/configuration/lab/"
+          to: "@artifact/configuration/"
     - name: configuration
       copy:
         - from: "@repo/configuration/base/"
