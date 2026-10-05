@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: wallabag
+resources:
+  - ../../configuration/lab/k8up/podconfig.yaml
+  - ../../configuration/lab/k8up/schedule.yaml

@@ -9,6 +9,9 @@ resources:
   - ../base/nextcloud
   - ../base/privatebin
   - ../base/wallabag
+  - backup-immich
+  - backup-memos
+  - backup-wallabag
 
 secretGenerator:
   - name: db-credentials
