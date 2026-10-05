@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: check-pod
-  namespace: k8up-test
+  namespace: database
 spec:
   containers:
   - name: ubuntu
@@ -15,7 +15,7 @@ spec:
   volumes:
   - name: data
     persistentVolumeClaim:
-      claimName: restore-target
+      claimName: postgres-shared-1
     # nfs:
     #   server: wifi
     #   path: /mnt/sda1/garage
