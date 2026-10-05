@@ -1,30 +1,12 @@
-## Get HOST_PATH of a PVC
-```
-PV_NAME=$(kubectl get pvc data-pvc -n paperless -o jsonpath='{.spec.volumeName}')
-HOST_PATH=$(kubectl get pv $PV_NAME -o jsonpath='{.spec.hostPath.path}')
-```
+# Database Recovery
 
-## init a Kopia repo
-    kopia repository create filesystem --path=/mnt/backup-disk/kopia-repo
+## Step 1: Restore backup
 
-# connect to the Kopia repo
-    kopia repository connect filesystem --path=/mnt/backup-disk/kopia-repo
+## Step 2: Untar archive
+use another pod which has `tar` installed to mount the PVC and unzip the `tar` file.
 
-# create/incremental backup
-    kopia snapshot create /data/paperless
+    tar -xf database-postgres.tar
 
-# Export all database
-```
-pg_dumpall -U postgres > all_databases_$(date +%Y%m%d).sql
+Restore specific database
 
-# or export and zip
-pg_dumpall -U postgres | gzip > all_databases_$(date +%Y%m%d).sql.gz
-```
-
-# Import all database
-```
-psql -U postgres < all_databases_20260905.sql
-
-# or unzip and import
-gunzip -c all_databases_20260905.sql.gz | psql -U postgres
-```
+    pg_restore -U postgres -d <target_database> --clean --if-exists /tmp/dumps/<database_name>.dump 
