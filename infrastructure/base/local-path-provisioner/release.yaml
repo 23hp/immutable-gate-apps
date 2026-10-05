@@ -15,4 +15,3 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: local-path-provisioner
-  releaseName: local-path-provisioner
