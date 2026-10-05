@@ -9,3 +9,13 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
+  inheritedMetadata:
+    annotations:
+      k8up.io/file-extension: ".tar"
+      k8up.io/backupcommand: >-
+        bash -c 'set -euo pipefail;
+        d=$(mktemp -d); trap "rm -rf $d" EXIT;
+        for db in $(psql -U postgres -d postgres -Atc "SELECT datname FROM pg_database WHERE NOT datistemplate AND datallowconn ORDER BY 1"); do
+        if [ "$db" != postgres ]; then pg_dump -Fc -Z0 -U postgres -d "$db" -f "$d/$db.dump"; fi;
+        done;
+        tar -C "$d" -cf - .'
