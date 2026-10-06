@@ -11,6 +11,3 @@ spec:
   backend:
     local:
       mountPath: /mnt/nfs-backup
-    volumeMounts:
-      - name: nfs-backup
-        mountPath: /mnt/nfs-backup
