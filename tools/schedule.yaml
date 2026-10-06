@@ -12,15 +12,15 @@ spec:
       - name: nfs-backup
         mountPath: /mnt/nfs-backup
   backup:
-    schedule: "@midnight"
+    schedule: "30 2 * * *"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
     # Job timeout
     activeDeadlineSeconds: 5000
   check:
-    schedule: "@monthly"
+    schedule: "0 4 1 * *"
   prune:
-    schedule: "@weekly"
+    schedule: "20 3 * * 0"
     retention:
       keepDaily: 7
       keepWeekly: 4
