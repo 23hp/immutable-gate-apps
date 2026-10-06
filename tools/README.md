@@ -10,3 +10,6 @@ use another pod which has `tar` installed to mount the PVC and unzip the `tar` f
 Restore specific database
 
     pg_restore -U postgres -d <target_database> --clean --if-exists /tmp/dumps/<database_name>.dump 
+
+    # Example
+    pg_restore -U postgres --clean --if-exists -d immich /var/lib/postgresql/data/immich.dump
