@@ -12,6 +12,7 @@ spec:
       - name: nfs-backup
         mountPath: /mnt/nfs-backup
   backup:
+    # https://docs.k8up.io/k8up/references/schedule-specification.html
     schedule: "@midnight"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
