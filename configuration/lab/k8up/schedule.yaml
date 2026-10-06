@@ -8,14 +8,10 @@ spec:
   backend:
     local:
       mountPath: /mnt/nfs-backup
-    volumeMounts:
-      - name: nfs-backup
-        mountPath: /mnt/nfs-backup
-        subPathExpr: $(POD_NAMESPACE)
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "20 18 * * *"
+    schedule: "50 18 * * *"
     # schedule: "@midnight"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2

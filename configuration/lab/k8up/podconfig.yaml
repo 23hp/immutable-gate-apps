@@ -7,7 +7,16 @@ spec:
   template:
     spec:
       containers:
-        - name: k8up
+        - name: backup
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          volumeMounts:
+            - name: nfs-backup
+              mountPath: /mnt/nfs-backup
+              subPathExpr: $(POD_NAMESPACE)
       securityContext:
         runAsUser: 0
         runAsGroup: 0
