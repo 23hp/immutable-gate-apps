@@ -11,16 +11,15 @@ spec:
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "50 18 * * *"
-    # schedule: "@midnight"
+    schedule: "@daily"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
     # Job timeout
     activeDeadlineSeconds: 5000
   check:
-    schedule: "@monthly-random"
+    schedule: "@monthly"
   prune:
-    schedule: "@weekly-random"
+    schedule: "@weekly"
     retention:
       keepDaily: 7
       keepWeekly: 4
