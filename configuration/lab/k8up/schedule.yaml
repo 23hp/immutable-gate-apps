@@ -12,7 +12,7 @@ spec:
       - name: nfs-backup
         mountPath: /mnt/nfs-backup
   backup:
-    schedule: "30 2 * * *"
+    schedule: "5 14 * * *"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
     # Job timeout
