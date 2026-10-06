@@ -4,7 +4,7 @@ metadata:
   name: restore
   namespace: database
 spec:
-  snapshot: "000f26dd"
+  snapshot: "4006e6ed2c49d8cb5321d70a33ea59b76ecdf2fc1b7ba89fb13656545d857777"
   restoreMethod:
     folder:
       claimName: postgres-shared-1
@@ -13,6 +13,3 @@ spec:
   backend:
     local:
       mountPath: /mnt/nfs-backup
-    volumeMounts:
-      - name: nfs-backup
-        mountPath: /mnt/nfs-backup
