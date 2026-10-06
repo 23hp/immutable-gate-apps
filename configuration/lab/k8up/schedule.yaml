@@ -19,9 +19,9 @@ spec:
     # Job timeout
     activeDeadlineSeconds: 5000
   check:
-    schedule: "@monthly"
+    schedule: "@monthly-random"
   prune:
-    schedule: "@weekly"
+    schedule: "@weekly-random"
     retention:
       keepDaily: 7
       keepWeekly: 4
