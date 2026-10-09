@@ -12,6 +12,13 @@ resources:
   # - ../base/garage
   # - local-path-provisioner.extdisk.yaml
 
+configMapGenerator:
+  - name: helm-release-values
+    namespace: local-path-storage
+    behavior: replace
+    files:
+      - local-path-provisioner/values.yaml
+
 secretGenerator:
   - name: credentials
     namespace: k8up
