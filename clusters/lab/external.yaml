@@ -9,7 +9,7 @@ spec:
   ref:
     branch: main
   secretRef:
-    name: flux-ssh-key
+    name: flux-ssh
   url: ssh://git@github.com/23hp/private
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1

@@ -5,8 +5,8 @@ resources:
   - _artifact-gen.yaml
   - apps.yaml
   - configuration.yaml
+  - external.yaml
   - infrastructure.yaml
-  - external
 
 patches:
   - path: _flux-common.yaml
