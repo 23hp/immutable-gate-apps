@@ -5,6 +5,7 @@ resources:
   - _artifact-gen.yaml
   - apps.yaml
   - configuration.yaml
+  - external.yaml
   - infrastructure.yaml
 
 patches:
