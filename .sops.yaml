@@ -1,18 +1,14 @@
 # .sops.yaml
 creation_rules:
-  # encryption key for local cluster
-  - path_regex: .*/local/.*\.yaml
-    encrypted_regex: ^(data|stringData)$
-    age: "age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc"
-
-  # encryption key for lab cluster
-  - path_regex: .*/lab/.*
-    age: "age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc"
-
   # encryption key for lab cluster
   - path_regex: .*/lab/.*\.yaml
     encrypted_regex: ^(data|stringData)$
     age: "age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc"
+    
+  # encryption key for lab cluster
+  - path_regex: .*/lab/.*
+    age: "age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc"
+
 
   # encryption key for oracle cluster
   - path_regex: .*/oracle/.*\.yaml
