@@ -4,3 +4,9 @@ namespace: flux-system
 resources:
   - flux-ssh-key.enc.yaml
   - repository.yaml
+
+patches:
+  - path: ../_flux-common.yaml
+    target:
+      group: kustomize.toolkit.fluxcd.io
+      kind: Kustomization
