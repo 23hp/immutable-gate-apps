@@ -7,18 +7,12 @@ resources:
   - immich-database.yaml
   - immich-role.yaml
   - namespace.yaml
-  - nextcloud-database.yaml
-  - nextcloud-role.yaml
 
 secretGenerator:
   - name: immich-db-credentials
     type: kubernetes.io/basic-auth
     envs:
       - immich-credential.enc.env
-  - name: nextcloud-db-credentials
-    type: kubernetes.io/basic-auth
-    envs:
-      - nextcloud-credential.enc.env
 
 configurations:
   - kustomizeconfig.yaml
