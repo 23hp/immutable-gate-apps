@@ -21,6 +21,11 @@ secretGenerator:
     behavior: replace
     envs:
       - ../../configuration/lab/database/immich-credential.enc.env
+  - name: openlist
+    namespace: media
+    behavior: replace
+    envs:
+      - media.openlist.enc.env
   - name: admin
     namespace: nextcloud
     type: kubernetes.io/basic-auth
