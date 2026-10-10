@@ -5,6 +5,7 @@ resources:
   # - ../base/coder
   - ../base/hermes-agent
   - ../base/immich
+  - ../base/media
   - ../base/memos
   - ../base/nextcloud
   - ../base/privatebin

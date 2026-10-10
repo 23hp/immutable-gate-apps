@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: media-common
+data:
+  TZ: "Europe/Berlin"
+  PUID: "1000"
+  PGID: "1000"
+  UMASK: "022"
