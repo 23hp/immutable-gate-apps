@@ -4,8 +4,11 @@ namespace: media
 resources:
   - namespace.yaml
   - pvc.yaml
-  - configmap.yaml
-  - secret.yaml
   - deployment.yaml
   - service.yaml
   - route.yaml
+
+secretGenerator:
+  - name: openlist
+    envs:
+      - openlist.env

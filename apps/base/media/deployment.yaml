@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alist
+  name: openlist
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: alist
+      app: openlist
   template:
     metadata:
       labels:
-        app: alist
+        app: openlist
     spec:
       containers:
-        - name: alist
-          image: xhofe/alist:latest
+        - name: openlist
+          image: docker.io/openlistteam/openlist:v4.2.6
           ports:
             - containerPort: 5244
               name: http
           envFrom:
-            - configMapRef:
-                name: media-common
+            - secretRef:
+                name: openlist
           volumeMounts:
             - name: data
-              mountPath: /opt/alist/data
+              mountPath: /opt/openlist/data
           resources:
             requests:
               cpu: 100m
@@ -41,141 +41,4 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: alist-data-pvc
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: moviepilot
-spec:
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app: moviepilot
-  template:
-    metadata:
-      labels:
-        app: moviepilot
-    spec:
-      containers:
-        - name: moviepilot
-          image: jxxghp/moviepilot-v2:latest
-          ports:
-            - containerPort: 3000
-              name: web
-            - containerPort: 3001
-              name: api
-          envFrom:
-            - configMapRef:
-                name: media-common
-          env:
-            - name: NGINX_PORT
-              value: "3000"
-            - name: PORT
-              value: "3001"
-            - name: AUTO_UPDATE
-              value: "release"
-            - name: SUPERUSER
-              valueFrom:
-                secretKeyRef:
-                  name: moviepilot-secret
-                  key: SUPERUSER
-          volumeMounts:
-            - name: config
-              mountPath: /config
-            - name: cache
-              mountPath: /moviepilot/.cache/ms-playwright
-            - name: media
-              mountPath: /media
-              subPath: library
-            - name: media
-              mountPath: /downloads
-              subPath: downloads
-          resources:
-            requests:
-              cpu: 200m
-              memory: 512Mi
-            limits:
-              memory: 2Gi
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 3000
-            initialDelaySeconds: 30
-            periodSeconds: 20
-      volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: moviepilot-config-pvc
-        - name: cache
-          persistentVolumeClaim:
-            claimName: moviepilot-cache-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: media-pvc
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jellyfin
-spec:
-  replicas: 1
-  strategy:
-    type: Recreate
-  selector:
-    matchLabels:
-      app: jellyfin
-  template:
-    metadata:
-      labels:
-        app: jellyfin
-    spec:
-      securityContext:
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-      containers:
-        - name: jellyfin
-          image: jellyfin/jellyfin:latest
-          ports:
-            - containerPort: 8096
-              name: http
-          env:
-            - name: TZ
-              valueFrom:
-                configMapKeyRef:
-                  name: media-common
-                  key: TZ
-          volumeMounts:
-            - name: config
-              mountPath: /config
-            - name: cache
-              mountPath: /cache
-            - name: media
-              mountPath: /media
-              subPath: library
-              readOnly: true
-          resources:
-            requests:
-              cpu: 500m
-              memory: 512Mi
-            limits:
-              memory: 4Gi
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8096
-            initialDelaySeconds: 20
-            periodSeconds: 20
-      volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: jellyfin-config-pvc
-        - name: cache
-          persistentVolumeClaim:
-            claimName: jellyfin-cache-pvc
-        - name: media
-          persistentVolumeClaim:
-            claimName: media-pvc
+            claimName: openlist-data

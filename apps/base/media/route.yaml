@@ -1,47 +1,21 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: alist-route
+  name: openlist
 spec:
   parentRefs:
     - name: gateway
       namespace: network
       sectionName: https
   hostnames:
-    - "alist.${domain_name}"
+    - openlist.${domain_name}
   rules:
-    - backendRefs:
-        - name: alist
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: openlist
           port: 5244
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: moviepilot-route
-spec:
-  parentRefs:
-    - name: gateway
-      namespace: network
-      sectionName: https
-  hostnames:
-    - "moviepilot.${domain_name}"
-  rules:
-    - backendRefs:
-        - name: moviepilot
-          port: 3000
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: jellyfin-route
-spec:
-  parentRefs:
-    - name: gateway
-      namespace: network
-      sectionName: https
-  hostnames:
-    - "jellyfin.${domain_name}"
-  rules:
-    - backendRefs:
-        - name: jellyfin
-          port: 8096
+      timeouts:
+        request: 0s
