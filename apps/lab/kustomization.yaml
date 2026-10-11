@@ -20,7 +20,7 @@ configMapGenerator:
     namespace: flux-system
     behavior: replace
     files:
-      - headlamp.values.yaml
+      - values.yaml=headlamp.values.yaml
 
 secretGenerator:
   - name: db-credentials
