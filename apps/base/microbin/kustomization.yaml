@@ -7,8 +7,3 @@ resources:
   - deployment.yaml
   - service.yaml
   - route.yaml
-
-secretGenerator:
-  - name: envs
-    envs:
-      - microbin.env

@@ -35,11 +35,6 @@ spec:
               value: "true"
             - name: MICROBIN_HIDE_LOGO
               value: "true"
-            - name: MICROBIN_NO_LISTING
-              value: "true"
-          envFrom:
-            - secretRef:
-                name: envs
           volumeMounts:
             - name: data
               mountPath: /app/microbin_data
