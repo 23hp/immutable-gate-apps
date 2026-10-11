@@ -4,3 +4,11 @@ namespace: kube-system
 resources:
   - release.yaml
   - repository.yaml
+
+configMapGenerator:
+  - name: metrics-server-helm-release-values
+    files:
+      - values.yaml
+
+configurations:
+  - kustomizeconfig.yaml

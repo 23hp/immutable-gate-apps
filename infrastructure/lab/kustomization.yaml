@@ -25,6 +25,11 @@ configMapGenerator:
     behavior: replace
     files:
       - values.yaml=headlamp.values.yaml
+  - name: metrics-server-helm-release-values
+    namespace: kube-system
+    behavior: replace
+    files:
+      - values.yaml=metrics-server.values.yaml
 
 secretGenerator:
   - name: credentials
