@@ -20,6 +20,23 @@ spec:
           image: docker.io/danielszabo99/microbin:2.1.4
           ports:
             - containerPort: 8080
+          env:
+            - name: MICROBIN_PUBLIC_PATH
+              value: bin.${domain_name}
+            - name: MICROBIN_HASH_IDS
+              value: true
+            - name: MICROBIN_QR
+              value: true
+            - name: MICROBIN_DISABLE_TELEMETRY
+              value: true
+            - name: MICROBIN_DISABLE_UPDATE_CHECKING
+              value: true
+            - name: MICROBIN_HIDE_HEADER
+              value: true
+            - name: MICROBIN_HIDE_FOOTER
+              value: true
+            - name: MICROBIN_HIDE_LOGO
+              value: true
           envFrom:
             - secretRef:
                 name: envs
