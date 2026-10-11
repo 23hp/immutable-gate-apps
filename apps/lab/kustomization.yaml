@@ -16,8 +16,8 @@ resources:
   - backup-wallabag
 
 configMapGenerator:
-  - name: headlamp-helm-release-values
-    namespace: flux-system
+  - name: helm-release-values
+    namespace: headlamp
     behavior: replace
     files:
       - values.yaml=headlamp.values.yaml
