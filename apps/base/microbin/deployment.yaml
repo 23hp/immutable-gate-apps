@@ -22,7 +22,7 @@ spec:
             - containerPort: 8080
           env:
             - name: MICROBIN_PUBLIC_PATH
-              value: bin.${domain_name}
+              value: https://bin.${domain_name}
             - name: MICROBIN_HASH_IDS
               value: "true"
             - name: MICROBIN_QR
@@ -36,6 +36,8 @@ spec:
             - name: MICROBIN_HIDE_FOOTER
               value: "true"
             - name: MICROBIN_HIDE_LOGO
+              value: "true"
+            - name: MICROBIN_NO_LISTING
               value: "true"
           envFrom:
             - secretRef:
