@@ -11,4 +11,4 @@ resources:
 secretGenerator:
   - name: envs
     envs:
-      - sys.env
+      - microbin.env
