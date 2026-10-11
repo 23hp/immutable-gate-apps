@@ -12,7 +12,10 @@ controller:
   flags:
     on-by-default: true
     exclude-namespaces: kube-system,kube-public,kube-node-lease
+    ignore-controller-kind: Job,CronJob
 dashboard:
+  flags:
+    on-by-default: true
   httpRoute:
     enabled: true
     parentRefs:
