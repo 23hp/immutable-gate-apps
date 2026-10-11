@@ -1,0 +1,23 @@
+vpa:
+  enabled: true
+  updater:
+    enabled: false
+  admissionController:
+    enabled: false
+metrics-server:
+  enabled: true
+  args:
+    - --kubelet-insecure-tls
+controller:
+  flags:
+    on-by-default: true
+    exclude-namespaces: kube-system,kube-public,kube-node-lease
+dashboard:
+  httpRoute:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: network
+        sectionName: https
+    hostnames:
+      - goldilocks.${domain_name}
