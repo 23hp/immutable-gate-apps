@@ -31,8 +31,6 @@ spec:
               value: "true"
             - name: MICROBIN_DISABLE_UPDATE_CHECKING
               value: "true"
-            - name: MICROBIN_HIDE_HEADER
-              value: "true"
             - name: MICROBIN_HIDE_FOOTER
               value: "true"
             - name: MICROBIN_HIDE_LOGO
