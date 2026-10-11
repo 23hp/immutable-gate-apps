@@ -15,5 +15,5 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: microbin
+        - name: microbin-svc
           port: 80
