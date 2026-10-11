@@ -4,11 +4,11 @@ kind: Kustomization
 resources:
   - ../base/cert-manager
   - ../base/cloudnative-pg
+  - ../base/goldilocks
   - ../base/headlamp
   - ../base/intel-device-plugins
   - ../base/k8up
   - ../base/local-path-provisioner
-  - ../base/metrics-server
   - ../base/network
   - ../base/tailscale
   # - ../base/garage
