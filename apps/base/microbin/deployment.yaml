@@ -24,19 +24,19 @@ spec:
             - name: MICROBIN_PUBLIC_PATH
               value: bin.${domain_name}
             - name: MICROBIN_HASH_IDS
-              value: true
+              value: "true"
             - name: MICROBIN_QR
-              value: true
+              value: "true"
             - name: MICROBIN_DISABLE_TELEMETRY
-              value: true
+              value: "true"
             - name: MICROBIN_DISABLE_UPDATE_CHECKING
-              value: true
+              value: "true"
             - name: MICROBIN_HIDE_HEADER
-              value: true
+              value: "true"
             - name: MICROBIN_HIDE_FOOTER
-              value: true
+              value: "true"
             - name: MICROBIN_HIDE_LOGO
-              value: true
+              value: "true"
           envFrom:
             - secretRef:
                 name: envs
