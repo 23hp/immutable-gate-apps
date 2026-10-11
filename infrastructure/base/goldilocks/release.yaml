@@ -2,16 +2,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: metrics-server
+  name: goldilocks
 spec:
   interval: 24h
   chart:
     spec:
-      chart: metrics-server
-      version: "^3.14.0"
+      chart: goldilocks
+      version: "^11.2.0"
       sourceRef:
         kind: HelmRepository
-        name: metrics-server
+        name: goldilocks
   valuesFrom:
   - kind: ConfigMap
-    name: metrics-server-helm-release-values
+    name: helm-release-values

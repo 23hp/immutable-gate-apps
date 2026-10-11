@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: metrics-server
+  name: goldilocks
 spec:
   interval: 96h
-  url: https://kubernetes-sigs.github.io/metrics-server/
+  url: https://charts.fairwinds.com/stable
