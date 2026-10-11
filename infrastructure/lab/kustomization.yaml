@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ../base/cert-manager
   - ../base/cloudnative-pg
+  - ../base/headlamp
   - ../base/intel-device-plugins
   - ../base/k8up
   - ../base/local-path-provisioner
@@ -18,6 +19,11 @@ configMapGenerator:
     behavior: replace
     files:
       - local-path-provisioner/values.yaml
+  - name: helm-release-values
+    namespace: headlamp
+    behavior: replace
+    files:
+      - values.yaml=headlamp.values.yaml
 
 secretGenerator:
   - name: credentials
