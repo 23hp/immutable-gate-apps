@@ -15,6 +15,13 @@ resources:
   - backup-memos
   - backup-wallabag
 
+configMapGenerator:
+  - name: headlamp-helm-release-values
+    namespace: flux-system
+    behavior: replace
+    files:
+      - headlamp.values.yaml
+
 secretGenerator:
   - name: db-credentials
     namespace: immich
