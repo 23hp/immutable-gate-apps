@@ -25,8 +25,3 @@ secretGenerator:
     behavior: replace
     envs:
       - media.openlist.enc.env
-  - name: envs
-    namespace: microbin
-    behavior: replace
-    envs:
-      - microbin.enc.env
