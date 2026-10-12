@@ -11,6 +11,7 @@ resources:
   - ../base/wallabag
   - backup-database
   - backup-immich
+  - backup-media
   - backup-memos
   - backup-wallabag
 
