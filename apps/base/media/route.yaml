@@ -15,7 +15,27 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: openlist
+        - name: media
           port: 5244
       timeouts:
         request: 0s
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: moviepilot
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: network
+      sectionName: https
+  hostnames:
+    - moviepilot.${domain_name}
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: media
+          port: 3000

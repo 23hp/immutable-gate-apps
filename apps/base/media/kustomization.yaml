@@ -12,3 +12,7 @@ secretGenerator:
   - name: openlist
     envs:
       - openlist.env
+  - name: moviepilot
+    envs:
+      - moviepilot.env
+      

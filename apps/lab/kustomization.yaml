@@ -25,3 +25,8 @@ secretGenerator:
     behavior: replace
     envs:
       - media.openlist.enc.env
+  - name: moviepilot
+    namespace: media
+    behavior: replace
+    envs:
+      - media.moviepilot.enc.env

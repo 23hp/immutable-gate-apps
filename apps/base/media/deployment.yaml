@@ -1,20 +1,61 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: openlist
+  name: media
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: openlist
+      app: media
   template:
     metadata:
       labels:
-        app: openlist
+        app: media
     spec:
       containers:
+        - name: moviepilot
+          image: docker.io/jxxghp/moviepilot-v3:3.1.5
+          ports:
+            - containerPort: 3000
+              name: web
+            - containerPort: 3001
+              name: api
+          env:
+            - name: AUTO_UPDATE
+              value: "false"
+            - name: APP_DOMAIN
+              value: moviepilot.${domain_name}
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: UMASK
+              value: "022"
+          envFrom:
+            - secretRef:
+                name: moviepilot
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              subPath: moviepilot
+            - name: browser-core
+              mountPath: /moviepilot/.cloakbrowser
+            - name: webdav
+              mountPath: /media
+          resources:
+            requests:
+              cpu: 200m
+              memory: 512Mi
+            limits:
+              memory: 2Gi
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 20
         - name: openlist
           image: docker.io/openlistteam/openlist:v4.2.6
           ports:
@@ -26,6 +67,9 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /opt/openlist/data
+            - name: config
+              mountPath: /config-migrate
+              subPath: openlist
             - name: webdav
               mountPath: /webdav
           resources:
@@ -44,6 +88,12 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: openlist-data
+        - name: config
+          persistentVolumeClaim:
+            claimName: config
+        - name: browser-core
+          persistentVolumeClaim:
+            claimName: browser-core
         - name: webdav
           persistentVolumeClaim:
             claimName: webdav
