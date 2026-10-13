@@ -28,9 +28,9 @@ spec:
             - name: APP_DOMAIN
               value: moviepilot.${domain_name}
             - name: PUID
-              value: "1000"
+              value: "1001"
             - name: PGID
-              value: "1000"
+              value: "1001"
             - name: UMASK
               value: "022"
           envFrom:
