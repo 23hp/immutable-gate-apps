@@ -5,7 +5,7 @@ metadata:
   namespace: headlamp
 rules:
   - apiGroups: ["postgresql.cnpg.io"]
-    resources: ["Database", "DatabaseRole", "Cluster"]
+    resources: ["databases", "databaseroles", "clusters"]
     verbs: ["get", "list"]
   - apiGroups: [k8up.io"]
     resources: ["PodConfig","Restore", "Backup","Schedule","check","prune"]
