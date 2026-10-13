@@ -11,6 +11,7 @@ resources:
   - ../base/local-path-provisioner
   - ../base/network
   - ../base/tailscale
+  - ../headlamp.rbac.yaml
   # - ../base/garage
   # - local-path-provisioner.extdisk.yaml
 
