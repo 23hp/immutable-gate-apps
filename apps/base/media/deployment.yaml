@@ -24,10 +24,8 @@ spec:
             - secretRef:
                 name: openlist
           volumeMounts:
-            - name: data
-              mountPath: /opt/openlist/data
             - name: config
-              mountPath: /config-migrate
+              mountPath: /opt/openlist/data
               subPath: openlist
             - name: webdav
               mountPath: /webdav
@@ -44,9 +42,6 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 15
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: openlist-data
         - name: config
           persistentVolumeClaim:
             claimName: config
