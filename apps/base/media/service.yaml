@@ -9,6 +9,3 @@ spec:
     - name: openlist
       port: 5244
       targetPort: 5244
-    - name: moviepilot
-      port: 3000
-      targetPort: 3000
