@@ -14,3 +14,7 @@ creation_rules:
   - path_regex: .*/oracle/.*\.yaml
     encrypted_regex: ^(data|stringData)$
     age: "age1u08wpcpz0a82pu639dssxehu0eanl65f0kldysjjvqh2u3mjcqlq428a87"
+
+  # encryption key for oracle cluster
+  - path_regex: .*/oracle/.*
+    age: "age1u08wpcpz0a82pu639dssxehu0eanl65f0kldysjjvqh2u3mjcqlq428a87"

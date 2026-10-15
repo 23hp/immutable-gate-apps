@@ -1,5 +1,22 @@
+# infrastructure/oracle/kustomization.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../base
-  - tailscale.secret.sops.yaml
+  - ../base/cert-manager
+  - ../base/cloudnative-pg
+  - ../base/local-path-provisioner
+  - ../base/tailscale
+
+configMapGenerator:
+  - name: helm-release-values
+    namespace: local-path-storage
+    behavior: replace
+    files:
+      - local-path-provisioner.values.yaml
+
+secretGenerator:
+  - name: oauth
+    namespace: tailscale
+    behavior: replace
+    envs:
+      - tailscale.oauth.enc.env
