@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: flux-system
 resources:
   - _artifact-gen.yaml
-  # - apps.yaml
+  - apps.yaml
   - configuration.yaml
   - infrastructure.yaml
 
