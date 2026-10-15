@@ -12,7 +12,7 @@ configMapGenerator:
     namespace: local-path-storage
     behavior: replace
     files:
-      - local-path-provisioner.values.yaml
+      - values.yaml=local-path-provisioner.values.yaml
 
 secretGenerator:
   - name: oauth
