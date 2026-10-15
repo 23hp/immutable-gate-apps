@@ -1,0 +1,30 @@
+apiVersion: source.extensions.fluxcd.io/v1beta1
+kind: ArtifactGenerator
+metadata:
+  name: artifact-gen
+spec:
+  artifacts:
+    - name: apps
+      copy:
+        - from: "@repo/apps/base/"
+          to: "@artifact/apps/"
+        - from: "@repo/apps/oracle/"
+          to: "@artifact/apps/"
+        - from: "@repo/configuration/oracle/"
+          to: "@artifact/configuration/"
+    - name: configuration
+      copy:
+        - from: "@repo/configuration/base/"
+          to: "@artifact/configuration/"
+        - from: "@repo/configuration/oracle/"
+          to: "@artifact/configuration/"
+    - name: infrastructure
+      copy:
+        - from: "@repo/infrastructure/base/"
+          to: "@artifact/infrastructure/"
+        - from: "@repo/infrastructure/oracle/"
+          to: "@artifact/infrastructure/"
+  sources:
+    - alias: repo
+      kind: GitRepository
+      name: flux-system
