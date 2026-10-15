@@ -1,0 +1,12 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: coder-db
+  namespace: database
+spec:
+  cluster:
+    name: postgres-shared
+  name: coder
+  owner: coder_user
+
+  databaseReclaimPolicy: delete
