@@ -4,7 +4,7 @@ namespace: flux-system
 resources:
   - _artifact-gen.yaml
   # - apps.yaml
-  # - configuration.yaml
+  - configuration.yaml
   - infrastructure.yaml
 
 patches:
