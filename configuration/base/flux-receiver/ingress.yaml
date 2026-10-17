@@ -4,7 +4,6 @@ metadata:
   name: flux-receiver-funnel
   annotations:
     tailscale.com/funnel: "true"
-    tailscale.com/proxy-group: ingress-proxies
 spec:
   ingressClassName: tailscale
   defaultBackend:
