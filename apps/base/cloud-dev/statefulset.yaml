@@ -26,7 +26,8 @@ spec:
         command: ["bash","-c"]
         args:
         - |
-          set -e
+          set -ex
+          trap 'rc=$?; if [ $rc -ne 0 ]; then echo "seed failed rc=$rc"; sleep 600; fi' EXIT
           mkdir -p /mnt/scratch/brew /mnt/scratch/cache /mnt/scratch/npm /mnt/scratch/vscode-server
           if [ ! -e /mnt/home/.seeded ]; then
             cp -af --no-preserve=timestamps /home/node/. /mnt/home/
