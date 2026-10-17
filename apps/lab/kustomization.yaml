@@ -25,3 +25,8 @@ secretGenerator:
     behavior: replace
     envs:
       - media.openlist.enc.env
+  - name: ssh-authorized
+    namespace: cloud-dev
+    behavior: replace
+    envs:
+      - cloud-dev.ssh-authorized.enc.env
