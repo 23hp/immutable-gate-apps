@@ -27,9 +27,15 @@ spec:
         args:
         - |
           set -e
-          mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server}
-          [ -e /mnt/home/.seeded ] || { cp -af --no-preserve=timestamps /home/node/. /mnt/home/ && touch /mnt/home/.seeded; }
-          [ -e /mnt/scratch/brew/.seeded ] || { cp -af --no-preserve=timestamps /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/ && touch /mnt/scratch/brew/.seeded; }
+          mkdir -p /mnt/scratch/brew /mnt/scratch/cache /mnt/scratch/npm /mnt/scratch/vscode-server
+          if [ ! -e /mnt/home/.seeded ]; then
+            cp -af --no-preserve=timestamps /home/node/. /mnt/home/
+            touch /mnt/home/.seeded
+          fi
+          if [ ! -e /mnt/scratch/brew/.seeded ]; then
+            cp -af --no-preserve=timestamps /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/
+            touch /mnt/scratch/brew/.seeded
+          fi
         volumeMounts:
         - {name: home,    mountPath: /mnt/home}
         - {name: scratch, mountPath: /mnt/scratch}
