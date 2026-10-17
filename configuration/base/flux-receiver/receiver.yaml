@@ -3,10 +3,6 @@ apiVersion: notification.toolkit.fluxcd.io/v1
 kind: Receiver
 metadata:
   name: flux-receiver
-  labels:
-    mylabel: test1
-  annotations:
-    myanno: test2
 spec:
   interval: 24h
   type: generic
