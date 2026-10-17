@@ -26,6 +26,7 @@ spec:
         command: ["bash","-c"]
         args:
         - |
+          set -e
           mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server}
           [ -e /mnt/home/.seeded ] || { cp -a /home/node/. /mnt/home/ && touch /mnt/home/.seeded; }
           [ -e /mnt/scratch/brew/.seeded ] || { cp -a /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/ && touch /mnt/scratch/brew/.seeded; }
