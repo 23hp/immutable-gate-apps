@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata: {name: dev}
+spec:
+  serviceName: dev
+  replicas: 1
+  selector:
+    matchLabels: {app: dev}
+  template:
+    metadata:
+      labels: {app: dev}
+    spec:
+      serviceAccountName: dev
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: {type: RuntimeDefault}
+      initContainers:
+      # When first boot, copy HOME and Homebrew folder from the default image to the empty PVC
+      - name: seed
+        image: eth-dev:latest
+        imagePullPolicy: IfNotPresent
+        command: ["bash","-c"]
+        args:
+        - |
+          mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server}
+          [ -e /mnt/home/.seeded ] || { cp -a /home/node/. /mnt/home/ && touch /mnt/home/.seeded; }
+          [ -e /mnt/scratch/brew/.seeded ] || { cp -a /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/ && touch /mnt/scratch/brew/.seeded; }
+        volumeMounts:
+        - {name: home,    mountPath: /mnt/home}
+        - {name: scratch, mountPath: /mnt/scratch}
+      containers:
+      - name: dev
+        image: eth-dev:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - {containerPort: 22}
+        resources:
+          requests: {cpu: "500m", memory: 1Gi}
+          limits: {memory: 8Gi}
+        volumeMounts:
+        - {name: home,    mountPath: /home/node}
+        - {name: scratch, mountPath: /home/linuxbrew/.linuxbrew, subPath: brew}
+        - {name: scratch, mountPath: /home/node/.cache,          subPath: cache}
+        - {name: scratch, mountPath: /home/node/.npm,            subPath: npm}
+        - {name: scratch, mountPath: /home/node/.vscode-server,  subPath: vscode-server}
+        - {name: authkeys, mountPath: /etc/ssh/authorized_keys, readOnly: true}
+      volumes:
+      - name: authkeys
+        secret:
+          secretName: ssh-authorized
+          defaultMode: 0444
+  volumeClaimTemplates:
+  - metadata:
+      name: home
+      annotations:
+        k8up.io/backup: "true"
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources: {requests: {storage: 20Gi}}
+  - metadata: {name: scratch}
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources: {requests: {storage: 50Gi}}
