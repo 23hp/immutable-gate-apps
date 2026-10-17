@@ -5,7 +5,9 @@ metadata:
   name: flux-receiver
 spec:
   interval: 24h
-  type: generic
+  type: github
+  events:
+    - push
   secretRef:
     name: token
   resources:
