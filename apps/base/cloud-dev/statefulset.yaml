@@ -21,7 +21,7 @@ spec:
       initContainers:
       # When first boot, copy HOME and Homebrew folder from the default image to the empty PVC
       - name: seed
-        image: ghcr.io/23hp/eth-speedrun-image:e5d50734684c9ac1735c7251d2bd7896d09f510c
+        image: ghcr.io/23hp/eth-speedrun-image:e7a52f6de84eb3524c38b3dc82f5e17c933cad4b
         imagePullPolicy: IfNotPresent
         command: ["bash","-c"]
         args:
@@ -42,15 +42,8 @@ spec:
         - {name: scratch, mountPath: /mnt/scratch}
       containers:
       - name: dev
-        image: ghcr.io/23hp/eth-speedrun-image:e5d50734684c9ac1735c7251d2bd7896d09f510c
+        image: ghcr.io/23hp/eth-speedrun-image:e7a52f6de84eb3524c38b3dc82f5e17c933cad4b
         imagePullPolicy: IfNotPresent
-        command: ["bash","-c"]
-        args:
-        - |
-          set -e
-          sudo install -d -m 755 -o root -g root /etc/ssh/authorized_keys
-          sudo install -m 644 -o root -g root /authkeys-src/node /etc/ssh/authorized_keys/node
-          exec /usr/local/bin/entrypoint.sh
         ports:
         - {containerPort: 22}
         resources:
