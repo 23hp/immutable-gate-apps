@@ -27,14 +27,14 @@ spec:
         args:
         - |
           set -ex
-          trap 'rc=$?; if [ $rc -ne 0 ]; then echo "seed failed rc=$rc"; sleep 600; fi' EXIT
+          shopt -s dotglob
           mkdir -p /mnt/scratch/brew /mnt/scratch/cache /mnt/scratch/npm /mnt/scratch/vscode-server
           if [ ! -e /mnt/home/.seeded ]; then
-            cp -af --no-preserve=timestamps /home/node/. /mnt/home/
+            cp -rf --preserve=mode,links /home/node/* /mnt/home/
             touch /mnt/home/.seeded
           fi
           if [ ! -e /mnt/scratch/brew/.seeded ]; then
-            cp -af --no-preserve=timestamps /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/
+            cp -rf --preserve=mode,links /home/linuxbrew/.linuxbrew/* /mnt/scratch/brew/
             touch /mnt/scratch/brew/.seeded
           fi
         volumeMounts:
