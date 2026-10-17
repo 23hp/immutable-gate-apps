@@ -28,8 +28,8 @@ spec:
         - |
           set -e
           mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server}
-          [ -e /mnt/home/.seeded ] || { cp -af --no-preserve=timestamps /home/node/. /mnt/home/ && touch /mnt/home/.seeded; }
-          [ -e /mnt/scratch/brew/.seeded ] || { cp -af --no-preserve=timestamps /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/ && touch /mnt/scratch/brew/.seeded; }
+          [ -e /mnt/home/.seeded ] || { cp -af /home/node/. /mnt/home/ && touch /mnt/home/.seeded; }
+          [ -e /mnt/scratch/brew/.seeded ] || { cp -af /home/linuxbrew/.linuxbrew/. /mnt/scratch/brew/ && touch /mnt/scratch/brew/.seeded; }
         volumeMounts:
         - {name: home,    mountPath: /mnt/home}
         - {name: scratch, mountPath: /mnt/scratch}
@@ -37,6 +37,13 @@ spec:
       - name: dev
         image: ghcr.io/23hp/eth-speedrun-image:e5d50734684c9ac1735c7251d2bd7896d09f510c
         imagePullPolicy: IfNotPresent
+        command: ["bash","-c"]
+        args:
+        - |
+          set -e
+          sudo install -d -m 755 -o root -g root /etc/ssh/authorized_keys
+          sudo install -m 644 -o root -g root /authkeys-src/node /etc/ssh/authorized_keys/node
+          exec /usr/local/bin/entrypoint.sh
         ports:
         - {containerPort: 22}
         resources:
@@ -48,7 +55,7 @@ spec:
         - {name: scratch, mountPath: /home/node/.cache,          subPath: cache}
         - {name: scratch, mountPath: /home/node/.npm,            subPath: npm}
         - {name: scratch, mountPath: /home/node/.vscode-server,  subPath: vscode-server}
-        - {name: authkeys, mountPath: /etc/ssh/authorized_keys, readOnly: true}
+        - {name: authkeys, mountPath: authkeys-src, readOnly: true}
       volumes:
       - name: authkeys
         secret:
