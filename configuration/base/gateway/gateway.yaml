@@ -35,4 +35,7 @@ spec:
       port: 2222
       protocol: TCP
       allowedRoutes:
-        kinds: [{kind: TCPRoute}]
+        kinds: 
+          - kind: TCPRoute
+        namespaces:
+          from: All
