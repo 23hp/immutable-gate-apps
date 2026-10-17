@@ -10,7 +10,7 @@ spec:
     metadata:
       labels: {app: dev}
     spec:
-      serviceAccountName: dev
+      serviceAccountName: cloud-dev
       securityContext:
         runAsUser: 1000
         runAsGroup: 1000
@@ -21,7 +21,7 @@ spec:
       initContainers:
       # When first boot, copy HOME and Homebrew folder from the default image to the empty PVC
       - name: seed
-        image: eth-dev:latest
+        image: ghcr.io/23hp/eth-speedrun-image:e5d50734684c9ac1735c7251d2bd7896d09f510c
         imagePullPolicy: IfNotPresent
         command: ["bash","-c"]
         args:
@@ -34,7 +34,7 @@ spec:
         - {name: scratch, mountPath: /mnt/scratch}
       containers:
       - name: dev
-        image: eth-dev:latest
+        image: ghcr.io/23hp/eth-speedrun-image:e5d50734684c9ac1735c7251d2bd7896d09f510c
         imagePullPolicy: IfNotPresent
         ports:
         - {containerPort: 22}
