@@ -7,4 +7,4 @@ spec:
   replicas: 2
   kubeAPIServer:
     mode: auth
-    hostname: "${domain_name}-kube"
+    hostname: "${cluster_name}-kube"

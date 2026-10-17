@@ -1,5 +1,5 @@
 operatorConfig:
-  hostname: "${domain_name}"
+  hostname: "${cluster_name}"
   image:
     repository: docker.io/tailscale/k8s-operator
 proxyConfig:
