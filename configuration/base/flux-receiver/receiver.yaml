@@ -6,8 +6,6 @@ metadata:
 spec:
   interval: 24h
   type: github
-  events:
-    - push
   secretRef:
     name: token
   resources:
