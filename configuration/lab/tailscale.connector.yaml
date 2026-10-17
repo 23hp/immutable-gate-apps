@@ -4,6 +4,7 @@ metadata:
   name: subnet-router
 spec:
   hostname: lab-subnet-router
+  proxyClass: ingress-proxies
   subnetRouter:
     advertiseRoutes:
       - 10.10.10.0/24
