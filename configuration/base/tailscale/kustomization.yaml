@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - proxy-egress.yaml
   - proxy-ingress.yaml
+  - proxy-kube.yaml
