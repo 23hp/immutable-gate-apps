@@ -28,7 +28,7 @@ spec:
           runAsGroup: 0
           runAsNonRoot: false
           allowPrivilegeEscalation: false
-          capabilities: {drop: ["ALL"], add: ["CHOWN"]}
+          capabilities: {drop: ["ALL"], add: ["CHOWN", "FOWNER"]}
         volumeMounts:
         - {name: home,    mountPath: /mnt/home}
         - {name: scratch, mountPath: /mnt/scratch}
