@@ -6,4 +6,4 @@ spec:
   hostname: lab-subnet-router
   subnetRouter:
     advertiseRoutes:
-      - 10.10.10.0/24
+      - 10.10.10.10/32
