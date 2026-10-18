@@ -12,3 +12,9 @@ secretGenerator:
   - name: ssh-authorized
     envs:
       - ssh-authorized.env
+
+configMapGenerator:
+  - name: dev-setup
+    files:
+      - Brewfile
+      - mise.toml

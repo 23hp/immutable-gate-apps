@@ -21,16 +21,19 @@ spec:
       initContainers:
       # When first boot, copy HOME and Homebrew folder from the default image to the empty PVC
       - name: seed
-        image: ghcr.io/23hp/eth-speedrun-image:e7a52f6de84eb3524c38b3dc82f5e17c933cad4b
+        image: ghcr.io/23hp/eth-speedrun-image:9e34d19ece4d4f67ae275f1f6b01fcd20c273628
         imagePullPolicy: IfNotPresent
         command: ["bash","-c"]
         args:
         - |
-          set -ex
-          shopt -s dotglob
-          mkdir -p /mnt/scratch/brew /mnt/scratch/cache /mnt/scratch/npm /mnt/scratch/vscode-server
+          set -e
+          shopt -s dotglob nullglob
+          mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server,mise}
           if [ ! -e /mnt/home/.seeded ]; then
-            cp -rf --preserve=mode,links /home/node/* /mnt/home/
+            files=(/home/vscode/*)
+            if [ ${#files[@]} -gt 0 ]; then
+              cp -rf --preserve=mode,links "${files[@]}" /mnt/home/
+            fi
             touch /mnt/home/.seeded
           fi
           if [ ! -e /mnt/scratch/brew/.seeded ]; then
@@ -42,7 +45,7 @@ spec:
         - {name: scratch, mountPath: /mnt/scratch}
       containers:
       - name: dev
-        image: ghcr.io/23hp/eth-speedrun-image:e7a52f6de84eb3524c38b3dc82f5e17c933cad4b
+        image: ghcr.io/23hp/eth-speedrun-image:9e34d19ece4d4f67ae275f1f6b01fcd20c273628
         imagePullPolicy: IfNotPresent
         ports:
         - {containerPort: 22}
@@ -50,17 +53,22 @@ spec:
           requests: {cpu: "500m", memory: 1Gi}
           limits: {memory: 8Gi}
         volumeMounts:
-        - {name: home,    mountPath: /home/node}
+        - {name: home,    mountPath: /home/vscode}
         - {name: scratch, mountPath: /home/linuxbrew/.linuxbrew, subPath: brew}
-        - {name: scratch, mountPath: /home/node/.cache,          subPath: cache}
-        - {name: scratch, mountPath: /home/node/.npm,            subPath: npm}
-        - {name: scratch, mountPath: /home/node/.vscode-server,  subPath: vscode-server}
-        - {name: authkeys, mountPath: authkeys-src, readOnly: true}
+        - {name: scratch, mountPath: /home/vscode/.cache,        subPath: cache}
+        - {name: scratch, mountPath: /home/vscode/.npm,          subPath: npm}
+        - {name: scratch, mountPath: /home/vscode/.vscode-server, subPath: vscode-server}
+        - {name: scratch, mountPath: /home/vscode/.mise,         subPath: mise}
+        - {name: authkeys, mountPath: /authkeys-src, readOnly: true}
+        - {name: setup,    mountPath: /etc/dev-setup, readOnly: true}
       volumes:
       - name: authkeys
         secret:
           secretName: ssh-authorized
           defaultMode: 0444
+      - name: setup
+        configMap:
+          name: dev-setup
   volumeClaimTemplates:
   - metadata:
       name: home

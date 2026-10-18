@@ -1,0 +1,4 @@
+brew "gh"
+brew "ripgrep"
+brew "fd"
+brew "kubernetes-cli"
