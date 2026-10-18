@@ -21,3 +21,6 @@ configMapGenerator:
   - name: dev-seed-script
     files:
       - seed.sh
+    options:
+      annotations:
+        kustomize.toolkit.fluxcd.io/substitute: disabled
