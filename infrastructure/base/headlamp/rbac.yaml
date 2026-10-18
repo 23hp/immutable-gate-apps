@@ -6,9 +6,23 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
+  name: headlamp-viewer
+subjects:
+  - kind: ServiceAccount
+    namespace: headlamp
+    name: headlamp-viewer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
   name: headlamp-viewer-extra
 subjects:
   - kind: ServiceAccount
+    namespace: headlamp
     name: headlamp-viewer
 roleRef:
   apiGroup: rbac.authorization.k8s.io

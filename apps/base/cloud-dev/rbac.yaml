@@ -14,6 +14,19 @@ subjects:
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
+  name: view
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cloud-dev-view-extra
+subjects:
+  - kind: ServiceAccount
+    name: cloud-dev
+    namespace: cloud-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
   name: view-extra
 ---
 apiVersion: rbac.authorization.k8s.io/v1
