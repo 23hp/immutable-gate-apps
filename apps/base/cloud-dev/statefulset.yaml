@@ -23,26 +23,11 @@ spec:
       - name: seed
         image: ghcr.io/23hp/eth-speedrun-image:9e34d19ece4d4f67ae275f1f6b01fcd20c273628
         imagePullPolicy: IfNotPresent
-        command: ["bash","-c"]
-        args:
-        - |
-          set -e
-          shopt -s dotglob nullglob
-          mkdir -p /mnt/scratch/{brew,cache,npm,vscode-server,mise}
-          if [ ! -e /mnt/home/.seeded ]; then
-            files=(/home/vscode/*)
-            if [ ${#files[@]} -gt 0 ]; then
-              cp -rf --preserve=mode,links "${files[@]}" /mnt/home/
-            fi
-            touch /mnt/home/.seeded
-          fi
-          if [ ! -e /mnt/scratch/brew/.seeded ]; then
-            cp -rf --preserve=mode,links /home/linuxbrew/.linuxbrew/* /mnt/scratch/brew/
-            touch /mnt/scratch/brew/.seeded
-          fi
+        command: ["bash", "/scripts/seed.sh"]
         volumeMounts:
-        - {name: home,    mountPath: /mnt/home}
-        - {name: scratch, mountPath: /mnt/scratch}
+        - {name: home,        mountPath: /mnt/home}
+        - {name: scratch,     mountPath: /mnt/scratch}
+        - {name: seed-script, mountPath: /scripts}
       containers:
       - name: dev
         image: ghcr.io/23hp/eth-speedrun-image:9e34d19ece4d4f67ae275f1f6b01fcd20c273628
@@ -69,6 +54,10 @@ spec:
       - name: setup
         configMap:
           name: dev-setup
+      - name: seed-script
+        configMap:
+          name: dev-seed-script
+          defaultMode: 0555
   volumeClaimTemplates:
   - metadata:
       name: home
