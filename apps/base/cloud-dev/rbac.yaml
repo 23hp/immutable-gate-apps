@@ -1,9 +1,30 @@
 apiVersion: v1
 kind: ServiceAccount
-metadata: {name: cloud-dev}
+metadata: 
+  name: cloud-dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
-metadata: {name: cloud-dev-view}
-subjects: [{kind: ServiceAccount, name: cloud-dev}]
-roleRef: {kind: ClusterRole, name: view, apiGroup: rbac.authorization.k8s.io}
+metadata: 
+  name: cloud-dev-view
+subjects: 
+  - kind: ServiceAccount
+    name: cloud-dev
+    namespace: cloud-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-extra
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cloud-dev-workload-scaler
+subjects:
+  - kind: ServiceAccount
+    name: cloud-dev
+    namespace: cloud-dev
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: workload-scaler

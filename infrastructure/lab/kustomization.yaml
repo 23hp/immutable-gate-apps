@@ -11,7 +11,8 @@ resources:
   - ../base/local-path-provisioner
   - ../base/network
   - ../base/tailscale
-  - ../base/clusterrole.yaml
+  - ../base/role/view-extra.yaml
+  - ../base/role/workload-scaler.yaml
   # - ../base/garage
   # - local-path-provisioner.extdisk.yaml
 
