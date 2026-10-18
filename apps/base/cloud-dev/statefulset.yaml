@@ -20,7 +20,7 @@ spec:
         seccompProfile: {type: RuntimeDefault}
       initContainers:
       - name: fix-perms
-        image: ghcr.io/23hp/eth-speedrun-image:v1.0.4
+        image: ghcr.io/23hp/eth-speedrun-image:v1.0.5
         imagePullPolicy: IfNotPresent
         command: ["sh","-c","chown 1000:1000 /mnt/home /mnt/scratch && chmod 755 /mnt/home /mnt/scratch"]
         securityContext:
@@ -34,7 +34,7 @@ spec:
         - {name: scratch, mountPath: /mnt/scratch}
       # When first boot, copy HOME and Homebrew folder from the default image to the empty PVC
       - name: seed
-        image: ghcr.io/23hp/eth-speedrun-image:v1.0.4
+        image: ghcr.io/23hp/eth-speedrun-image:v1.0.5
         imagePullPolicy: IfNotPresent
         command: ["bash", "/scripts/seed.sh"]
         volumeMounts:
@@ -43,7 +43,7 @@ spec:
         - {name: seed-script, mountPath: /scripts}
       containers:
       - name: dev
-        image: ghcr.io/23hp/eth-speedrun-image:v1.0.4
+        image: ghcr.io/23hp/eth-speedrun-image:v1.0.5
         imagePullPolicy: IfNotPresent
         ports:
         - {containerPort: 22}
