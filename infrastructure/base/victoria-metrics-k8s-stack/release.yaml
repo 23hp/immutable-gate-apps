@@ -11,6 +11,7 @@ spec:
     - kind: ConfigMap
       name: helm-release-values
   values:
+
     vmsingle:
       spec:
         retentionPeriod: "30d"
@@ -19,28 +20,83 @@ spec:
             - ReadWriteOnce
           resources:
             requests:
-              storage: 20Gi
+              storage: 10Gi
         resources:
           requests:
             cpu: 100m
-            memory: 512Mi
+            memory: 256Mi
           limits:
-            memory: 2Gi
+            memory: 768Mi
     vmagent:
       spec:
         resources:
           requests:
             cpu: 50m
-            memory: 128Mi
+            memory: 64Mi
           limits:
-            memory: 512Mi
+            memory: 256Mi
+    vlsingle:
+      enabled: true
+      spec:
+        retentionPeriod: "14d"
+        extraArgs:
+          retention.maxDiskSpaceUsageBytes: "8GiB"
+        storage:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+        resources:
+          requests: { cpu: 50m, memory: 128Mi }
+          limits: { memory: 512Mi }
+    vlagent:
+      enabled: true
+      rbac:
+        namespaced: false
+      spec:
+        tolerations:
+          - key: node-role.kubernetes.io/control-plane
+            operator: Exists
+            effect: NoSchedule
+        resources:
+          requests: { cpu: 25m, memory: 64Mi }
+          limits: { memory: 192Mi }
     grafana:
+      plugins:
+        - victoriametrics-logs-datasource
       persistence:
         enabled: true
         size: 2Gi
       # RWO volume: do not start a second pod while the old one still holds it
       deploymentStrategy:
         type: Recreate
+      resources:
+        requests: { cpu: 50m, memory: 128Mi }
+        limits: { memory: 384Mi }
+      # admin:
+      #   existingSecret: grafana-admin
+    alertmanager:
+      spec:
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 128Mi
+    kube-state-metrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          memory: 128Mi
+    prometheus-node-exporter:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          memory: 64Mi
   install:
     crds: CreateReplace
     remediation:
@@ -49,11 +105,7 @@ spec:
     crds: CreateReplace
     remediation:
       retries: 3
-  chart:
-    spec:
-      chart: victoria-metrics-k8s-stack
-      # 0.x chart: ^0.96.0 only allows patch updates (<0.97.0)
-      version: "^0.96.0"
-      sourceRef:
-        kind: HelmRepository
-        name: victoria-metrics
+  chartRef:
+    kind: OCIRepository
+    name: victoria-metrics-k8s-stack
+    namespace: victoria-metrics

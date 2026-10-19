@@ -9,6 +9,33 @@ vmsingle:
         sectionName: https
     hostnames:
       - vmsingle.${domain_name}
+vmalert:
+  route:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: network
+        sectionName: https
+    hostnames:
+      - vmalert.${domain_name}
+alertmanager:
+  route:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: network
+        sectionName: https
+    hostnames:
+      - alertmanager.${domain_name}
+vlsingle:
+  route:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: network
+        sectionName: https
+    hostnames:
+      - vlogs.${domain_name}
 grafana:
   grafana.ini:
     server:
@@ -22,8 +49,9 @@ grafana:
           sectionName: https
       hostnames:
         - grafana.${domain_name}
-# Control plane components usually bind their metrics port to localhost only
-# (and kube-proxy is replaced by cilium), scraping them only produces "down" targets and alerts.
+# Talos binds controller-manager, scheduler and etcd metrics to 127.0.0.1 by default, so scraping
+# them only produces "down" targets and alerts. kube-proxy is disabled (patch-cilium.yaml) and
+# replaced by cilium (kubeProxyReplacement). Re-enable the first three after exposing their metrics.
 kubeControllerManager:
   enabled: false
 kubeScheduler:
