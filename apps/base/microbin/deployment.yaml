@@ -38,12 +38,6 @@ spec:
           volumeMounts:
             - name: data
               mountPath: /app/microbin_data
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8080
-            initialDelaySeconds: 3
-            periodSeconds: 10
           livenessProbe:
             httpGet:
               path: /
