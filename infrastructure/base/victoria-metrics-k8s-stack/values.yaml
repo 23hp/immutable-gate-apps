@@ -1,0 +1,3 @@
+# Cluster specific values (HTTPRoute, root_url, control-plane scraping ...)
+# are provided by the overlay, e.g. infrastructure/lab/victoria-metrics-k8s-stack.values.yaml
+# Values shared by all clusters live in release.yaml (spec.values).

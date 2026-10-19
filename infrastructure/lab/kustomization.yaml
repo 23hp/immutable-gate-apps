@@ -11,6 +11,7 @@ resources:
   - ../base/local-path-provisioner
   - ../base/network
   - ../base/tailscale
+  - ../base/victoria-metrics-k8s-stack
   - ../base/roles/view-extra.yaml
   - ../base/roles/workload-scaler.yaml
   # - ../base/garage
@@ -32,6 +33,11 @@ configMapGenerator:
     behavior: replace
     files:
       - values.yaml=goldilocks.values.yaml
+  - name: helm-release-values
+    namespace: victoria-metrics
+    behavior: replace
+    files:
+      - values.yaml=victoria-metrics-k8s-stack.values.yaml
 
 secretGenerator:
   - name: credentials

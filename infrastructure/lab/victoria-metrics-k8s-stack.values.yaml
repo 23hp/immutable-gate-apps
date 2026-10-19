@@ -1,0 +1,34 @@
+# This file replaces base/victoria-metrics-k8s-stack/values.yaml (valuesFrom),
+# values shared by all clusters are in base release.yaml (spec.values).
+vmsingle:
+  route:
+    enabled: true
+    parentRefs:
+      - name: gateway
+        namespace: network
+        sectionName: https
+    hostnames:
+      - vmsingle.${domain_name}
+grafana:
+  grafana.ini:
+    server:
+      root_url: https://grafana.${domain_name}
+  route:
+    main:
+      enabled: true
+      parentRefs:
+        - name: gateway
+          namespace: network
+          sectionName: https
+      hostnames:
+        - grafana.${domain_name}
+# Control plane components usually bind their metrics port to localhost only
+# (and kube-proxy is replaced by cilium), scraping them only produces "down" targets and alerts.
+kubeControllerManager:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false

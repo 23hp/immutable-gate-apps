@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: victoria-metrics
+  labels:
+    # node-exporter needs hostNetwork / hostPID / hostPath
+    pod-security.kubernetes.io/enforce: privileged
