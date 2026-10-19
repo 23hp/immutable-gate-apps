@@ -1,0 +1,111 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: victoria-metrics-k8s-stack
+spec:
+  interval: 24h
+  # the post-install sync-job downloads dashboards and rules from upstream
+  timeout: 10m
+  valuesFrom:
+    - kind: ConfigMap
+      name: helm-release-values
+  values:
+
+    vmsingle:
+      spec:
+        retentionPeriod: "30d"
+        storage:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            memory: 768Mi
+    vmagent:
+      spec:
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            memory: 256Mi
+    vlsingle:
+      enabled: true
+      spec:
+        retentionPeriod: "14d"
+        extraArgs:
+          retention.maxDiskSpaceUsageBytes: "8GiB"
+        storage:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+        resources:
+          requests: { cpu: 50m, memory: 128Mi }
+          limits: { memory: 512Mi }
+    vlagent:
+      enabled: true
+      rbac:
+        namespaced: false
+      spec:
+        tolerations:
+          - key: node-role.kubernetes.io/control-plane
+            operator: Exists
+            effect: NoSchedule
+        resources:
+          requests: { cpu: 25m, memory: 64Mi }
+          limits: { memory: 192Mi }
+    grafana:
+      plugins:
+        - victoriametrics-logs-datasource
+      persistence:
+        enabled: true
+        size: 2Gi
+      # RWO volume: do not start a second pod while the old one still holds it
+      deploymentStrategy:
+        type: Recreate
+      resources:
+        requests: { cpu: 50m, memory: 128Mi }
+        limits: { memory: 384Mi }
+      # admin:
+      #   existingSecret: grafana-admin
+    alertmanager:
+      spec:
+        resources:
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            memory: 128Mi
+    kube-state-metrics:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 32Mi
+        limits:
+          memory: 128Mi
+    prometheus-node-exporter:
+      resources:
+        requests:
+          cpu: 10m
+          memory: 16Mi
+        limits:
+          memory: 64Mi
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  upgrade:
+    crds: CreateReplace
+    remediation:
+      retries: 3
+  chartRef:
+    kind: OCIRepository
+    name: victoria-metrics-k8s-stack
+    namespace: victoria-metrics
