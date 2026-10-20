@@ -28,16 +28,11 @@ alertmanager:
     receivers:
       - name: "discord-notifications"
         discord_configs:
-          - webhook_url_file: "/etc/secrets/discord-webhook-url"
+          - webhook_url_file: "/etc/vm/secrets/alertmanager-secrets/discord-webhook-url"
             send_resolved: true
-  extraVolumeMounts:
-  - name: alertmanager-secrets
-    mountPath: /etc/secrets
-    readOnly: true
-  extraVolumes:
-    - name: alertmanager-secrets
-      secret:
-        secretName: alertmanager-secrets
+  spec:
+    secrets:
+      - alertmanager-secrets
   route:
     enabled: true
     parentRefs:
