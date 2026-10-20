@@ -30,6 +30,7 @@ configMapGenerator:
       - values.yaml=headlamp.values.yaml
   - name: helm-release-values
     namespace: victoria-metrics
+    behavior: merge
     files:
       - victoria-metrics/values.yaml
 
