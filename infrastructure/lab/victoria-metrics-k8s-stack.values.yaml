@@ -19,6 +19,24 @@ vmalert:
     hostnames:
       - vmalert.${domain_name}
 alertmanager:
+  config:
+    route:
+      receiver: "discord-notifications"
+      group_by: ["alertgroup", "job", "namespace"]
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+    receivers:
+      - name: "discord-notifications"
+        discord_configs:
+          - webhook_url_file: "/etc/secrets/discord-webhook-url"
+            send_resolved: true
+  extraSecretMounts:
+  - name: secret-files
+    mountPath: /etc/secrets
+    # subPath: ""
+    secretName: discord-webhook-secret
+    readOnly: true
   route:
     enabled: true
     parentRefs:
@@ -37,6 +55,8 @@ vlsingle:
     hostnames:
       - vlogs.${domain_name}
 grafana:
+  admin:
+    existingSecret: grafana-admin
   grafana.ini:
     server:
       root_url: https://grafana.${domain_name}
