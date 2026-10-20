@@ -17,3 +17,123 @@ Notes:
   `alertmanager.config` in the overlay values to get notifications.
 - `kubeControllerManager`, `kubeScheduler`, `kubeEtcd` and `kubeProxy` scraping is disabled in
   the lab overlay. Re-enable them if your control plane exposes the metrics on a node reachable address.
+
+## Resource recommendations with KRR
+
+[KRR](https://github.com/robusta-dev/krr) (Robusta's Kubernetes Resource Recommender) reads
+historical CPU and memory usage from a Prometheus-compatible API and suggests CPU/memory
+requests and limits per container. It works directly against `vmsingle`, so no Prometheus,
+VPA or metrics-server is needed. It is read-only: it prints recommendations and never changes
+anything in the cluster.
+
+### Prerequisites
+
+- cAdvisor metrics (`container_cpu_usage_seconds_total`, `container_memory_working_set_bytes`)
+  and kube-state-metrics are being scraped. Both are enabled by default in this stack.
+  To verify, run `container_memory_working_set_bytes` in Grafana Explore and check it returns data.
+- `kubectl` access to the cluster (a kubeconfig, or a ServiceAccount when running inside a Pod)
+  with `get`/`list` permission on workloads (Deployments, StatefulSets, DaemonSets, Jobs, Pods).
+- Enough history. KRR can only use what vmsingle has stored. Right after an install the data
+  covers only a few hours, so treat early results as rough hints (see "Caveats").
+
+### Install
+
+With Homebrew:
+
+    brew tap robusta-dev/homebrew-krr
+    brew trust robusta-dev/krr
+    brew install krr
+
+Check the install and see all options:
+
+    krr --version
+    krr simple --help
+
+Upgrade with `brew upgrade krr`.
+
+### Run
+
+KRR needs the URL of the Prometheus-compatible endpoint. In this stack that is the
+`vmsingle` Service.
+
+From inside the cluster (for example a devcontainer or a debug Pod):
+
+    krr simple \
+      --prometheus-url http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local:8428 \
+      --history_duration 9
+
+From a machine outside the cluster, port-forward first:
+
+    kubectl port-forward -n victoria-metrics svc/vmsingle-victoria-metrics-k8s-stack 8428:8428 &
+    krr simple --prometheus-url http://localhost:8428 --history_duration 9
+
+`--history_duration` is in hours. The default is 336 (14 days). Set it no higher than the
+amount of data vmsingle actually holds, then raise it as history accumulates
+(for example `--history_duration 168` for 7 days).
+
+### Common options
+
+    # only one namespace
+    krr simple ... -n my-namespace
+
+    # tune the strategy
+    krr simple ... --cpu_percentile 90 --memory_buffer_percentage 30 --history_duration 168
+
+    # export instead of printing a table (avoids truncated names in narrow terminals)
+    krr simple ... -f csv  --fileoutput krr.csv
+    krr simple ... -f json --fileoutput krr.json
+
+Option names can differ slightly between KRR versions (underscore vs dash), so check
+`krr simple --help` for your version.
+
+Default `simple` strategy:
+
+- CPU request: 95th percentile of usage, no CPU limit.
+- Memory request and limit: peak usage + 15%.
+- Workloads with an HPA return `?` unless you pass `--allow-hpa`.
+
+### Reading the output
+
+The table has one row per container. For CPU and memory it shows the difference
+and the change as `current -> recommended`, for both requests and limits.
+Examples: `unset -> 10m` (no request today, 10m recommended), `1.0 -> unset`
+(the CPU limit would be removed).
+
+Things you will see in this cluster and can safely ignore or interpret:
+
+- **`WARNING Prometheus returned no ... metrics for Job ...`** and rows ending in
+  `? (No data)`: finished Jobs (for example the k8up backup, prune and check Jobs) have no
+  running Pods, so there is nothing to measure. This is expected.
+- **`Unable to check how much historical data is available`**: vmsingle does not expose
+  the Prometheus retention settings KRR tries to read. Safe to ignore.
+- **Many rows recommend exactly `10m` CPU and `100Mi` memory**: these are KRR's minimum values.
+  The real usage is lower, so the number is a floor, not a measurement.
+- **Truncated names such as `cert-ma...`**: the table is limited by terminal width.
+  Use `-f csv` or `-f json` to get full names.
+
+### Caveats before applying anything
+
+- Do not trust results from less than a few days of data. Backups, batch jobs, upgrades and
+  weekly peaks are not covered by a few hours of history. Re-run after 3 to 7 days with
+  `--history_duration 72` or `168`.
+- The default memory limit (peak + 15%) is tight. A container that is OOM-killed gets a
+  truncated peak, and workloads that burst (Immich, monerod, dev environments, JVM apps) can
+  exceed a limit derived from a short window. A safer approach is to apply the recommended
+  memory *request*, and keep the existing limit or set it to 1.5 to 2 times the request.
+- Removing CPU limits is the KRR default and is usually fine in a small cluster, but keep
+  existing limits if you rely on them for noisy-neighbour protection.
+- Changing requests affects scheduling and HPA utilisation, so apply changes gradually and
+  watch for restarts (`kubectl get pods -A`, `kube_pod_container_status_last_terminated_reason`).
+- KRR only prints numbers. Apply them yourself in the manifests/HelmReleases and let your
+  GitOps tool roll them out.
+
+### Useful queries for a second opinion
+
+Run these in Grafana Explore against the vmsingle datasource:
+
+    # CPU p95 per container over 7 days (cores)
+    quantile_over_time(0.95,
+      rate(container_cpu_usage_seconds_total{container!="",container!="POD"}[5m])[7d:5m])
+
+    # memory peak per container over 7 days
+    max_over_time(container_memory_working_set_bytes{container!="",container!="POD"}[7d])
