@@ -55,9 +55,6 @@ grafana:
   persistence:
     enabled: true
     size: 2Gi
-  # RWO volume: do not start a second pod while the old one still holds it
-  deploymentStrategy:
-    type: Recreate
   resources:
     requests: { cpu: 50m, memory: 128Mi }
     limits: { memory: 612Mi }
