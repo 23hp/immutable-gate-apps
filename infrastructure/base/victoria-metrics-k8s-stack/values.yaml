@@ -1,3 +1,86 @@
-# Cluster specific values (HTTPRoute, root_url, control-plane scraping ...)
-# are provided by the overlay, e.g. infrastructure/lab/victoria-metrics-k8s-stack.values.yaml
-# Values shared by all clusters live in release.yaml (spec.values).
+# Values shared by all clusters
+vmsingle:
+  spec:
+    retentionPeriod: "30d"
+    storage:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 768Mi
+vmagent:
+  spec:
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        memory: 256Mi
+vlsingle:
+  enabled: true
+  spec:
+    retentionPeriod: "14d"
+    extraArgs:
+      retention.maxDiskSpaceUsageBytes: "8GiB"
+    storage:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 10Gi
+    resources:
+      requests: { cpu: 50m, memory: 128Mi }
+      limits: { memory: 512Mi }
+vlagent:
+  enabled: true
+  rbac:
+    namespaced: false
+  spec:
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+    resources:
+      requests: { cpu: 25m, memory: 64Mi }
+      limits: { memory: 192Mi }
+grafana:
+  plugins:
+    - victoriametrics-logs-datasource
+  persistence:
+    enabled: true
+    size: 2Gi
+  # RWO volume: do not start a second pod while the old one still holds it
+  deploymentStrategy:
+    type: Recreate
+  resources:
+    requests: { cpu: 50m, memory: 128Mi }
+    limits: { memory: 612Mi }
+  # admin:
+  #   existingSecret: grafana-admin
+alertmanager:
+  spec:
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        memory: 128Mi
+kube-state-metrics:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 128Mi
+prometheus-node-exporter:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 16Mi
+    limits:
+      memory: 64Mi
