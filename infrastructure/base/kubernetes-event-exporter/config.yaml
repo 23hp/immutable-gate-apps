@@ -1,0 +1,16 @@
+logLevel: warn
+logFormat: json
+metricsNamePrefix: event_exporter_
+# Events older than this are skipped, so a restart does not replay the Events that are still stored
+# in the API server (they have already been collected)
+maxEventAgeSeconds: 60
+# only Events are needed, do not look up labels/annotations of the involved objects (saves RBAC and API calls)
+omitLookup: true
+route:
+  routes:
+    - match:
+        - receiver: stdout
+receivers:
+  # one JSON object per line on stdout, vlagent collects it like any other container log
+  - name: stdout
+    stdout: {}
