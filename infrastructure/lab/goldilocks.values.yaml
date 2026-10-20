@@ -7,15 +7,15 @@ vpa:
   recommender:
     extraArgs:
       history-length: "30d"
-      storage: "prometheus"
-      prometheus-address: "http://vmsingle-victoria-metrics-k8s-stack.victoria-metrics.svc.cluster.local:8428"
-
+metrics-server:
+  enabled: true
+  args:
+    - --kubelet-insecure-tls
 controller:
   flags:
     on-by-default: true
     exclude-namespaces: kube-system,kube-public,kube-node-lease
     ignore-controller-kind: Job,CronJob
-
 dashboard:
   flags:
     on-by-default: true
