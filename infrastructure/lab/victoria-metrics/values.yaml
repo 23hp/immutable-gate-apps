@@ -30,12 +30,14 @@ alertmanager:
         discord_configs:
           - webhook_url_file: "/etc/secrets/discord-webhook-url"
             send_resolved: true
-  extraSecretMounts:
-  - name: secret-files
+  extraVolumeMounts:
+  - name: alertmanager-secrets
     mountPath: /etc/secrets
-    # subPath: ""
-    secretName: discord-webhook-secret
     readOnly: true
+  extraVolumes:
+    - name: alertmanager-secrets
+      secret:
+        secretName: alertmanager-secrets
   route:
     enabled: true
     parentRefs:

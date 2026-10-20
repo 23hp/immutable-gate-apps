@@ -14,6 +14,7 @@ resources:
   - ../base/victoria-metrics-k8s-stack
   - ../base/roles/view-extra.yaml
   - ../base/roles/workload-scaler.yaml
+  - victoria-metrics
   # - ../base/garage
   # - local-path-provisioner.extdisk.yaml
 
