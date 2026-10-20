@@ -32,7 +32,7 @@ configMapGenerator:
     namespace: victoria-metrics
     behavior: replace
     files:
-      - values.yaml=victoria-metrics-k8s-stack.values.yaml
+      - victoria-metrics/values.yaml
 
 secretGenerator:
   - name: credentials
