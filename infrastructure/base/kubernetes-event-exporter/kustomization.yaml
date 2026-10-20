@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: kubernetes-event-exporter
+resources:
+  - namespace.yaml
+  - rbac.yaml
+  - deployment.yaml
+
+# the hash suffix restarts the exporter when the config changes
+configMapGenerator:
+  - name: event-exporter-cfg
+    files:
+      - config.yaml
