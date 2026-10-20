@@ -50,9 +50,6 @@ vlagent:
       requests: { cpu: 25m, memory: 64Mi }
       limits: { memory: 192Mi }
 grafana:
-  grafana.ini:
-    unified_alerting:
-      enabled: false
   plugins:
     - victoriametrics-logs-datasource
   persistence:
