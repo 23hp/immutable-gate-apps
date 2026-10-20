@@ -1,5 +1,4 @@
-# This file replaces base/victoria-metrics-k8s-stack/values.yaml (valuesFrom),
-# values shared by all clusters are in base release.yaml (spec.values).
+# This file overrides base/victoria-metrics/values.yaml (valuesFrom),
 vmsingle:
   route:
     enabled: true

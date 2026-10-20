@@ -8,7 +8,10 @@ spec:
   timeout: 10m
   valuesFrom:
     - kind: ConfigMap
-      name: helm-release-values
+      name: helm-release-values-default
+    - kind: ConfigMap
+      name: helm-release-values-overlay
+      optional: true
   install:
     crds: CreateReplace
     remediation:

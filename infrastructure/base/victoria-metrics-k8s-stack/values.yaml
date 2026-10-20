@@ -1,4 +1,5 @@
 # Values shared by all clusters
+# Cluster specific values are provided by the overlay, e.g. infrastructure/lab/victoria-metrics/values.yaml
 vmsingle:
   spec:
     retentionPeriod: "30d"
