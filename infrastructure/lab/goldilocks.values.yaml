@@ -4,6 +4,9 @@ vpa:
     enabled: false
   admissionController:
     enabled: false
+  recommender:
+    extraArgs:
+      history-length: "30d"
 metrics-server:
   enabled: true
   args:
