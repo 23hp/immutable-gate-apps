@@ -4,3 +4,5 @@ namespace: victoria-metrics
 resources:
   - secret.alertmanager.enc.yaml
   - secret.grafana.enc.yaml
+  - smartctl-exporter.yaml
+  - vmrule-disk-temperature.yaml

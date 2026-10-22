@@ -1,0 +1,19 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMRule
+metadata:
+  name: disk-temperature
+spec:
+  groups:
+    - name: disk-temperature
+      rules:
+        - alert: DiskTemperatureHigh
+          expr: |
+            node_hwmon_temp_celsius
+              * on(instance, chip) group_left(chip_name)
+              node_hwmon_chip_names{chip_name=~"drivetemp|nvme"}
+            > 60
+          for: 10m
+          labels:
+            severity: warning
+          annotations:
+            summary: "{{ $labels.instance }} Disk temperature {{ $value }}°C"

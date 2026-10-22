@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: smartctl-exporter
+  labels:
+    app: smartctl-exporter
+spec:
+  selector:
+    matchLabels:
+      app: smartctl-exporter
+  template:
+    metadata:
+      labels:
+        app: smartctl-exporter
+    spec:
+      containers:
+        - name: exporter
+          image: quay.io/prometheuscommunity/smartctl-exporter:v0.15.0
+          securityContext:
+            privileged: true
+            runAsUser: 0
+          ports:
+            - name: metrics
+              containerPort: 9633
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: smartctl-exporter
+  labels:
+    app: smartctl-exporter
+spec:
+  clusterIP: None
+  selector:
+    app: smartctl-exporter
+  ports:
+    - name: metrics
+      port: 9633
+---
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMServiceScrape
+metadata:
+  name: smartctl-exporter
+spec:
+  selector:
+    matchLabels:
+      app: smartctl-exporter
+  endpoints:
+    - port: metrics
+      interval: 15m
