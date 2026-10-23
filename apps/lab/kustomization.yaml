@@ -7,6 +7,7 @@ resources:
   - ../base/media
   - ../base/memos
   - ../base/microbin
+  - ../base/monero
   - ../base/wallabag
   - backup-database
   - backup-immich
