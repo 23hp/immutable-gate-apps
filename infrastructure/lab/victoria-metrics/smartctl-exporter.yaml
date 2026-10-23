@@ -13,6 +13,10 @@ spec:
       labels:
         app: smartctl-exporter
     spec:
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
       containers:
         - name: exporter
           image: quay.io/prometheuscommunity/smartctl-exporter:v0.15.0
