@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monerod
+  labels:
+    app: monero
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monero
+  template:
+    metadata:
+      labels:
+        app: monero
+    spec:
+      nodeSelector:
+          kubernetes.io/hostname: zebra
+      containers:
+        - name: monerod
+          image: ghcr.io/sethforprivacy/simple-monerod:v0.18.5.4
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rpc-unrestri
+              containerPort: 18081
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /get_height
+              port: 18081
+            initialDelaySeconds: 40
+            periodSeconds: 600
+            timeoutSeconds: 5
+            failureThreshold: 10
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "50m"
+            limits:
+              memory: "4Gi"
+              cpu: "400m"
+          args:
+            - --rpc-restricted-bind-ip=0.0.0.0
+            - --rpc-restricted-bind-port=18089
+            - --rpc-bind-ip=0.0.0.0
+            - --rpc-bind-port=18081
+            - --confirm-external-bind
+            - --check-updates=disabled
+            - --ban-list=/home/monero/ban_list.txt
+            - --log-level=0
+            - --max-log-file-size=1048576
+            - --max-log-files=3
+            - --no-igd
+            - --p2p-bind-port=18080
+            - --out-peers=32
+            - --in-peers=0
+            - --limit-rate-up=1048576
+            - --limit-rate-down=1048576
+            - --prune-blockchain
+            - --sync-pruned-blocks
+            - --db-sync-mode=fast
+            - --max-txpool-weight=2684354560
+            - --fast-block-sync=1
+            - --no-zmq
+          volumeMounts:
+            - name: data-storage
+              mountPath: /home/monero/.bitmonero
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+        runAsNonRoot: true
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL
+      volumes:
+        - name: data-storage
+          persistentVolumeClaim:
+            claimName: bitmonero-data
