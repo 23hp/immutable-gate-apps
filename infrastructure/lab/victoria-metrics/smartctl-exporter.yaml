@@ -16,6 +16,9 @@ spec:
       containers:
         - name: exporter
           image: quay.io/prometheuscommunity/smartctl-exporter:v0.15.0
+          args:
+          - --smartctl.interval=240h
+          - --smartctl.rescan=24h
           securityContext:
             privileged: true
             runAsUser: 0
