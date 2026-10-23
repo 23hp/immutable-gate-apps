@@ -47,4 +47,4 @@ spec:
       app: smartctl-exporter
   endpoints:
     - port: metrics
-      interval: 15m
+      interval: 5m
