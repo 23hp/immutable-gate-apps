@@ -30,7 +30,7 @@ server:
                   # name: db-credentials
                   key: password
           image:
-            tag: v3.2.2
+            tag: v3.3.5
 machine-learning:
   controllers:
     main:
@@ -45,12 +45,12 @@ machine-learning:
               memory: 3Gi
               cpu: 2000m
           image:
-            tag: v3.2.2-openvino
+            tag: v3.3.5-openvino
   persistence:
     cache:
       enabled: true
       type: persistentVolumeClaim
       accessMode: ReadWriteOnce
-      size: 10Gi
+      size: 9Gi
 valkey:
   enabled: true
