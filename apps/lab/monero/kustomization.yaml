@@ -16,7 +16,7 @@ patches:
           rest:
             url: "${REST_SERVER_URL}/monero"
         backup:
-          schedule: "07 22 * * 0"
+          schedule: "20 22 * * 0"
         prune:
           retention:
             keepMonthly: 1

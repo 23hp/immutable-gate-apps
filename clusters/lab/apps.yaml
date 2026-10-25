@@ -16,4 +16,4 @@ spec:
     name: apps
   postBuild:
     substitute:
-      REST_SERVER_URL: "http://rest-server.rest-server:8000"
+      REST_SERVER_URL: "http://rest-server.rest-server"
