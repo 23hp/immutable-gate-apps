@@ -9,7 +9,7 @@ spec:
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "@daily"
+    schedule: "56 19 * * 0"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
     # Job timeout
