@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: monero
 resources:
-  - ../../base/backup
+  - ../backup-schedule.yaml
 patches:
   - target:
       kind: Schedule
@@ -16,7 +16,7 @@ patches:
           rest:
             url: "${REST_SERVER_URL}/monero"
         backup:
-          schedule: "55 21 * * 0"
+          schedule: "07 22 * * 0"
         prune:
           retention:
             keepMonthly: 1
