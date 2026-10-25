@@ -12,6 +12,8 @@ spec:
           to: "@artifact/apps/"
         - from: "@repo/configuration/lab/"
           to: "@artifact/configuration/"
+        - from: "@repo/components/"
+          to: "@artifact/"
     - name: configuration
       copy:
         - from: "@repo/configuration/base/"

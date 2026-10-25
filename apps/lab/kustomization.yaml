@@ -2,18 +2,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - database
   - ../base/cloud-dev
+  - cloud-dev
   - ../base/immich
+  - immich
   - ../base/media
+  - media
   - ../base/memos
+  - memos
   - ../base/microbin
   - ../base/monero
+  - monero
   - ../base/wallabag
-  - backup-database
-  - backup-immich
-  - backup-media
-  - backup-memos
-  - backup-wallabag
+  - wallabag
 
 secretGenerator:
   - name: db-credentials
@@ -25,9 +27,9 @@ secretGenerator:
     namespace: media
     behavior: replace
     envs:
-      - media.openlist.enc.env
+      - media/openlist.enc.env
   - name: ssh-authorized
     namespace: cloud-dev
     behavior: replace
     envs:
-      - cloud-dev.ssh-authorized.enc.env
+      - cloud-dev/ssh-authorized.enc.env

@@ -1,13 +1,11 @@
 apiVersion: k8up.io/v1
 kind: Schedule
 metadata:
-  name: nfs-schedule
+  name: schedule
 spec:
-  podConfigRef:
-    name: podconfig
   backend:
-    local:
-      mountPath: /mnt/nfs-backup
+    rest:
+      url: http://rest-server.rest-server:8000/PLACEHOLDER
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
@@ -16,6 +14,9 @@ spec:
     successfulJobsHistoryLimit: 2
     # Job timeout
     activeDeadlineSeconds: 5000
+    podSecurityContext:
+      runAsUser: 0
+      runAsGroup: 0
   check:
     schedule: "@monthly"
   prune:
