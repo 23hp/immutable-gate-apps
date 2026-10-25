@@ -5,11 +5,11 @@ metadata:
 spec:
   backend:
     rest:
-      url: http://rest-server.rest-server:8000/PLACEHOLDER
+      url: REST_SERVER_URL/NAMESPACE
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "56 19 * * 0"
+    schedule: "52 21 * * 0"
     failedJobsHistoryLimit: 3
     successfulJobsHistoryLimit: 2
     # Job timeout

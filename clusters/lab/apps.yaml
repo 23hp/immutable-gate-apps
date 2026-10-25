@@ -14,3 +14,6 @@ spec:
   sourceRef:
     kind: ExternalArtifact
     name: apps
+  postBuild:
+    substitute:
+      REST_SERVER_URL: "http://rest-server.rest-server:8000"
