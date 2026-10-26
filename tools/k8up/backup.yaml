@@ -4,12 +4,12 @@ apiVersion: k8up.io/v1
 kind: Backup
 metadata:
   name: manual-backup
-  namespace: immich
+  namespace: media
 spec:
   backend:
     rest:
       # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/immich
+      url: http://rest-server.rest-server/media
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
