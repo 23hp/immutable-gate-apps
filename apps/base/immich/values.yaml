@@ -9,11 +9,11 @@ server:
         main:
           resources:
             requests:
-              memory: 256Mi
+              memory: 3Gi
               cpu: 100m
             limits:
               gpu.intel.com/i915: 1
-              memory: 3Gi
+              memory: 4Gi
               cpu: 2000m
           env:
             TZ: Europe/Berlin
@@ -38,7 +38,7 @@ machine-learning:
         main:
           resources:
             requests:
-              memory: 256Mi
+              memory: 1609Mi
               cpu: 100m
             limits:
               gpu.intel.com/i915: 1

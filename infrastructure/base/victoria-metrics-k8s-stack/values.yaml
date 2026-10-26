@@ -12,9 +12,9 @@ vmsingle:
     resources:
       requests:
         cpu: 100m
-        memory: 256Mi
+        memory: 854Mi
       limits:
-        memory: 768Mi
+        memory: 1Gi
 vmagent:
   spec:
     resources:
@@ -56,8 +56,8 @@ grafana:
     enabled: true
     size: 2Gi
   resources:
-    requests: { cpu: 50m, memory: 128Mi }
-    limits: { memory: 612Mi }
+    requests: { cpu: 50m, memory: 676Mi }
+    limits: { memory: 1Gi }
   # admin:
   #   existingSecret: grafana-admin
 alertmanager:

@@ -48,8 +48,8 @@ spec:
         ports:
         - {containerPort: 22}
         resources:
-          requests: {cpu: "500m", memory: 1Gi}
-          limits: {memory: 8Gi}
+          requests: {cpu: "10m", memory: 2Gi}
+          limits: {memory: 4Gi}
         volumeMounts:
         - {name: home,    mountPath: /home/vscode}
         - {name: scratch, mountPath: /home/linuxbrew/.linuxbrew, subPath: brew}
