@@ -42,13 +42,6 @@ alertmanager:
     hostnames:
       - alertmanager.${domain_name}
 vlsingle:
-  spec:
-    tolerations:
-    - key: node-role.kubernetes.io/control-plane
-      operator: Exists
-      effect: NoSchedule
-    extraArgs:
-      fileCollector.glob: "/var/log/etcd.log,/var/log/kernel.log,/var/log/machined.log,/var/log/kubelet.log"
   route:
     enabled: true
     parentRefs:
@@ -57,6 +50,14 @@ vlsingle:
         sectionName: https
     hostnames:
       - vlogs.${domain_name}
+vlagent:
+  spec:
+    tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
+    extraArgs:
+      fileCollector.glob: "/var/log/etcd.log,/var/log/kernel.log,/var/log/machined.log,/var/log/kubelet.log"
 grafana:
   admin:
     existingSecret: grafana-admin
