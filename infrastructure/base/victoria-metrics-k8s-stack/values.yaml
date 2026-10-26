@@ -42,10 +42,6 @@ vlagent:
   rbac:
     namespaced: false
   spec:
-    tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
     resources:
       requests: { cpu: 25m, memory: 64Mi }
       limits: { memory: 192Mi }
