@@ -8,8 +8,10 @@ spec:
   restoreMethod:
     folder:
       claimName: postgres-shared-1
-  podConfigRef:
-    name: podconfig
   backend:
-    local:
-      mountPath: /mnt/nfs-backup
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/database
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
