@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: victoria-metrics
 resources:
-  # - scrape-etcd.yaml
+  - scrape-etcd.yaml
   - secret.alertmanager.enc.yaml
   - secret.grafana.enc.yaml
   - smartctl-exporter.yaml
