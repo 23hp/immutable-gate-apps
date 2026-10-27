@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: ""
   local:
-    path: /var/mnt/block15
+    path: /var/mnt/block15/monero
   nodeAffinity:
     required:
       nodeSelectorTerms:
