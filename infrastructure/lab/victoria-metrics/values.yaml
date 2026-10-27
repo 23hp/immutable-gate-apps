@@ -56,8 +56,18 @@ vlagent:
     - key: node-role.kubernetes.io/control-plane
       operator: Exists
       effect: NoSchedule
+
+    extraEnvs:
+      - name: NODE_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
     extraArgs:
-      fileCollector.glob: "/var/log/etcd.log,/var/log/kernel.log,/var/log/machined.log,/var/log/kubelet.log"
+      envflag.enable: "true"
+      fileCollector.glob: "/var/log/{kernel,machined,etcd,kubelet}.log"
+      fileCollector.extraFields: '{"node":"%{NODE_NAME}"}'
+      fileCollector.streamFields: "hostname,file,node"
+    
 grafana:
   admin:
     existingSecret: grafana-admin
