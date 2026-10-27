@@ -2,16 +2,16 @@ apiVersion: k8up.io/v1
 kind: Restore
 metadata:
   name: restore
-  namespace: database
+  namespace: monero
 spec:
-  snapshot: "4006e6ed2c49d8cb5321d70a33ea59b76ecdf2fc1b7ba89fb13656545d857777"
+  snapshot: "a4c15d8c"
   restoreMethod:
     folder:
-      claimName: postgres-shared-1
+      claimName: data
   backend:
     rest:
       # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/database
+      url: http://rest-server.rest-server/monero
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
