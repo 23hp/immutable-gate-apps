@@ -13,10 +13,12 @@ spec:
   containers:
   - name: ubuntu
     image: ubuntu:latest
-    command: ["sleep", "7200"]
+    command: ["sleep", "infinity"]
+    securityContext:
+      privileged: true
     volumeMounts:
     - name: mnt
-      mountPath: /data
+      mountPath: /var/mnt
   # - name: smartctl
   #   image: alpine:latest
   #   command: ["/bin/sh", "-c"]
