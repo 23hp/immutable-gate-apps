@@ -91,7 +91,7 @@ kubeControllerManager:
 kubeScheduler:
   enabled: false
 kubeEtcd:
-  enabled: true
+  enabled: false
   service:
     enabled: false
   vmScrape:
