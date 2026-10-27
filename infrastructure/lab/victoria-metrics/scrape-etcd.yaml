@@ -1,0 +1,11 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMStaticScrape
+metadata:
+  name: talos-etcd
+spec:
+  jobName: kube-etcd
+  targetEndpoints:
+    - targets:
+        - master:2381
+      path: /metrics
+      scheme: http
