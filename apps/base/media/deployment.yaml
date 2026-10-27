@@ -27,7 +27,7 @@ spec:
             - name: config
               mountPath: /opt/openlist/data
               subPath: openlist
-            - name: webdav
+            - name: media
               mountPath: /webdav
           resources:
             requests:
@@ -45,7 +45,7 @@ spec:
         - name: config
           persistentVolumeClaim:
             claimName: config
-        - name: webdav
+        - name: media
           persistentVolumeClaim:
-            claimName: webdav
+            claimName: media
           

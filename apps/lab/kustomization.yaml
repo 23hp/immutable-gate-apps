@@ -7,8 +7,8 @@ resources:
   - cloud-dev
   - ../base/immich
   - immich
-  - ../base/media
-  - media
+  # - ../base/media
+  # - media
   - ../base/memos
   - memos
   - ../base/microbin
@@ -23,11 +23,11 @@ secretGenerator:
     behavior: replace
     envs:
       - ../../configuration/lab/database/immich-credential.enc.env
-  - name: openlist
-    namespace: media
-    behavior: replace
-    envs:
-      - media/openlist.enc.env
+  # - name: openlist
+  #   namespace: media
+  #   behavior: replace
+  #   envs:
+  #     - media/openlist.enc.env
   - name: ssh-authorized
     namespace: cloud-dev
     behavior: replace

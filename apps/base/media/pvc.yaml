@@ -14,11 +14,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: webdav
+  name: media
   annotations:
     k8up.io/backup: "true"
 spec:
   accessModes: ["ReadWriteOnce"]
+  storageClassName: ""
+  volumeName: media
   resources:
     requests:
-      storage: 400Gi
+      storage: 200Gi
