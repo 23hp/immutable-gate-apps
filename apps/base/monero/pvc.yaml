@@ -9,6 +9,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""
+  volumeName: monero
   resources:
     requests:
       storage: 200Gi
