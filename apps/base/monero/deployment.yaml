@@ -63,7 +63,7 @@ spec:
             - --fast-block-sync=1
             - --no-zmq
           volumeMounts:
-            - name: data-storage
+            - name: data
               mountPath: /home/monero/.bitmonero
       securityContext:
         fsGroup: 1000
@@ -75,6 +75,6 @@ spec:
           drop:
             - ALL
       volumes:
-        - name: data-storage
+        - name: data
           persistentVolumeClaim:
-            claimName: bitmonero-data
+            claimName: data
