@@ -13,7 +13,7 @@ resources:
   - memos
   - ../base/microbin
   - ../base/monero
-  # - monero
+  - monero
   - ../base/wallabag
   - wallabag
 
