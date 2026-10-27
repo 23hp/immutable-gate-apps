@@ -11,7 +11,7 @@ resources:
   - media
   - ../base/memos
   - memos
-  # - ../base/microbin
+  - ../base/microbin
   - ../base/monero
   - monero
   - ../base/wallabag
