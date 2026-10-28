@@ -4,7 +4,7 @@ metadata:
   name: postgres-shared
   annotations:
     # set to "on" to shutdown instances, usecase: k8s upgrade
-    cnpg.io/hibernation: "on"
+    cnpg.io/hibernation: "off"
 spec:
   storage:
     size: 15Gi
