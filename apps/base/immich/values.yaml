@@ -14,7 +14,6 @@ server:
             limits:
               gpu.intel.com/i915: 1
               memory: 4Gi
-              cpu: 2000m
           env:
             TZ: Europe/Berlin
             DB_HOSTNAME: postgres-shared-rw.database.svc.cluster.local
@@ -43,7 +42,6 @@ machine-learning:
             limits:
               gpu.intel.com/i915: 1
               memory: 3Gi
-              cpu: 2000m
           image:
             tag: v3.3.5-openvino
   persistence:
