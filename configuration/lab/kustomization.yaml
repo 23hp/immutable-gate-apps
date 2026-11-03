@@ -8,6 +8,7 @@ resources:
   - ../base/tailscale
   - ../base/intel-device-plugins.gpu.yaml
   - database
+  - victoria-metrics
   - tailscale.connector.yaml
 
 secretGenerator:
