@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: backup-disk
+  name: backup
 spec:
   accessModes: [ReadWriteOnce]
-  storageClassName: backup-local
-  volumeName: backup-disk
+  storageClassName: ""
+  volumeName: backup
   resources:
     requests:
       storage: 3500Gi

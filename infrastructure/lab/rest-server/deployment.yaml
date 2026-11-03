@@ -33,4 +33,4 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: backup-disk
+          claimName: backup
