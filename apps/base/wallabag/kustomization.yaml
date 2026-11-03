@@ -3,8 +3,7 @@ kind: Kustomization
 namespace: wallabag
 resources:
   - namespace.yaml
-  - pvc-data.yaml
-  - pvc-images.yaml
+  - pvc.yaml
   - release.yaml
   - repository.yaml
 
