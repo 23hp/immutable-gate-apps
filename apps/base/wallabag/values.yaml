@@ -11,14 +11,13 @@ httpRoute:
 persistence:
   enabled: false
 volumeMounts:
-- name: wallabag-data
+- name: wallabag
   mountPath: /var/www/wallabag/data
-- name: wallabag-images
+  subPath: data
+- name: wallabag
   mountPath: /var/www/wallabag/web/assets/images
+  subPath: images
 volumes:
-- name: wallabag-data
+- name: wallabag
   persistentVolumeClaim:
-    claimName: wallabag-data
-- name: wallabag-images
-  persistentVolumeClaim:
-    claimName: wallabag-images
+    claimName: wallabag
