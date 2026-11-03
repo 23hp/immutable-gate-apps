@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: cloud-dev
+spec:
+  snapshot: "3319fa78f4131cc713f6f897a7b500dc519c0fa611a42799b7c3baf324f20dfc"
+  restoreMethod:
+    folder:
+      claimName: home-dev-0
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/cloud-dev
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
