@@ -4,7 +4,6 @@ namespace: monero
 resources:
   - deployment.yaml
   - namespace.yaml
-  - pv.yaml
   - pvc.yaml
   - route.yaml
   - service.yaml
