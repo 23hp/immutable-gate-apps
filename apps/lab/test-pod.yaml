@@ -17,7 +17,13 @@ spec:
       containers:
       - name: ubuntu
         image: ubuntu:latest
-        command: ["sleep", "infinity"]
+        command:
+        - /bin/sh
+        - -c
+        - |
+          export DEBIAN_FRONTEND=noninteractive
+          apt-get update && apt-get install -y restic
+          exec sleep infinity
         securityContext:
           privileged: true
         volumeMounts:
