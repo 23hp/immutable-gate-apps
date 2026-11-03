@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: memos
+spec:
+  snapshot: "095edb2328a4e5bfeb0153033db2145452863f3afd6683b23c1ff783dec7a464"
+  restoreMethod:
+    folder:
+      claimName: memos
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/memos
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0
