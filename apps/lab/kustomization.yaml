@@ -16,6 +16,7 @@ resources:
   - monero
   - ../base/wallabag
   - wallabag
+  - test-pod.yaml
 
 secretGenerator:
   - name: db-credentials
