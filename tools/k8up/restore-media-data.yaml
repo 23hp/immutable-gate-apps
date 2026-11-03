@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore-data
+  namespace: media
+spec:
+  snapshot: "eafefa83"
+  restoreMethod:
+    folder:
+      claimName: media
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/media
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

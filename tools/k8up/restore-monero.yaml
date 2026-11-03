@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: monero
+spec:
+  snapshot: "33e308ba553241f2b492d267287655285d5d4c47148d7e47f690c7b85d5ceff5"
+  restoreMethod:
+    folder:
+      claimName: data
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/monero
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

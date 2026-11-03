@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: immich
+spec:
+  snapshot: "ab96922a789e6469aa3a8fc6375af3a4b219383aedc651d7218307d2e890b69a"
+  restoreMethod:
+    folder:
+      claimName: immich
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/immich
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

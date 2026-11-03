@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: database
+spec:
+  snapshot: "11055141c67f622e901cc185f80138fb26b0ed8cf0bf320a8720e0ac383bc0ed"
+  restoreMethod:
+    folder:
+      claimName: postgres-shared-1
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/database
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

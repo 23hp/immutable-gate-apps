@@ -1,0 +1,17 @@
+apiVersion: k8up.io/v1
+kind: Restore
+metadata:
+  name: restore
+  namespace: wallabag
+spec:
+  snapshot: "242e728e"
+  restoreMethod:
+    folder:
+      claimName: wallabag
+  backend:
+    rest:
+      # url: REST_SERVER_URL/NAMESPACE
+      url: http://rest-server.rest-server/wallabag
+  podSecurityContext:
+    runAsUser: 0
+    runAsGroup: 0

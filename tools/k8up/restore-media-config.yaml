@@ -1,17 +1,17 @@
 apiVersion: k8up.io/v1
 kind: Restore
 metadata:
-  name: restore
-  namespace: monero
+  name: restore-config
+  namespace: media
 spec:
-  snapshot: "a4c15d8c"
+  snapshot: "8049a4d0"
   restoreMethod:
     folder:
-      claimName: data
+      claimName: config
   backend:
     rest:
       # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/monero
+      url: http://rest-server.rest-server/media
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
