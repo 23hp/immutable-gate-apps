@@ -15,8 +15,6 @@ spec:
       labels:
         app: monero
     spec:
-      nodeSelector:
-          kubernetes.io/hostname: zebra
       containers:
         - name: monerod
           image: ghcr.io/sethforprivacy/simple-monerod:v0.18.5.4
