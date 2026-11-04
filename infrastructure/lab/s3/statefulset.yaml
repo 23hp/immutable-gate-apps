@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: garage
+  labels:
+    app: garage
+spec:
+  serviceName: garage-headless
+  replicas: 1
+  selector:
+    matchLabels:
+      app: garage
+  template:
+    metadata:
+      labels:
+        app: garage
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: garage
+          image: docker.io/dxflrs/garage:v2.5.0
+          command: ["/garage", "server"]
+          envFrom:
+            - secretRef:
+                name: garage-secrets
+          env:
+            - name: GARAGE_CONFIG_FILE
+              value: /etc/garage/garage.toml
+          ports:
+            - { name: s3, containerPort: 3900 }
+            - { name: rpc, containerPort: 3901 }
+            - { name: admin, containerPort: 3903 }
+
+          startupProbe:
+            tcpSocket: { port: s3 }
+            periodSeconds: 5
+            failureThreshold: 60
+          readinessProbe:
+            tcpSocket: { port: s3 }
+            periodSeconds: 600
+            timeoutSeconds: 5
+            failureThreshold: 3
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              memory: 1Gi
+          volumeMounts:
+            - name: config
+              mountPath: /etc/garage/garage.toml
+              subPath: garage.toml
+              readOnly: true
+            - { name: meta, mountPath: /meta }
+            - { name: data, mountPath: /data }
+
+      volumes:
+        - name: config
+          configMap:
+            name: garage-config
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  volumeClaimTemplates:
+    - metadata:
+        name: meta
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: ""
+        volumeName: garage-meta
+        resources:
+          requests:
+            storage: 4Gi
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ReadWriteOnce]
+        storageClassName: ""
+        volumeName: garage-data
+        resources:
+          requests:
+            storage: 3500Gi
