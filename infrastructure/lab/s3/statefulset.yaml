@@ -5,7 +5,7 @@ metadata:
   labels:
     app: garage
 spec:
-  serviceName: garage-headless
+  serviceName: garage-s3
   replicas: 1
   selector:
     matchLabels:
