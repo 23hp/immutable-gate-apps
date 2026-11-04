@@ -22,7 +22,7 @@ spec:
       containers:
         - name: garage
           image: docker.io/dxflrs/garage:v2.5.0
-          command: ["/garage", "server"]
+          command: ["/garage", "server", "--single-node", "--default-bucket"]
           envFrom:
             - secretRef:
                 name: garage-secrets
