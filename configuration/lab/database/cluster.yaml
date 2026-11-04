@@ -3,7 +3,7 @@ kind: Cluster
 metadata:
   name: postgres-shared
   annotations:
-    # set to "on" to shutdown instances, usecase: k8s upgrade
+    # set to "on" to shutdown instances, usecase: k8s upgrade, shutdown cluster
     # quickstart: kubectl annotate cluster.postgresql.cnpg.io postgres-shared cnpg.io/hibernation=on --overwrite -n database
     cnpg.io/hibernation: "off"
 spec:
