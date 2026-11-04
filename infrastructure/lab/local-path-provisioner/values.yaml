@@ -1,6 +1,6 @@
 nodePathMap:
   - node: zebra
-    paths: ["/var/mnt/snake"]
+    paths: ["/var/mnt/ssd"]
   - node: ape
     paths: ["/var/mnt/data"]
 storageClass:
