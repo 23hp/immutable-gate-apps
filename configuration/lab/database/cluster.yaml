@@ -13,6 +13,17 @@ spec:
   postgresql:
     shared_preload_libraries:
       - "vchord.so"
+  # HA for cluster lab
+  instances: 2
+  affinity:
+    enablePodAntiAffinity: true
+    podAntiAffinityType: required
+    topologyKey: kubernetes.io/hostname
+    tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+  # k8up backup configuration
   inheritedMetadata:
     annotations:
       k8up.io/file-extension: ".tar"
