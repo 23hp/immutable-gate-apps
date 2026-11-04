@@ -3,6 +3,8 @@ replication_factor = 1
 metadata_dir = "/meta"
 data_dir = "/data"
 
+rpc_bind_addr = "[::]:3901"
+
 [s3_api]
 api_bind_addr = "[::]:3900"
 s3_region = "garage"
