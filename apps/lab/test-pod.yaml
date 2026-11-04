@@ -5,15 +5,9 @@ metadata:
   namespace: kube-system
 spec:
   replicas: 0
-  selector:
-    matchLabels:
-      app: test-pod
-  template:
-    metadata:
-      labels:
-        app: test-pod
+  selector: { matchLabels: {app: test-pod} }
+  template: { metadata: {labels: {app: test-pod} } }
     spec:
-      nodeName: zebra
       containers:
       - name: ubuntu
         image: ubuntu:latest
@@ -38,3 +32,14 @@ spec:
       - name: mnt
         hostPath:
           path: /var/mnt
+      tolerations:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists
+        effect: NoSchedule
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchLabels:
+                app: test-pod
+            topologyKey: kubernetes.io/hostname
