@@ -1,45 +1,25 @@
+---
 apiVersion: apps/v1
 kind: Deployment
-metadata:
-  name: test-pod
-  namespace: kube-system
+metadata: { name: test-pod, namespace: kube-system }
 spec:
   replicas: 0
-  selector: { matchLabels: {app: test-pod} }
-  template: { metadata: {labels: {app: test-pod} } }
+  selector: { matchLabels: { app: test-pod } }
+  template:
+    metadata: { labels: { app: test-pod } }
     spec:
       containers:
       - name: ubuntu
         image: ubuntu:latest
-        command:
-        - /bin/sh
-        - -c
-        - |
-          export DEBIAN_FRONTEND=noninteractive
-          apt-get update && apt-get install -y restic
-          exec sleep infinity
-        securityContext:
-          privileged: true
-        volumeMounts:
-        - name: mnt
-          mountPath: /data
-        - name: dev-vol
-          mountPath: /dev
+        command: ["sh", "-c", "apt-get update && apt-get install -y restic && exec sleep infinity"]
+        securityContext: { privileged: true }
+        volumeMounts: [{ name: mnt, mountPath: /data }]
       volumes:
-      - name: dev-vol
-        hostPath:
-          path: /dev
-      - name: mnt
-        hostPath:
-          path: /var/mnt
-      tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
+      - { name: mnt, hostPath: { path: /var/mnt, type: DirectoryOrCreate } }
+      tolerations: 
+      - { key: node-role.kubernetes.io/control-plane, operator: Exists, effect: NoSchedule }
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchLabels:
-                app: test-pod
-            topologyKey: kubernetes.io/hostname
+          - topologyKey: kubernetes.io/hostname
+            labelSelector: { matchLabels: { app: test-pod } }
