@@ -29,6 +29,12 @@ spec:
           env:
             - name: GARAGE_CONFIG_FILE
               value: /etc/garage/garage.toml
+            - name: GARAGE_DEFAULT_BUCKET
+              valueFrom: { secretKeyRef: { name: s3-secrets, key: bucket } }
+            - name: GARAGE_DEFAULT_ACCESS_KEY
+              valueFrom: { secretKeyRef: { name: s3-secrets, key: access-key } }
+            - name: GARAGE_DEFAULT_SECRET_KEY
+              valueFrom: { secretKeyRef: { name: s3-secrets, key: secret-key } }
           ports:
             - { name: s3, containerPort: 3900 }
             - { name: rpc, containerPort: 3901 }
