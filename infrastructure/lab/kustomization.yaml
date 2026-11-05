@@ -10,12 +10,12 @@ resources:
   - ../base/kubernetes-event-exporter
   - ../base/local-path-provisioner
   - ../base/network
+  - ../base/s3
   - ../base/tailscale
   - ../base/victoria-metrics-k8s-stack
   - ../base/roles/view-extra.yaml
   - ../base/roles/workload-scaler.yaml
   - rest-server
-  - s3
   - victoria-metrics
 
 configMapGenerator:
