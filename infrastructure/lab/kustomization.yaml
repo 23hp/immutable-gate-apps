@@ -35,13 +35,33 @@ configMapGenerator:
       - victoria-metrics/values.yaml
 
 secretGenerator:
-  - name: credentials
-    namespace: k8up
+  - namespace: k8up
+    name: credentials
     behavior: replace
     envs:
       - k8up.credentials.enc.env
-  - name: oauth
-    namespace: tailscale
+  - namespace: k8up
+    name: s3-secrets
+    behavior: replace
+    envs:
+      - s3/s3.enc.env
+  - namespace: tailscale
+    name: oauth
     behavior: replace
     envs:
       - tailscale.oauth.enc.env
+  - namespace: tailscale
+    name: oauth
+    behavior: replace
+    envs:
+      - tailscale.oauth.enc.env
+  - namespace: s3
+    name: garage-secrets
+    behavior: replace
+    envs:
+      - s3/garage.enc.env
+  - namespace: s3
+    name: s3-secrets
+    behavior: replace
+    envs:
+      - s3/s3.enc.env

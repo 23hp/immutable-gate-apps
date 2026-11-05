@@ -28,7 +28,12 @@ spec:
       - name: BACKUP_GLOBAL_CPU_LIMIT
         value: "2"  
       - name: BACKUP_GLOBALREPOPASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: credentials
-            key: repo-password
+        valueFrom: { secretKeyRef: { name: credentials, key: repo-password } }
+      - name: BACKUP_GLOBALS3ENDPOINT
+        value: http://garage-s3.s3:3900
+      - name: BACKUP_GLOBALS3BUCKET
+        valueFrom: { secretKeyRef: { name: s3-secrets, key: bucket } }
+      - name: BACKUP_GLOBALACCESSKEYID
+        valueFrom: { secretKeyRef: { name: s3-secrets, key: access-key } }
+      - name: BACKUP_GLOBALSECRETACCESSKEY
+        valueFrom: { secretKeyRef: { name: s3-secrets, key: secret-key } }
