@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: cloudnative-pg
 resources:
   - namespace.yaml
+  - release-barman.yaml
   - release.yaml
   - repository.yaml
