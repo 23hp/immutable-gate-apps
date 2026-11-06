@@ -8,6 +8,7 @@ resources:
   - immich-role.yaml
   - namespace.yaml
   - object-store.yaml
+  - scheduled-backup.yaml
 
 secretGenerator:
   - name: immich-db-credentials
