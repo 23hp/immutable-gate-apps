@@ -3,6 +3,7 @@ kind: ObjectStore
 metadata:
   name: s3-store
 spec:
+  retentionPolicy: "30d"
   configuration:
     destinationPath: s3://backup/
     endpointURL: http://garage-s3.s3:3900
