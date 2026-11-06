@@ -4,7 +4,7 @@ metadata:
   name: s3-store
 spec:
   configuration:
-    destinationPath: s3://backup/postgres-shared/
+    destinationPath: s3://backup/
     endpointURL: http://garage-s3.s3:3900
     s3Credentials:
       accessKeyId:
