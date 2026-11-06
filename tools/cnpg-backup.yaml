@@ -1,0 +1,11 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Backup
+metadata:
+  name: backup-postgres-shared
+  namespace: database
+spec:
+  cluster:
+    name: postgres-shared
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
