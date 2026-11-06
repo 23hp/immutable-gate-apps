@@ -19,7 +19,7 @@ spec:
         - from: "@repo/configuration/lab/"
           to: "@artifact/configuration/"
         - from: "@repo/infrastructure/lab/s3/s3.enc.env"
-          to: "@artifact/infrastructure/lab/s3/s3.enc.env"
+          to: "@artifact/infrastructure/lab/s3/"
     - name: infrastructure
       copy:
         - from: "@repo/infrastructure/base/"
