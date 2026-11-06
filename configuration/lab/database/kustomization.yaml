@@ -7,6 +7,7 @@ resources:
   - immich-database.yaml
   - immich-role.yaml
   - namespace.yaml
+  - object-store.yaml
 
 secretGenerator:
   - name: immich-db-credentials
