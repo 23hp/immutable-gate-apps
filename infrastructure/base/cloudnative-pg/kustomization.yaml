@@ -4,5 +4,5 @@ namespace: cloudnative-pg
 resources:
   - namespace.yaml
   - release-barman.yaml
-  - release.yaml
+  - release-operator.yaml
   - repository.yaml
