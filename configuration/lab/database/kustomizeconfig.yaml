@@ -4,3 +4,10 @@ nameReference:
   fieldSpecs:
   - path: spec/passwordSecret/name
     kind: DatabaseRole
+- kind: Secret
+  version: v1
+  fieldSpecs:
+  - path: spec/configuration/s3Credentials/accessKeyId/name
+    kind: ObjectStore
+  - path: spec/configuration/s3Credentials/secretAccessKey/name
+    kind: ObjectStore
