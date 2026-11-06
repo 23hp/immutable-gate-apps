@@ -1,0 +1,17 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: s3-store
+spec:
+  configuration:
+    destinationPath: s3://backup/postgres-shared/
+    endpointURL: http://garage-s3.s3:3900
+    s3Credentials:
+      accessKeyId:
+        name: s3-secrets
+        key:  access-key
+      secretAccessKey:
+        name: s3-secrets
+        key: secret-key
+    wal:
+      compression: gzip

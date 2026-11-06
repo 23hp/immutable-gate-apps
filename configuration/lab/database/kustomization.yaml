@@ -13,6 +13,9 @@ secretGenerator:
     type: kubernetes.io/basic-auth
     envs:
       - immich-credential.enc.env
+  - name: s3-secrets
+    envs:
+      - ../../../infrastructure/lab/s3/s3.enc.env
 
 configurations:
   - kustomizeconfig.yaml
