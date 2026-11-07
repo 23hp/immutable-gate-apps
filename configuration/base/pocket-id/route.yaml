@@ -12,5 +12,5 @@ spec:
   - "id.${domain_name}"
   rules:
   - backendRefs:
-    - name: http
+    - name: pocket-id
       port: 80
