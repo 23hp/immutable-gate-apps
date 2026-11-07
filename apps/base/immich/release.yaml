@@ -15,8 +15,8 @@ spec:
           containers:
             main:
               env:
-                DB_USERNAME: { valueFrom: { secretKeyRef: { name: db-credentials } } }
-                DB_PASSWORD: { valueFrom: { secretKeyRef: { name: db-credentials } } }
+                DB_USERNAME: { valueFrom: { secretKeyRef: { name: db-credential } } }
+                DB_PASSWORD: { valueFrom: { secretKeyRef: { name: db-credential } } }
   chartRef:
     kind: OCIRepository
     name: immich-charts

@@ -17,9 +17,9 @@ configMapGenerator:
       - setup.sh
 
 secretGenerator:
-  - name: db-credentials
+  - name: db-credential
     envs:
-      - db-credentials.env
+      - db-credential.env
   - name: admin
     type: kubernetes.io/basic-auth
     envs:

@@ -9,9 +9,9 @@ resources:
   - service.yaml
 
 secretGenerator:
-  - name: db-credentials
+  - name: db-credential
     envs:
-      - db-credentials.env
+      - db-credential.env
   - name: files
     envs:
       - files.env

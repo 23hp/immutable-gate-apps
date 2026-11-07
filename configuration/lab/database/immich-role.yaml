@@ -15,4 +15,4 @@ spec:
   databaseRoleReclaimPolicy: delete
   
   passwordSecret:
-    name: immich-db-credentials
+    name: immich-db-credential

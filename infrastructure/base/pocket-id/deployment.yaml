@@ -42,12 +42,12 @@ spec:
         - name: DB_USER
           valueFrom:
             secretKeyRef:
-              name: db-credentials
+              name: db-credential
               key: username
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: db-credentials
+              name: db-credential
               key: password
         - name: DB_CONNECTION_STRING
           value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database.svc.cluster.local:5432/pocketid?sslmode=require

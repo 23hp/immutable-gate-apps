@@ -18,7 +18,7 @@ spec:
             name: nextcloud-post-install-script
     externalDatabase:
       existingSecret:
-        secretName: db-credentials
+        secretName: db-credential
   chart:
     spec:
       chart: nextcloud

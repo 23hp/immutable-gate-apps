@@ -13,17 +13,17 @@ resources:
   - scheduled-backup.yaml
 
 secretGenerator:
-  - name: immich-db-credentials
+  - name: immich-db-credential
     type: kubernetes.io/basic-auth
     envs:
-      - ../../../shared/immich-db-credential.enc.env
-  - name: pocket-db-credentials
+      - ../../../shared/lab/immich-db-credential.enc.env
+  - name: pocket-db-credential
     type: kubernetes.io/basic-auth
     envs:
-      - ../../../shared/pocket-db-credential.enc.env
+      - ../../../shared/lab/pocket-db-credential.enc.env
   - name: s3-secrets
     envs:
-      - ../../../shared/s3.enc.env
+      - ../../../shared/lab/s3.enc.env
 
 configurations:
   - kustomizeconfig.yaml
