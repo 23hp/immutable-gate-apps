@@ -65,8 +65,8 @@ secretGenerator:
     behavior: replace
     envs:
       - ../../shared/s3.enc.env
-  - namespace: pocket-id
-    name: pocket-id
-    behavior: replace
-    envs:
-      - pocket-id.enc.env
+  # - namespace: pocket-id
+  #   name: pocket-id
+  #   behavior: replace
+  #   envs:
+  #     - pocket-id.enc.env
