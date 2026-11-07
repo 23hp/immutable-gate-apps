@@ -4,13 +4,13 @@ kind: Kustomization
 namespace: database
 resources:
   - cluster.yaml
-  - immich-database.yaml
-  - immich-role.yaml
-  - namespace.yaml
   - object-store.yaml
-  - pocket-database.yaml
-  - pocket-role.yaml
+  - namespace.yaml
   - scheduled-backup.yaml
+  - database-immich.yaml
+  - database-pocket.yaml
+  - role-immich.yaml
+  - role-pocket.yaml
 
 secretGenerator:
   - name: immich-db-credential
