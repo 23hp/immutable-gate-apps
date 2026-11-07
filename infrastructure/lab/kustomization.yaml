@@ -66,6 +66,11 @@ secretGenerator:
     envs:
       - ../../shared/s3.enc.env
   - namespace: pocket-id
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/pocket-db-credential.enc.env
+  - namespace: pocket-id
     name: files
     behavior: replace
     envs:
