@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: pocket-id }
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate: { maxUnavailable: 0, maxSurge: 1 }
+  template:
+    metadata: { labels: { app: pocket-id } }
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector: { matchLabels: { app: pocket-id } }
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile: { type: RuntimeDefault }
+      volumes:
+      - name: encryption-key
+        secret:
+          secretName: pocket-id
+          defaultMode: 0440
+          items:
+          - { key: encryption_key, path: encryption_key }
+      containers:
+      - name: pocket-id
+        image: ghcr.io/pocket-id/pocket-id:v2.19
+        ports:
+        - { name: http, containerPort: 1411 }
+        env:
+        - { name: APP_URL, value: "https://id.${domain_name}" }
+        - { name: TRUST_PROXY, value: "true" }
+        - { name: DB_PROVIDER, value: "postgres" }
+        - { name: FILE_BACKEND, value: "database" }
+        - { name: ENCRYPTION_KEY_FILE, value: "/encryption_key" }
+        - name: DB_CONNECTION_STRING
+          valueFrom: { secretKeyRef: { name: pocket-id, key: db-url } }
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: password
+        - name: DB_CONNECTION_STRING
+          value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database.svc.cluster.local:5432/pocketid?sslmode=require
+        volumeMounts:
+        - name: encryption-key
+          mountPath: /encryption_key
+          readOnly: true
+        startupProbe:
+          httpGet: { path: /healthz, port: http }
+          periodSeconds: 5
+          failureThreshold: 30
+        livenessProbe:
+          httpGet: { path: /healthz, port: http }
+          periodSeconds: 600
+          timeoutSeconds: 3
+          failureThreshold: 3
+        resources:
+          requests: { cpu: 50m, memory: 128Mi }
+          limits: { memory: 384Mi }
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }
