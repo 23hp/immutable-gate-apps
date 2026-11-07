@@ -4,7 +4,6 @@ namespace: pocket-id
 resources:
   - namespace.yaml
   - deployment.yaml
-  - PodDisruptionBudget.yaml
   - route.yaml
   - service.yaml
 
