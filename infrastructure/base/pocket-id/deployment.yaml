@@ -37,8 +37,6 @@ spec:
         - { name: DB_PROVIDER, value: "postgres" }
         - { name: FILE_BACKEND, value: "database" }
         - { name: ENCRYPTION_KEY_FILE, value: "/encryption_key" }
-        - name: DB_CONNECTION_STRING
-          valueFrom: { secretKeyRef: { name: pocket-id, key: db-url } }
         - name: DB_USER
           valueFrom:
             secretKeyRef:
