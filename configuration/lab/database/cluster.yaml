@@ -19,10 +19,6 @@ spec:
     enablePodAntiAffinity: true
     podAntiAffinityType: required
     topologyKey: kubernetes.io/hostname
-    tolerations:
-      - key: node-role.kubernetes.io/control-plane
-        operator: Exists
-        effect: NoSchedule
   # backup configuration
   plugins:
   - name: barman-cloud.cloudnative-pg.io

@@ -3,10 +3,6 @@ kind: CiliumBGPClusterConfig
 metadata:
   name: cilium-bgp-config
 spec:
-  nodeSelector:
-    matchExpressions:
-      - key: node-role.kubernetes.io/control-plane
-        operator: DoesNotExist
   bgpInstances:
     - name: "instance-65001"
       localASN: 65001
