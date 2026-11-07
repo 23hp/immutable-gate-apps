@@ -5,6 +5,7 @@ resources:
   - ../base/cert-manager
   - ../base/flux-receiver
   - ../base/gateway
+  - ../base/pocket-id
   - ../base/tailscale
   - ../base/intel-device-plugins.gpu.yaml
   - database
@@ -22,3 +23,13 @@ secretGenerator:
     behavior: replace
     envs:
       - flux-receiver.token.enc.env
+  - namespace: pocket-id
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/pocket-db-credential.enc.env
+  - namespace: pocket-id
+    name: files
+    behavior: replace
+    envs:
+      - pocket-id.files.enc.env

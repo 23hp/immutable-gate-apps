@@ -10,7 +10,6 @@ resources:
   - ../base/kubernetes-event-exporter
   - ../base/local-path-provisioner
   - ../base/network
-  - ../base/pocket-id
   - ../base/s3
   - ../base/tailscale
   - ../base/victoria-metrics-k8s-stack
@@ -65,13 +64,3 @@ secretGenerator:
     behavior: replace
     envs:
       - ../../shared/lab/s3.enc.env
-  - namespace: pocket-id
-    name: db-credential
-    behavior: replace
-    envs:
-      - ../../shared/lab/pocket-db-credential.enc.env
-  - namespace: pocket-id
-    name: files
-    behavior: replace
-    envs:
-      - pocket-id.files.enc.env
