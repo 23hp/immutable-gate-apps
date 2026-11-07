@@ -68,5 +68,5 @@ secretGenerator:
   - namespace: pocket-id
     name: pocket-id
     behavior: replace
-    files:
+    envs:
       - pocket-id.enc.env
