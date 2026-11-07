@@ -63,4 +63,4 @@ secretGenerator:
     name: s3-secrets
     behavior: replace
     envs:
-      - s3/s3.enc.env
+      - ../../shared/s3.enc.env
