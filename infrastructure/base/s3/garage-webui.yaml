@@ -1,14 +1,13 @@
-# Garage Web UI（khairul169/garage-webui）：集群状态、layout、bucket、key、对象浏览。
-# 默认只有 ClusterIP，访问方式：
+# Garage Web UI（khairul169/garage-webui）：cluster status、layout、bucket、key、objects explorer
+# To access:
 #   kubectl -n garage port-forward svc/garage-webui 3909:3909   ->  http://localhost:3909
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: garage-webui
-  namespace: s3
   labels: { app: garage-webui }
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels: { app: garage-webui }
   template:
@@ -27,7 +26,7 @@ spec:
             - name: API_ADMIN_KEY
               valueFrom:
                 secretKeyRef:
-                  name: garage-secrets-h42kh4k8tt
+                  name: garage-secrets
                   key: GARAGE_ADMIN_TOKEN
           volumeMounts:
             - name: config
@@ -37,4 +36,4 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: garage-config-c554856kt4
+            name: garage-config

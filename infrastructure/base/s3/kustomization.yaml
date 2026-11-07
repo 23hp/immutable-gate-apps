@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: s3
 resources:
+  - aws-cli.yaml
+  - garage-webui.yaml
   - namespace.yaml
   - pv-data.yaml
   - pv-meta.yaml

@@ -1,0 +1,45 @@
+# S3 command-line tool (aws-cli)
+#
+# Useful commands:
+#   head -c 1G /dev/urandom > /work/1g.bin
+#   time aws s3 cp /work/1g.bin s3://test-bucket/1g.bin   # Write: will wake up the USB drive
+#   aws s3 ls s3://test-bucket                       # Read-only metadata: should not wake up the USB drive
+#   time aws s3 cp s3://test-bucket/1g.bin /work/out.bin  # Read data blocks
+#
+# Check if the hard drive is in sleep mode on master: sudo hdparm -C /dev/sdX   (active/idle or standby)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3-toolbox
+  namespace: s3
+  labels:
+    app: s3-toolbox
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: s3-toolbox
+  template:
+    metadata:
+      labels:
+        app: s3-toolbox
+    spec:
+      containers:
+        - name: aws-cli
+          image: amazon/aws-cli:2.17.0
+          command: ["sleep", "infinity"]
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: garage-secrets
+                  key: GARAGE_DEFAULT_ACCESS_KEY
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: garage-secrets
+                  key: GARAGE_DEFAULT_SECRET_KEY
+            - name: AWS_ENDPOINT_URL
+              value: http://garage-s3:3900
+            - name: AWS_DEFAULT_REGION
+              value: garage
