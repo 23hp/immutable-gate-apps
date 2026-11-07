@@ -4,8 +4,8 @@ metadata:
   name: schedule
 spec:
   backend:
-    rest:
-      url: REST_SERVER_URL/NAMESPACE
+    s3:
+      bucket: BUCKET_PREFIX/NAMESPACE
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html

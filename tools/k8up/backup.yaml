@@ -4,12 +4,11 @@ apiVersion: k8up.io/v1
 kind: Backup
 metadata:
   name: manual-backup
-  namespace: media
+  namespace: memos
 spec:
   backend:
-    rest:
-      # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/media
+    s3:
+      bucket: "backup/k8up/memos"
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

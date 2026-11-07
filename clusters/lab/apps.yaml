@@ -17,3 +17,4 @@ spec:
   postBuild:
     substitute:
       REST_SERVER_URL: "http://rest-server.rest-server"
+      BUCKET_PREFIX: "backup/k8up"
