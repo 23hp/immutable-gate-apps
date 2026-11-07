@@ -12,6 +12,6 @@ secretGenerator:
   - name: db-credentials
     envs:
       - db-credentials.env
-  - name: pocket-id
+  - name: files
     envs:
-      - pocket-id.env
+      - files.env

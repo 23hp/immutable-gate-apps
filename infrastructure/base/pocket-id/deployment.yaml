@@ -22,7 +22,7 @@ spec:
       volumes:
       - name: encryption-key
         secret:
-          secretName: pocket-id
+          secretName: files
           defaultMode: 0440
           items:
           - { key: encryption_key, path: encryption_key }
