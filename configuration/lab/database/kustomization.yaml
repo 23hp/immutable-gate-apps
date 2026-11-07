@@ -8,6 +8,8 @@ resources:
   - immich-role.yaml
   - namespace.yaml
   - object-store.yaml
+  - pocket-database.yaml
+  - pocket-role.yaml
   - scheduled-backup.yaml
 
 secretGenerator:
@@ -15,6 +17,10 @@ secretGenerator:
     type: kubernetes.io/basic-auth
     envs:
       - immich-credential.enc.env
+  - name: pocket-db-credentials
+    type: kubernetes.io/basic-auth
+    envs:
+      - pocket-credential.enc.env
   - name: s3-secrets
     envs:
       - ../../../infrastructure/lab/s3/s3.enc.env

@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: pocket-id-db
+spec:
+  cluster:
+    name: postgres-shared
+  name: pocket
+  owner: pocket_user
+  databaseReclaimPolicy: delete

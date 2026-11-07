@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: pocket-id-user
+spec:
+  cluster:
+    name: postgres-shared
+  name: pocket_user
+
+  login: true
+
+  databaseRoleReclaimPolicy: delete
+  
+  passwordSecret:
+    name: pocket-db-credentials
