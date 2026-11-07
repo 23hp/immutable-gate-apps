@@ -10,7 +10,7 @@ spec:
       claimName: wallabag
   backend:
     s3:
-      bucket: backup/k8up/wallabag
+      bucket: backup/wallabag
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

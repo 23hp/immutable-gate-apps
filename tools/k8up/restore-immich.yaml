@@ -10,7 +10,7 @@ spec:
       claimName: immich
   backend:
     s3:
-      bucket: backup/k8up/immich
+      bucket: backup/immich
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

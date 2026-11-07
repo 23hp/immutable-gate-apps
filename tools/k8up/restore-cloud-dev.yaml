@@ -10,7 +10,7 @@ spec:
       claimName: home-dev-0
   backend:
     s3:
-      bucket: backup/k8up/cloud-dev
+      bucket: backup/cloud-dev
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

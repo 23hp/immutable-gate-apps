@@ -10,7 +10,7 @@ spec:
       claimName: postgres-shared-1
   backend:
     s3:
-      bucket: backup/k8up/database
+      bucket: backup/database
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

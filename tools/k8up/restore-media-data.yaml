@@ -10,7 +10,7 @@ spec:
       claimName: media
   backend:
     s3:
-      bucket: backup/k8up/media
+      bucket: backup/media
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

@@ -8,7 +8,7 @@ metadata:
 spec:
   backend:
     s3:
-      bucket: "backup/k8up/memos"
+      bucket: "backup/memos"
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

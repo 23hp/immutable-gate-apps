@@ -10,7 +10,7 @@ spec:
       claimName: data
   backend:
     s3:
-      bucket: backup/k8up/monero
+      bucket: backup/monero
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
