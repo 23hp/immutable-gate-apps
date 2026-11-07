@@ -14,5 +14,7 @@ spec:
       secretAccessKey:
         name: s3-secrets
         key: secret-key
+    data:
+      compression: lz4
     wal:
       compression: gzip
