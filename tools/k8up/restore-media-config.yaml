@@ -9,9 +9,8 @@ spec:
     folder:
       claimName: config
   backend:
-    rest:
-      # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/media
+    s3:
+      bucket: backup/k8up/media
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0

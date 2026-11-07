@@ -9,9 +9,8 @@ spec:
     folder:
       claimName: postgres-shared-1
   backend:
-    rest:
-      # url: REST_SERVER_URL/NAMESPACE
-      url: http://rest-server.rest-server/database
+    s3:
+      bucket: backup/k8up/database
   podSecurityContext:
     runAsUser: 0
     runAsGroup: 0
