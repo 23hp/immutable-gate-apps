@@ -10,22 +10,24 @@ spec:
           to: "@artifact/apps/"
         - from: "@repo/apps/lab/"
           to: "@artifact/apps/"
-        - from: "@repo/configuration/lab/"
-          to: "@artifact/configuration/"
+        - from: "@repo/shared/"
+          to: "@artifact/"
     - name: configuration
       copy:
         - from: "@repo/configuration/base/"
           to: "@artifact/configuration/"
         - from: "@repo/configuration/lab/"
           to: "@artifact/configuration/"
-        - from: "@repo/infrastructure/lab/s3/s3.enc.env"
-          to: "@artifact/infrastructure/lab/s3/"
+        - from: "@repo/shared/"
+          to: "@artifact/"
     - name: infrastructure
       copy:
         - from: "@repo/infrastructure/base/"
           to: "@artifact/infrastructure/"
         - from: "@repo/infrastructure/lab/"
           to: "@artifact/infrastructure/"
+        - from: "@repo/shared/"
+          to: "@artifact/"
   sources:
     - alias: repo
       kind: GitRepository

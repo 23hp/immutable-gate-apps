@@ -22,7 +22,7 @@ secretGenerator:
     namespace: immich
     behavior: replace
     envs:
-      - ../../configuration/lab/database/immich-credential.enc.env
+      - ../../shared/immich-db-credential.enc.env
   - name: openlist
     namespace: media
     behavior: replace
