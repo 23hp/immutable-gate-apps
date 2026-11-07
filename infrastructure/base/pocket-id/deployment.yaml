@@ -38,7 +38,7 @@ spec:
         - { name: TRUST_PROXY, value: "true" }
         - { name: DB_PROVIDER, value: "postgres" }
         - { name: FILE_BACKEND, value: "database" }
-        - { name: ENCRYPTION_KEY_FILE, value: "/encryption_key" }
+        - { name: ENCRYPTION_KEY_FILE, value: "/run/secrets/pocket-id/encryption_key" }
         - name: DB_USER
           valueFrom:
             secretKeyRef:
@@ -53,7 +53,7 @@ spec:
           value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database.svc.cluster.local:5432/pocketid?sslmode=require
         volumeMounts:
         - name: encryption-key
-          mountPath: /encryption_key
+          mountPath: /run/secrets/pocket-id
           readOnly: true
         startupProbe:
           httpGet: { path: /healthz, port: http }
