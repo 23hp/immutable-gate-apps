@@ -9,7 +9,7 @@ spec:
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "27 16 * * *"
+    schedule: "0 3 * * *"
     failedJobsHistoryLimit: 1
     successfulJobsHistoryLimit: 1
     # Job timeout
