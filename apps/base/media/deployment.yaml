@@ -30,7 +30,7 @@ spec:
             - name: DB_PASS
               valueFrom: { secretKeyRef: { name: db-credential, key: password } }
             - name: DB_DSN
-              value: postgres://$(DB_USER):$(DB_PASS)@postgres-shared-rw.database:5432/openlist?sslmode=require
+              value: postgres://$(DB_USER):$(DB_PASS)@postgres-shared-rw.database:5432/media?sslmode=require
           envFrom:
             - secretRef:
                 name: openlist
