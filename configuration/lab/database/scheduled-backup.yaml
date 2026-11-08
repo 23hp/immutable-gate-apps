@@ -5,7 +5,7 @@ metadata:
 spec:
   cluster:
     name: postgres-shared
-  schedule: '0 57 23 * * *'
+  schedule: '0 57 2 * * *'
   method: plugin
   pluginConfiguration:
     name: barman-cloud.cloudnative-pg.io
