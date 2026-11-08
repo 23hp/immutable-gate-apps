@@ -14,3 +14,8 @@ httpRoute:
       backendRefs:
         - name: headlamp
           port: 80
+probes:
+  livenessProbe:
+    periodSeconds: 600
+  readinessProbe:
+    periodSeconds: 600
