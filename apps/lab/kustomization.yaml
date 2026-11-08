@@ -7,7 +7,6 @@ resources:
   - ../base/immich
   - immich
   - ../base/media
-  - media
   - ../base/memos
   - ../base/microbin
   - ../base/monero
