@@ -9,11 +9,11 @@ spec:
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "55 7 * * *"
+    schedule: "27 16 * * *"
     failedJobsHistoryLimit: 1
     successfulJobsHistoryLimit: 1
     # Job timeout
-    activeDeadlineSeconds: 6000
+    activeDeadlineSeconds: 3000
     podSecurityContext:
       runAsUser: 0
       runAsGroup: 0
