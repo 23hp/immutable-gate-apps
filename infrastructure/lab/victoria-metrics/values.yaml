@@ -75,8 +75,9 @@ vlagent:
       fileCollector.streamFields: "hostname,file,node"
     
 grafana:
+  envFromSecret: grafana-oidc
   admin:
-    existingSecret: grafana
+    existingSecret: grafana-admin
   grafana.ini:
     server:
       root_url: https://grafana.${domain_name}
