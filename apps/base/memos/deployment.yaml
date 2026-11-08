@@ -55,22 +55,16 @@ spec:
             - name: data
               mountPath: /var/opt/memos
           env:
-            - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: db-credential
-                  key: username
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: db-credential
-                  key: password
             - name: MEMOS_PORT
               value: "5230"
             - name: MEMOS_DRIVER
               value: "postgres"
+            - name: DB_USER
+              valueFrom: { secretKeyRef: { name: db-credential, key: username } }
+            - name: DB_PASS
+              valueFrom: { secretKeyRef: { name: db-credential, key: password } }
             - name: MEMOS_DSN
-              value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database:5432/memos?sslmode=require
+              value: postgres://$(DB_USER):$(DB_PASS)@postgres-shared-rw.database:5432/memos?sslmode=require
           resources:
             limits:
               memory: 256Mi
