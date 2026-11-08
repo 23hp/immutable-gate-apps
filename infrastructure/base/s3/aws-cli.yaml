@@ -30,15 +30,9 @@ spec:
           command: ["sleep", "infinity"]
           env:
             - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  name: garage-secrets
-                  key: GARAGE_DEFAULT_ACCESS_KEY
+              valueFrom: { secretKeyRef: { name: s3-secrets, key: access-key } }
             - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: garage-secrets
-                  key: GARAGE_DEFAULT_SECRET_KEY
+              valueFrom: { secretKeyRef: { name: s3-secrets, key: secret-key } }
             - name: AWS_ENDPOINT_URL
               value: http://garage-s3:3900
             - name: AWS_DEFAULT_REGION
