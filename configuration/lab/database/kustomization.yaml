@@ -8,9 +8,11 @@ resources:
   - namespace.yaml
   - scheduled-backup.yaml
   - database-immich.yaml
+  - database-media.yaml
   - database-memos.yaml
   - database-pocket.yaml
   - role-immich.yaml
+  - role-media.yaml
   - role-memos.yaml
   - role-pocket.yaml
 
@@ -19,6 +21,10 @@ secretGenerator:
     type: kubernetes.io/basic-auth
     envs:
       - ../../../shared/lab/immich-db-credential.enc.env
+  - name: media-db-credential
+    type: kubernetes.io/basic-auth
+    envs:
+      - ../../../shared/lab/media-db-credential.enc.env
   - name: memos-db-credential
     type: kubernetes.io/basic-auth
     envs:

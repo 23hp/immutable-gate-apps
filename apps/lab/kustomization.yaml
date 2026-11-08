@@ -26,8 +26,13 @@ secretGenerator:
     behavior: replace
     envs:
       - ../../shared/lab/memos-db-credential.enc.env
-  - name: openlist
-    namespace: media
+  - namespace: media
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/media-db-credential.enc.env
+  - namespace: media
+    name: openlist
     behavior: replace
     envs:
       - media/openlist.enc.env

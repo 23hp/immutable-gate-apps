@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: media-user
+spec:
+  cluster:
+    name: postgres-shared
+  name: media_user
+
+  login: true
+
+  databaseRoleReclaimPolicy: delete
+  
+  passwordSecret:
+    name: media-db-credential

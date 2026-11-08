@@ -20,13 +20,23 @@ spec:
           ports:
             - containerPort: 5244
               name: http
+          env:
+            - name: DB_TYPE
+              value: postgres
+            - name: DB_TABLE_PREFIX
+              value: openlist_
+            - name: DB_USER
+              valueFrom: { secretKeyRef: { name: db-credential, key: username } }
+            - name: DB_PASS
+              valueFrom: { secretKeyRef: { name: db-credential, key: password } }
+            - name: DB_DSN
+              value: postgres://$(DB_USER):$(DB_PASS)@postgres-shared-rw.database:5432/openlist?sslmode=require
           envFrom:
             - secretRef:
                 name: openlist
           volumeMounts:
-            - name: config
+            - name: data
               mountPath: /opt/openlist/data
-              subPath: openlist
             - name: media
               mountPath: /webdav
           resources:
@@ -48,10 +58,8 @@ spec:
             initialDelaySeconds: 10
             periodSeconds: 600
       volumes:
-        - name: config
-          persistentVolumeClaim:
-            claimName: config
+        - name: data
+          emptyDir: {}
         - name: media
           persistentVolumeClaim:
             claimName: media
-          
