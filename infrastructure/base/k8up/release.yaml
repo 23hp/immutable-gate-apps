@@ -23,10 +23,10 @@ spec:
         value: "1"  
       - name: BACKUP_GLOBAL_CONCURRENT_PRUNE_JOBS_LIMIT
         value: "1"  
-      - name: BACKUP_GLOBAL_MEMORY_LIMIT
-        value: "4Gi"  
-      - name: BACKUP_GLOBAL_CPU_LIMIT
-        value: "2"  
+      - name: BACKUP_GLOBAL_CPU_REQUEST
+        value: "250m"
+      - name: BACKUP_GLOBAL_MEMORY_REQUEST
+        value: "350Mi"
       - name: BACKUP_GLOBALREPOPASSWORD
         valueFrom: { secretKeyRef: { name: credentials, key: repo-password } }
       - name: BACKUP_GLOBALS3ENDPOINT
