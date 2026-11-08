@@ -19,7 +19,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 1000
       volumes:
-        - name: memos-data
+        - name: data
           emptyDir: {}
       containers:
         - name: memos
@@ -52,25 +52,25 @@ spec:
               path: /
               port: http
           volumeMounts:
-            - name: memos-data
+            - name: data
               mountPath: /var/opt/memos
           env:
-          - name: DB_USER
-            valueFrom:
-              secretKeyRef:
-                name: db-credential
-                key: username
-          - name: DB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: db-credential
-                key: password
-          - name: MEMOS_PORT
-            value: "5230"
-          - name: MEMOS_DRIVER
-            value: "postgres"
-          - name: MEMOS_DSN
-            value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database:5432/memos?sslmode=require
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-credential
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credential
+                  key: password
+            - name: MEMOS_PORT
+              value: "5230"
+            - name: MEMOS_DRIVER
+              value: "postgres"
+            - name: MEMOS_DSN
+              value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database:5432/memos?sslmode=require
           resources:
             limits:
               memory: 256Mi
