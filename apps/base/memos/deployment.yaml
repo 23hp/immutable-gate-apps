@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: memos
+      app.kubernetes.io/instance: memos
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: memos
+        app.kubernetes.io/instance: memos
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+      volumes:
+        - name: memos-data
+          emptyDir: {}
+      containers:
+        - name: memos
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            runAsNonRoot: true
+            runAsUser: 1000
+          image: "ghcr.io/usememos/memos:0.31.0"
+          ports:
+            - name: http
+              containerPort: 5230
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 5
+            failureThreshold: 30
+          livenessProbe:
+            periodSeconds: 300
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            periodSeconds: 300
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: memos-data
+              mountPath: /var/opt/memos
+          env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-credential
+                key: username
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-credential
+                key: password
+          - name: MEMOS_PORT
+            value: "5230"
+          - name: MEMOS_DRIVER
+            value: "postgres"
+          - name: MEMOS_DSN
+            value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database:5432/memos?sslmode=require
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
