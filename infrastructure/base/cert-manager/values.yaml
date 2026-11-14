@@ -1,3 +1,7 @@
 crds:
   enabled: true
   keep: false
+replicaCount: 1
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
