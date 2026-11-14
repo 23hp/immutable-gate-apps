@@ -52,5 +52,4 @@ spec:
               memory: 512Mi
       volumes:
         - name: data
-          persistentVolumeClaim:
-            claimName: data
+          emptyDir: {}

@@ -12,6 +12,7 @@
     nodeAffinity:
       required:
         nodeSelectorTerms:
-        - matchExpressions:
-          - key: node-role.kubernetes.io/control-plane
-            operator: Exists
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - zebra

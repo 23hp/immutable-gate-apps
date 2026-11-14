@@ -13,6 +13,9 @@ secretGenerator:
   - name: credentials
     envs:
       - credentials.env
+  - name: s3-secrets
+    envs:
+      - s3.env
 
 configurations:
   - kustomizeconfig.yaml

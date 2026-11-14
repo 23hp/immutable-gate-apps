@@ -12,4 +12,6 @@ secretGenerator:
   - name: openlist
     envs:
       - openlist.env
-      
+  - name: db-credential
+    envs:
+      - db-credential.env

@@ -3,15 +3,11 @@ kind: Kustomization
 namespace: memos
 resources:
   - namespace.yaml
-  - release.yaml
-  - pvc.yaml
-  - repository.yaml
+  - deployment.yaml
   - route.yaml
+  - service.yaml
 
-configMapGenerator:
-  - name: helm-release-values
-    files:
-      - values.yaml
-
-configurations:
-  - kustomizeconfig.yaml
+secretGenerator:
+  - name: db-credential
+    envs:
+      - db-credential.env

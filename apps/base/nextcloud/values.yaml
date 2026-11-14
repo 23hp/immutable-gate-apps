@@ -35,7 +35,7 @@ externalDatabase:
   database: nextcloud
   existingSecret:
     enabled: true
-    # secretName: nextcloud-db-credentials
+    # secretName: nextcloud-db-credential
     usernameKey: username
     passwordKey: password
 persistence:

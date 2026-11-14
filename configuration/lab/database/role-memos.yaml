@@ -1,18 +1,15 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: DatabaseRole
 metadata:
-  name: immich-user
+  name: memos-user
 spec:
   cluster:
     name: postgres-shared
-  name: immich_user
+  name: memos_user
 
   login: true
-
-  # Only enable superuser during restore
-  # superuser: true
 
   databaseRoleReclaimPolicy: delete
   
   passwordSecret:
-    name: immich-db-credentials
+    name: memos-db-credential

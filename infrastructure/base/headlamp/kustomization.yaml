@@ -12,5 +12,10 @@ configMapGenerator:
     files:
       - values.yaml
 
+secretGenerator:
+  - name: oidc
+    envs:
+      - oidc.env
+
 configurations:
   - kustomizeconfig.yaml

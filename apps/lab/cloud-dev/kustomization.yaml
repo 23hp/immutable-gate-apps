@@ -8,5 +8,5 @@ patches:
       kind: Schedule
     patch: |-
       - op: replace
-        path: /spec/backend/rest/url
-        value: "${REST_SERVER_URL}/cloud-dev"
+        path: /spec/backend/s3/bucket
+        value: "${BUCKET_PREFIX}/cloud-dev"

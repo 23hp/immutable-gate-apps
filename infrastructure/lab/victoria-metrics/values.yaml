@@ -63,11 +63,6 @@ vlsingle:
       - vlogs.${domain_name}
 vlagent:
   spec:
-    tolerations:
-    - key: node-role.kubernetes.io/control-plane
-      operator: Exists
-      effect: NoSchedule
-
     extraEnvs:
       - name: NODE_NAME
         valueFrom:
@@ -80,11 +75,28 @@ vlagent:
       fileCollector.streamFields: "hostname,file,node"
     
 grafana:
+  envFromSecret: grafana-oidc
   admin:
     existingSecret: grafana-admin
   grafana.ini:
     server:
       root_url: https://grafana.${domain_name}
+    auth.generic_oauth:
+      enabled: true
+      name: Pocket ID
+      allow_sign_up: true
+      auto_login: false
+      scopes: openid email profile groups
+      auth_url: https://id.${domain_name}/authorize
+      token_url: https://id.${domain_name}/api/oidc/token
+      use_pkce: true
+      login_attribute_path: preferred_username
+      name_attribute_path: name
+      role_attribute_path: >-
+        contains(groups[*], 'k8s-admins') && 'Admin' ||
+        contains(groups[*], 'grafana-editors') && 'Editor' ||
+        contains(groups[*], 'grafana-viewers') && 'Viewer'
+      role_attribute_strict: true
   route:
     main:
       enabled: true

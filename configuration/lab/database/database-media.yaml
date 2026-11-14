@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: media-db
+spec:
+  cluster:
+    name: postgres-shared
+  name: media
+  owner: media_user
+  databaseReclaimPolicy: delete

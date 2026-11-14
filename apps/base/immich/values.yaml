@@ -5,6 +5,7 @@ immich:
 server:
   controllers:
     main:
+      strategy: Recreate
       containers:
         main:
           resources:
@@ -21,16 +22,17 @@ server:
             DB_USERNAME:
               valueFrom:
                 secretKeyRef:
-                  # name: db-credentials
+                  # name: db-credential
                   key: username
             DB_PASSWORD:
               valueFrom:
                 secretKeyRef:
-                  # name: db-credentials
+                  # name: db-credential
                   key: password
           image:
             tag: v3.3.5
 machine-learning:
+  strategy: Recreate
   controllers:
     main:
       containers:
@@ -47,8 +49,6 @@ machine-learning:
   persistence:
     cache:
       enabled: true
-      type: persistentVolumeClaim
-      accessMode: ReadWriteOnce
-      size: 9Gi
+      type: emptyDir
 valkey:
   enabled: true

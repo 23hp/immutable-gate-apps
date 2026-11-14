@@ -2,30 +2,36 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - database
   - ../base/cloud-dev
   - cloud-dev
   - ../base/immich
   - immich
   - ../base/media
-  - media
   - ../base/memos
-  - memos
   - ../base/microbin
   - ../base/monero
-  - monero
   - ../base/wallabag
   - wallabag
   - test-pod.yaml
 
 secretGenerator:
-  - name: db-credentials
-    namespace: immich
+  - namespace: immich
+    name: db-credential
     behavior: replace
     envs:
-      - ../../configuration/lab/database/immich-credential.enc.env
-  - name: openlist
-    namespace: media
+      - ../../shared/lab/immich-db-credential.enc.env
+  - namespace: memos
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/memos-db-credential.enc.env
+  - namespace: media
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/media-db-credential.enc.env
+  - namespace: media
+    name: openlist
     behavior: replace
     envs:
       - media/openlist.enc.env

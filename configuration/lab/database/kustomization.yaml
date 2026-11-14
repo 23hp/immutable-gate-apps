@@ -4,15 +4,38 @@ kind: Kustomization
 namespace: database
 resources:
   - cluster.yaml
-  - immich-database.yaml
-  - immich-role.yaml
+  - object-store.yaml
   - namespace.yaml
+  - scheduled-backup.yaml
+  - database-immich.yaml
+  - database-media.yaml
+  - database-memos.yaml
+  - database-pocket.yaml
+  - role-immich.yaml
+  - role-media.yaml
+  - role-memos.yaml
+  - role-pocket.yaml
 
 secretGenerator:
-  - name: immich-db-credentials
+  - name: immich-db-credential
     type: kubernetes.io/basic-auth
     envs:
-      - immich-credential.enc.env
+      - ../../../shared/lab/immich-db-credential.enc.env
+  - name: media-db-credential
+    type: kubernetes.io/basic-auth
+    envs:
+      - ../../../shared/lab/media-db-credential.enc.env
+  - name: memos-db-credential
+    type: kubernetes.io/basic-auth
+    envs:
+      - ../../../shared/lab/memos-db-credential.enc.env
+  - name: pocket-db-credential
+    type: kubernetes.io/basic-auth
+    envs:
+      - ../../../shared/lab/pocket-db-credential.enc.env
+  - name: s3-secrets
+    envs:
+      - ../../../shared/lab/s3.enc.env
 
 configurations:
   - kustomizeconfig.yaml

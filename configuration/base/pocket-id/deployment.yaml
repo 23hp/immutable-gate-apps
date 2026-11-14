@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: { name: pocket-id }
+spec:
+  selector:
+    matchLabels: { app: pocket-id }
+  replicas: 1
+  strategy:
+    type: Recreate    
+  template:
+    metadata: { labels: { app: pocket-id } }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile: { type: RuntimeDefault }
+      volumes:
+      - name: app-data
+        emptyDir: {}
+      - name: encryption-key
+        secret:
+          secretName: files
+          defaultMode: 0440
+          items:
+          - { key: encryption_key, path: encryption_key }
+      containers:
+      - name: pocket-id
+        image: ghcr.io/pocket-id/pocket-id:v2.19
+        ports:
+        - { name: http, containerPort: 1411 }
+        env:
+        - { name: APP_URL, value: "https://id.${domain_name}" }
+        - { name: TRUST_PROXY, value: "true" }
+        - { name: DB_PROVIDER, value: "postgres" }
+        - { name: FILE_BACKEND, value: "database" }
+        - { name: ENCRYPTION_KEY_FILE, value: "/run/secrets/pocket-id/encryption_key" }
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-credential
+              key: username
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credential
+              key: password
+        - name: DB_CONNECTION_STRING
+          value: postgres://$(DB_USER):$(DB_PASSWORD)@postgres-shared-rw.database.svc.cluster.local:5432/pocket?sslmode=require
+        volumeMounts:
+        - name: encryption-key
+          mountPath: /run/secrets/pocket-id
+          readOnly: true
+        - name: app-data
+          mountPath: /app/data
+        startupProbe:
+          httpGet: { path: /healthz, port: http }
+          periodSeconds: 5
+          failureThreshold: 30
+        livenessProbe:
+          httpGet: { path: /healthz, port: http }
+          periodSeconds: 300
+          timeoutSeconds: 3
+          failureThreshold: 3
+        resources:
+          requests: { cpu: 50m, memory: 128Mi }
+          limits: { memory: 384Mi }
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities: { drop: ["ALL"] }

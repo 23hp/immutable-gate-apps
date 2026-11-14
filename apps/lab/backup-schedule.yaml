@@ -4,16 +4,16 @@ metadata:
   name: schedule
 spec:
   backend:
-    rest:
-      url: REST_SERVER_URL/NAMESPACE
+    s3:
+      bucket: BUCKET_PREFIX/NAMESPACE
 
   backup:
     # https://docs.k8up.io/k8up/references/schedule-specification.html
-    schedule: "@daily"
-    failedJobsHistoryLimit: 3
-    successfulJobsHistoryLimit: 2
+    schedule: "0 3 * * *"
+    failedJobsHistoryLimit: 1
+    successfulJobsHistoryLimit: 1
     # Job timeout
-    activeDeadlineSeconds: 5000
+    activeDeadlineSeconds: 3000
     podSecurityContext:
       runAsUser: 0
       runAsGroup: 0

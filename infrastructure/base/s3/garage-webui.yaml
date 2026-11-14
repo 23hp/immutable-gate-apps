@@ -1,0 +1,39 @@
+# Garage Web UI（khairul169/garage-webui）：cluster status、layout、bucket、key、objects explorer
+# To access:
+#   kubectl -n garage port-forward svc/garage-webui 3909:3909   ->  http://localhost:3909
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garage-webui
+  labels: { app: garage-webui }
+spec:
+  replicas: 0
+  selector:
+    matchLabels: { app: garage-webui }
+  template:
+    metadata:
+      labels: { app: garage-webui }
+    spec:
+      containers:
+        - name: webui
+          image: docker.io/khairul169/garage-webui:1.1.0
+          ports:
+            - { name: http, containerPort: 3909 }
+          env:
+            - { name: API_BASE_URL,     value: "http://garage-admin:3903" }
+            - { name: S3_ENDPOINT_URL,  value: "http://garage-s3:3900" }
+            - { name: S3_REGION,        value: "garage" }
+            - name: API_ADMIN_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: garage-secrets
+                  key: GARAGE_ADMIN_TOKEN
+          volumeMounts:
+            - name: config
+              mountPath: /etc/garage.toml
+              subPath: garage.toml
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: garage-config

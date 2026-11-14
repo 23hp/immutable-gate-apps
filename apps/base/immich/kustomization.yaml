@@ -9,9 +9,9 @@ resources:
   - route.yaml
 
 secretGenerator:
-  - name: db-credentials
+  - name: db-credential
     envs:
-      - db-credentials.env
+      - db-credential.env
 
 configMapGenerator:
   - name: helm-release-values

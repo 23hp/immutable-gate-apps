@@ -1,0 +1,20 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: s3-store
+spec:
+  retentionPolicy: "30d"
+  configuration:
+    destinationPath: s3://backup/
+    endpointURL: http://garage-s3.s3:3900
+    s3Credentials:
+      accessKeyId:
+        name: s3-secrets
+        key:  access-key
+      secretAccessKey:
+        name: s3-secrets
+        key: secret-key
+    data:
+      compression: lz4
+    wal:
+      compression: gzip
