@@ -7,7 +7,7 @@ spec:
     - "game.${domain_name}"
   parentRefs:
     - name: gateway
-      namespace: networking
+      namespace: network
       sectionName: https
   rules:
     - backendRefs:
