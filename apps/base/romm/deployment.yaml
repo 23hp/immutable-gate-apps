@@ -16,6 +16,7 @@ spec:
       labels:
         app.kubernetes.io/name: romm
     spec:
+      enableServiceLinks: false
       automountServiceAccountToken: false
       containers:
         - name: romm
