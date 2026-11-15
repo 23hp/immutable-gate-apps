@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: romm-db
+spec:
+  cluster:
+    name: postgres-shared
+  name: romm
+  owner: romm_user
+  databaseReclaimPolicy: delete

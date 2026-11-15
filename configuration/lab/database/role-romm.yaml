@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: romm-user
+spec:
+  cluster:
+    name: postgres-shared
+  name: romm_user
+
+  login: true
+
+  databaseRoleReclaimPolicy: delete
+  
+  passwordSecret:
+    name: romm-db-credential

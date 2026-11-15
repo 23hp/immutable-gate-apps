@@ -11,10 +11,12 @@ resources:
   - database-media.yaml
   - database-memos.yaml
   - database-pocket.yaml
+  - database-romm.yaml
   - role-immich.yaml
   - role-media.yaml
   - role-memos.yaml
   - role-pocket.yaml
+  - role-romm.yaml
 
 secretGenerator:
   - name: immich-db-credential
@@ -33,6 +35,10 @@ secretGenerator:
     type: kubernetes.io/basic-auth
     envs:
       - ../../../shared/lab/pocket-db-credential.enc.env
+  - name: romm-db-credential
+    type: kubernetes.io/basic-auth
+    envs:
+      - ../../../shared/lab/romm-db-credential.enc.env
   - name: s3-secrets
     envs:
       - ../../../shared/lab/s3.enc.env
