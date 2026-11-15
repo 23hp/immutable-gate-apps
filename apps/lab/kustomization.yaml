@@ -10,6 +10,7 @@ resources:
   - ../base/memos
   - ../base/microbin
   - ../base/monero
+  - ../base/romm
   - ../base/wallabag
   - wallabag
   - test-pod.yaml
@@ -40,3 +41,18 @@ secretGenerator:
     behavior: replace
     envs:
       - cloud-dev/ssh-authorized.enc.env
+  - namespace: romm
+    name: db-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/romm-db-credential.enc.env
+  - namespace: romm
+    name: redis-credential
+    behavior: replace
+    envs:
+      - ../../shared/lab/redis.enc.env
+  - namespace: romm
+    name: romm-secrets
+    behavior: replace
+    envs:
+      - romm.secret.enc.env
