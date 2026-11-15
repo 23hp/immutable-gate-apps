@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: romm
+  labels:
+    app.kubernetes.io/name: romm
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: romm
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: romm
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: romm
+          image: docker.io/rommapp/romm
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: DB_PASSWD
+              valueFrom: { secretKeyRef: { name: db-credential, key: password } }
+            - name: REDIS_PASSWORD
+              valueFrom: { secretKeyRef: { name: redis-credential, key: password } }
+          envFrom:
+            - configMapRef:
+                name: romm-config
+            - secretRef:
+                name: romm-secrets
+          startupProbe:
+            httpGet: { path: /api/heartbeat, port: http }
+            periodSeconds: 10
+            failureThreshold: 30
+          livenessProbe:
+            httpGet: { path: /api/heartbeat, port: http }
+            periodSeconds: 600
+          readinessProbe:
+            httpGet: { path: /api/heartbeat, port: http }
+            periodSeconds: 600
+          resources:
+            requests:
+              cpu: 100m
+              memory: 512Mi
+            limits:
+              memory: 2Gi
+          volumeMounts:
+            - { name: config, mountPath: /romm/config }
+            - { name: resources, mountPath: /romm/resources }
+            - { name: assets, mountPath: /romm/assets }
+            - { name: library, mountPath: /romm/library }
+      volumes:
+        - name: config
+          persistentVolumeClaim: { claimName: romm-config }
+        - name: resources
+          persistentVolumeClaim: { claimName: romm-resources }
+        - name: assets
+          persistentVolumeClaim: { claimName: romm-assets }
+        - name: library
+          persistentVolumeClaim: { claimName: roms }
