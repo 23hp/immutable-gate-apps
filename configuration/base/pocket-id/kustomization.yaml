@@ -14,3 +14,7 @@ secretGenerator:
   - name: files
     envs:
       - files.env
+
+images:
+  - name: ghcr.io/pocket-id/pocket-id
+    newTag: "v2.19.3" 

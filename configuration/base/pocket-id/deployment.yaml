@@ -27,7 +27,7 @@ spec:
           - { key: encryption_key, path: encryption_key }
       containers:
       - name: pocket-id
-        image: ghcr.io/pocket-id/pocket-id:v2.19
+        image: ghcr.io/pocket-id/pocket-id
         ports:
         - { name: http, containerPort: 1411 }
         env:
