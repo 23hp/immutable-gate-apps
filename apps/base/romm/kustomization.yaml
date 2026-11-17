@@ -25,5 +25,4 @@ configMapGenerator:
 
 images:
   - name: docker.io/rommapp/romm
-    newTag: "nightly" 
-    # newTag: "5.4.1" 
+    newTag: "5.5.0-alpha.2" 
